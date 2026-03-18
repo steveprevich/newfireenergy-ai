@@ -26,7 +26,7 @@ export default function Home() {
           playsInline
           preload="auto"
           ref={(el) => { if (el) { el.muted = true; el.play().catch(() => {}); } }}
-          style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "20% center", zIndex: 0,
+          style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center", zIndex: 0,
             opacity: 0.75, filter: "hue-rotate(195deg) saturate(1.8) brightness(1.1)" }}>
           <source src="/bg.mp4" type="video/mp4" />
         </video>
@@ -34,9 +34,12 @@ export default function Home() {
         {/* Dark overlay so text stays readable */}
         <div style={{ position: "absolute", inset: 0, background: "rgba(6,14,31,0.45)", zIndex: 1 }} />
 
-        {/* Soft edge fade — right */}
-        <div style={{ position: "absolute", top: 0, right: 0, width: "18%", height: "100%",
-          background: "linear-gradient(to left, rgba(6,14,31,0.95) 0%, transparent 100%)",
+        {/* Solid strip right edge — blocks TikTok icons, then soft fade inward */}
+        <div style={{ position: "absolute", top: 0, right: 0, width: "12%", height: "100%",
+          background: "rgba(6,14,31,1)",
+          zIndex: 3, pointerEvents: "none" }} />
+        <div style={{ position: "absolute", top: 0, right: "12%", width: "10%", height: "100%",
+          background: "linear-gradient(to left, rgba(6,14,31,0.85) 0%, transparent 100%)",
           zIndex: 3, pointerEvents: "none" }} />
 
         {/* Soft edge fade — bottom */}
