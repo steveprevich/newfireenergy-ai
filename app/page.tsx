@@ -34,6 +34,11 @@ export default function Home() {
         {/* Dark overlay so text stays readable */}
         <div style={{ position: "absolute", inset: 0, background: "rgba(6,14,31,0.45)", zIndex: 1 }} />
 
+        {/* Mask right edge — hides TikTok UI elements baked into video */}
+        <div style={{ position: "absolute", top: 0, right: 0, width: "22%", height: "100%",
+          background: "linear-gradient(to left, rgba(6,14,31,1) 0%, rgba(6,14,31,0.85) 40%, transparent 100%)",
+          zIndex: 2, pointerEvents: "none" }} />
+
         {/* Subtle centre glow behind text */}
         <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)",
           width: 700, height: 700, borderRadius: "50%", zIndex: 1,
