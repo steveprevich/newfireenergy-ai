@@ -1,3 +1,5 @@
+"use client";
+
 export default function Home() {
   const stats = [
     { value: "$100T", label: "Market Horizon", sub: "ZPE disrupts the entire global energy market", accent: "#00B8E6" },
@@ -16,15 +18,21 @@ export default function Home() {
       ══════════════════════════════════════════ */}
       <section style={{ height: "100vh", position: "relative", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center" }}>
 
-        {/* Video — brighter */}
-        <video autoPlay loop muted playsInline preload="auto"
+        {/* Video background */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          ref={(el) => { if (el) { el.muted = true; el.play().catch(() => {}); } }}
           style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover", zIndex: 0,
-            opacity: 0.62, filter: "hue-rotate(195deg) saturate(2.0) brightness(0.88)", mixBlendMode: "screen" }}>
+            opacity: 0.75, filter: "hue-rotate(195deg) saturate(1.8) brightness(1.1)" }}>
           <source src="/bg.mp4" type="video/mp4" />
         </video>
 
-        {/* Dark overlay — lighter so video shows through more */}
-        <div style={{ position: "absolute", inset: 0, background: "rgba(6,14,31,0.38)", zIndex: 1 }} />
+        {/* Dark overlay so text stays readable */}
+        <div style={{ position: "absolute", inset: 0, background: "rgba(6,14,31,0.45)", zIndex: 1 }} />
 
         {/* Subtle centre glow behind text */}
         <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)",
