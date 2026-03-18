@@ -35,14 +35,14 @@ export default function Home() {
         <div style={{ position: "absolute", inset: 0, background: "rgba(6,14,31,0.45)", zIndex: 1 }} />
 
         {/* Mask right edge — fully blocks TikTok UI elements baked into video */}
-        <div style={{ position: "absolute", top: 0, right: 0, width: "30%", height: "100%",
-          background: "linear-gradient(to left, rgba(6,14,31,1) 0%, rgba(6,14,31,1) 50%, transparent 100%)",
-          zIndex: 3, pointerEvents: "none" }} />
+        <div style={{ position: "absolute", top: 0, right: 0, width: "42%", height: "100%",
+          background: "linear-gradient(to left, rgba(6,14,31,1) 0%, rgba(6,14,31,1) 65%, transparent 100%)",
+          zIndex: 10, pointerEvents: "none" }} />
 
-        {/* Mask bottom edge — blocks any bottom TikTok UI (like counts etc) */}
-        <div style={{ position: "absolute", bottom: 0, left: 0, width: "100%", height: "18%",
-          background: "linear-gradient(to top, rgba(6,14,31,1) 0%, rgba(6,14,31,1) 40%, transparent 100%)",
-          zIndex: 3, pointerEvents: "none" }} />
+        {/* Mask bottom edge — blocks any bottom TikTok UI */}
+        <div style={{ position: "absolute", bottom: 0, left: 0, width: "100%", height: "22%",
+          background: "linear-gradient(to top, rgba(6,14,31,1) 0%, rgba(6,14,31,1) 50%, transparent 100%)",
+          zIndex: 10, pointerEvents: "none" }} />
 
         {/* Subtle centre glow behind text */}
         <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)",
