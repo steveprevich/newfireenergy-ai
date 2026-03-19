@@ -34,12 +34,18 @@ export default function Home() {
         {/* Dark overlay so text stays readable */}
         <div style={{ position: "absolute", inset: 0, background: "rgba(6,14,31,0.45)", zIndex: 1 }} />
 
-        {/* Solid strip right edge — blocks TikTok icons, then soft fade inward */}
+        {/* Solid strip — RIGHT edge blocks TikTok icons */}
         <div style={{ position: "absolute", top: 0, right: 0, width: "12%", height: "100%",
-          background: "rgba(6,14,31,1)",
-          zIndex: 3, pointerEvents: "none" }} />
-        <div style={{ position: "absolute", top: 0, right: "12%", width: "10%", height: "100%",
+          background: "rgba(6,14,31,1)", zIndex: 3, pointerEvents: "none" }} />
+        <div style={{ position: "absolute", top: 0, right: "12%", width: "8%", height: "100%",
           background: "linear-gradient(to left, rgba(6,14,31,0.85) 0%, transparent 100%)",
+          zIndex: 3, pointerEvents: "none" }} />
+
+        {/* Solid strip — LEFT edge blocks TikTok icons */}
+        <div style={{ position: "absolute", top: 0, left: 0, width: "12%", height: "100%",
+          background: "rgba(6,14,31,1)", zIndex: 3, pointerEvents: "none" }} />
+        <div style={{ position: "absolute", top: 0, left: "12%", width: "8%", height: "100%",
+          background: "linear-gradient(to right, rgba(6,14,31,0.85) 0%, transparent 100%)",
           zIndex: 3, pointerEvents: "none" }} />
 
         {/* Soft edge fade — bottom */}
