@@ -36,13 +36,13 @@ export default function Home() {
         <div style={{ position: "absolute", inset: 0, background: "rgba(6,14,31,0.45)", zIndex: 1 }} />
 
         {/* Soft vignette — RIGHT edge */}
-        <div style={{ position: "absolute", top: 0, right: 0, width: "20%", height: "100%",
-          background: "linear-gradient(to left, rgba(6,14,31,0.95) 0%, rgba(6,14,31,0.5) 45%, transparent 100%)",
+        <div style={{ position: "absolute", top: 0, right: 0, width: "24%", height: "100%",
+          background: "linear-gradient(to left, rgba(6,14,31,1) 0%, rgba(6,14,31,0.7) 40%, transparent 100%)",
           zIndex: 3, pointerEvents: "none" }} />
 
         {/* Soft vignette — LEFT edge */}
-        <div style={{ position: "absolute", top: 0, left: 0, width: "20%", height: "100%",
-          background: "linear-gradient(to right, rgba(6,14,31,0.95) 0%, rgba(6,14,31,0.5) 45%, transparent 100%)",
+        <div style={{ position: "absolute", top: 0, left: 0, width: "24%", height: "100%",
+          background: "linear-gradient(to right, rgba(6,14,31,1) 0%, rgba(6,14,31,0.7) 40%, transparent 100%)",
           zIndex: 3, pointerEvents: "none" }} />
 
         {/* Soft edge fade — bottom */}
