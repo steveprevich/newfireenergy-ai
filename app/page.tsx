@@ -36,13 +36,13 @@ export default function Home() {
         <div style={{ position: "absolute", inset: 0, background: "rgba(6,14,31,0.45)", zIndex: 1 }} />
 
         {/* Soft vignette — RIGHT edge */}
-        <div style={{ position: "absolute", top: 0, right: 0, width: "15%", height: "100%",
-          background: "linear-gradient(to left, rgba(6,14,31,0.92) 0%, rgba(6,14,31,0.4) 50%, transparent 100%)",
+        <div style={{ position: "absolute", top: 0, right: 0, width: "20%", height: "100%",
+          background: "linear-gradient(to left, rgba(6,14,31,0.95) 0%, rgba(6,14,31,0.5) 45%, transparent 100%)",
           zIndex: 3, pointerEvents: "none" }} />
 
         {/* Soft vignette — LEFT edge */}
-        <div style={{ position: "absolute", top: 0, left: 0, width: "15%", height: "100%",
-          background: "linear-gradient(to right, rgba(6,14,31,0.92) 0%, rgba(6,14,31,0.4) 50%, transparent 100%)",
+        <div style={{ position: "absolute", top: 0, left: 0, width: "20%", height: "100%",
+          background: "linear-gradient(to right, rgba(6,14,31,0.95) 0%, rgba(6,14,31,0.5) 45%, transparent 100%)",
           zIndex: 3, pointerEvents: "none" }} />
 
         {/* Soft edge fade — bottom */}
@@ -50,11 +50,6 @@ export default function Home() {
           background: "linear-gradient(to top, rgba(6,14,31,0.95) 0%, transparent 100%)",
           zIndex: 3, pointerEvents: "none" }} />
 
-        {/* Subtle centre glow behind text */}
-        <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)",
-          width: 700, height: 700, borderRadius: "50%", zIndex: 1,
-          background: "radial-gradient(circle, rgba(0,184,230,0.08) 0%, transparent 70%)",
-          pointerEvents: "none" }} />
 
         {/* Content — premium minimal */}
         <div style={{ position: "relative", zIndex: 2, textAlign: "center", padding: "24px", maxWidth: "860px" }}>
