@@ -28,7 +28,17 @@ export default function TechnologyPage() {
 
         <video
           autoPlay loop muted playsInline preload="auto"
-          ref={(el) => { if (el) { el.muted = true; el.play().catch(() => {}); } }}
+          ref={(el) => {
+            if (el) {
+              el.muted = true;
+              el.play().catch(() => {});
+              el.addEventListener('timeupdate', () => {
+                if (el.duration && el.currentTime > el.duration - 0.3) {
+                  el.currentTime = 0;
+                }
+              });
+            }
+          }}
           style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%",
             objectFit: "cover", objectPosition: "center center", zIndex: 0,
             opacity: 0.85, filter: "sepia(1) saturate(5) hue-rotate(185deg) brightness(0.85)",
