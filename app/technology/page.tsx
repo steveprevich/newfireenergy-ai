@@ -31,7 +31,7 @@ export default function TechnologyPage() {
           ref={(el) => { if (el) { el.muted = true; el.play().catch(() => {}); } }}
           style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%",
             objectFit: "cover", objectPosition: "center center", zIndex: 0,
-            opacity: 0.80, filter: "hue-rotate(215deg) saturate(2.5) brightness(0.9)",
+            opacity: 0.85, filter: "sepia(1) saturate(5) hue-rotate(185deg) brightness(0.85)",
             transform: "scale(1.05)", transformOrigin: "center center" }}>
           <source src="/energy.mp4" type="video/mp4" />
         </video>
