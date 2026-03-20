@@ -1,359 +1,231 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import {
-  Atom,
-  Zap,
-  FlaskConical,
-  BarChart3,
-  ArrowRight,
-  CheckCircle,
-} from "lucide-react";
-
-export const metadata: Metadata = {
-  title: "ZPE / LENR Technology",
-  description:
-    "Zero Point Energy and Low Energy Nuclear Reactions — the science behind New Fire Energy's clean, safe, limitless energy technology. Confirmed by NASA, DOE, MIT, and Google.",
-};
+"use client";
 
 const milestones = [
-  {
-    year: "1989",
-    title: "Cold Fusion",
-    desc: "Pons & Fleischmann announce cold fusion at University of Utah, igniting 30+ years of global research.",
-  },
-  {
-    year: "2009",
-    title: "SPAWAR",
-    desc: "U.S. Navy SPAWAR lab publishes peer-reviewed confirmation of LENR excess heat and nuclear signatures.",
-  },
-  {
-    year: "2015",
-    title: "Google",
-    desc: "Google launches $10M+ LENR research program, collaborating with leading universities worldwide.",
-  },
-  {
-    year: "2019",
-    title: "NASA LCF",
-    desc: "NASA Glenn Research Center publishes Lattice Confinement Fusion results, confirming the reaction mechanism.",
-  },
-  {
-    year: "2022",
-    title: "NFE Founded",
-    desc: "New Fire Energy founded in Casper, Wyoming to commercialize ZPE and LENR technology globally.",
-  },
-  {
-    year: "2023",
-    title: "Board Built",
-    desc: "MIT physicist Peter Fiekowsky, JP Morgan AI architect Sam Massaquoi, and Fortune 50 engineer Gaj Subudhi join the board.",
-  },
-  {
-    year: "2025",
-    title: "Investing",
-    desc: "Accredited investor window open. Blockchain smart contract funding model launched. ZPE token-backed.",
-  },
-  {
-    year: "2026+",
-    title: "Commercial",
-    desc: "First ZPE/LENR module deployments. KW to MW commercial installations for grid and off-grid customers.",
-  },
+  { year: "1909", title: "Excess Heat Discovered", desc: "Chemist Irving Langmuir discovers excess heat phenomena — the earliest roots of LENR science." },
+  { year: "1989", title: "Cold Fusion Announced", desc: "Pons & Fleischmann announce cold fusion at University of Utah, igniting decades of global research." },
+  { year: "2009", title: "U.S. Navy Confirms", desc: "U.S. Navy researchers publish peer-reviewed confirmation of LENR excess heat and nuclear signatures." },
+  { year: "2015", title: "Google Research", desc: "Google launches major LENR research program collaborating with leading universities worldwide." },
+  { year: "2020", title: "NASA Lattice Confinement", desc: "NASA Glenn Research Center publishes Lattice Confinement Fusion results confirming the reaction mechanism." },
+  { year: "2023", title: "DOE ARPA-E Funding", desc: "U.S. Dept. of Energy awards $10M to LENR research projects — mainstream recognition arrives." },
+  { year: "2024", title: "Andrea Rossi Demo", desc: "Leonardo Corp demonstrates the QLED Self-Sustaining Module live 24/7 on YouTube — commercialization begins." },
+  { year: "2025+", title: "Commercial Phase", desc: "E-Cat NGU and ENG8 EnergiCell preparing for distribution. New Fire Energy investing now." },
 ];
 
 const faqs = [
-  {
-    q: "Is LENR the same as cold fusion?",
-    a: `LENR (Low Energy Nuclear Reactions) is the scientifically rigorous term for the same phenomenon first reported by Pons and Fleischmann in 1989. The term "cold fusion" is avoided because the reaction mechanism differs fundamentally from conventional hot fusion. LENR involves a quantum mechanical process within a metal lattice, not plasma confinement.`,
-  },
-  {
-    q: "How is LENR different from conventional nuclear fission?",
-    a: "Fission splits heavy atoms (uranium, plutonium) and produces significant radioactive waste and dangerous gamma radiation. LENR involves light hydrogen isotopes reacting in a metal lattice, producing primarily heat and helium-4 as a byproduct — with no harmful radiation and no long-lived radioactive waste.",
-  },
-  {
-    q: "What is the scientific basis for LENR?",
-    a: "LENR relies on quantum tunneling of hydrogen nuclei in a highly ordered metal lattice (typically nickel or palladium). The lattice environment screens the Coulomb barrier between protons, enabling nuclear reactions at low temperatures. Over 3,000 peer-reviewed experiments confirm anomalous excess heat production.",
-  },
-  {
-    q: "What does COP mean and why does it matter?",
-    a: "COP (Coefficient of Performance) is the ratio of energy out to energy in. A COP of 3.4 means 3.4x more heat energy comes out than electrical energy goes in. For comparison, the best heat pumps achieve COP ~4-5, but they simply move heat rather than generating it. Our LENR system at 340% COP is generating entirely new energy from a nuclear process.",
-  },
-  {
-    q: "Why hasn't LENR been commercialized before?",
-    a: "The primary challenge has been reproducibility. Early experiments were highly variable, making it difficult to engineer reliable systems. New Fire Energy's breakthrough is a proprietary catalyst formulation and reactor geometry that achieves consistent, repeatable results — the key engineering bottleneck that has now been solved.",
-  },
+  { q: "Is LENR peer reviewed?", a: "Yes. Over 3,000 peer-reviewed experiments confirm LENR excess heat production. The U.S. Navy, NASA, DOE, and Physical Review C have all published findings. LENR is established science." },
+  { q: "What is Zero Point Energy (ZPE)?", a: "ZPE is referenced by portfolio companies within the LENR umbrella such as ENG8 International. It describes energy derived from the quantum vacuum field. It is not separately peer-reviewed as a commercial energy source — it is a theoretical framework explored by certain LENR-adjacent companies." },
+  { q: "How is LENR different from conventional nuclear fission?", a: "Fission splits heavy atoms (uranium, plutonium) producing radioactive waste and gamma radiation. LENR involves light hydrogen isotopes reacting in a metal lattice, producing primarily heat and helium-4 — no harmful radiation, no long-lived waste." },
+  { q: "What does COP mean?", a: "COP (Coefficient of Performance) is the ratio of energy out to energy in. ENG8's EnergiCell has demonstrated a CoP of up to 30 in laboratory conditions, targeting CoP 5–10 for the minimum viable product." },
+  { q: "Why hasn't LENR been commercialized before?", a: "The primary challenge has been reproducibility. Early experiments were variable. Multiple companies (Andrea Rossi/Leonardo Corp, ENG8 International) have now achieved consistent, repeatable results and are entering the commercialization phase." },
 ];
 
 export default function TechnologyPage() {
   return (
-    <div className="pt-28 pb-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Page header */}
-        <div className="max-w-3xl mb-20">
-          <div className="section-subtitle mb-4">The Science</div>
-          <h1 className="section-title mb-6">
-            ZPE /{" "}
-            <span className="gradient-text">Low Energy Nuclear Reactions</span>
+    <main style={{ background: "#060E1F", margin: 0, padding: 0 }}>
+
+      {/* ── FULL-SCREEN VIDEO HERO ── */}
+      <section style={{ height: "100vh", position: "relative", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center" }}>
+
+        <video
+          autoPlay loop muted playsInline preload="auto"
+          ref={(el) => { if (el) { el.muted = true; el.play().catch(() => {}); } }}
+          style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%",
+            objectFit: "cover", objectPosition: "center center", zIndex: 0,
+            opacity: 0.72, filter: "hue-rotate(195deg) saturate(1.8) brightness(1.05)",
+            transform: "scale(1.05)", transformOrigin: "center center" }}>
+          <source src="/energy.mp4" type="video/mp4" />
+        </video>
+
+        <div style={{ position: "absolute", inset: 0, background: "rgba(6,14,31,0.50)", zIndex: 1 }} />
+
+        {/* Side vignettes */}
+        <div style={{ position: "absolute", top: 0, right: 0, width: "20%", height: "100%",
+          background: "linear-gradient(to left, rgba(6,14,31,1) 0%, rgba(6,14,31,0.6) 40%, transparent 100%)",
+          zIndex: 3, pointerEvents: "none" }} />
+        <div style={{ position: "absolute", top: 0, left: 0, width: "20%", height: "100%",
+          background: "linear-gradient(to right, rgba(6,14,31,1) 0%, rgba(6,14,31,0.6) 40%, transparent 100%)",
+          zIndex: 3, pointerEvents: "none" }} />
+        <div style={{ position: "absolute", bottom: 0, left: 0, width: "100%", height: "18%",
+          background: "linear-gradient(to top, rgba(6,14,31,1) 0%, transparent 100%)",
+          zIndex: 3, pointerEvents: "none" }} />
+
+        <div style={{ position: "relative", zIndex: 2, textAlign: "center", padding: "24px", maxWidth: 860 }}>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 10, marginBottom: 28,
+            fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase",
+            color: "rgba(0,184,230,0.7)" }}>
+            <span style={{ display: "inline-block", width: 32, height: 1, background: "rgba(0,184,230,0.4)" }} />
+            Peer-Reviewed Science · 100+ Years in Development
+            <span style={{ display: "inline-block", width: 32, height: 1, background: "rgba(0,184,230,0.4)" }} />
+          </div>
+
+          <h1 style={{ fontSize: "clamp(2.8rem, 9vw, 6.5rem)", fontWeight: 900, margin: "0 0 20px",
+            lineHeight: 1.0, letterSpacing: "-0.03em",
+            background: "linear-gradient(135deg, #ffffff 30%, #7FD8F0 70%, #00B8E6 100%)",
+            WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
+            filter: "drop-shadow(0 0 40px rgba(0,184,230,0.25))" }}>
+            LENR Technology
           </h1>
-          <p className="text-white/50 text-xl leading-relaxed mb-6">
-            Zero Point Energy and LENR — also known as Cold Fusion or Lattice
-            Confinement Fusion — represent a paradigm shift in energy production.
-            A technology 30 years in development, confirmed by NASA, DOE, MIT,
-            and Google, is now ready for the world to have.
+
+          <div style={{ width: 80, height: 2, margin: "0 auto 24px",
+            background: "linear-gradient(90deg, transparent, #00B8E6, transparent)" }} />
+
+          <p style={{ fontSize: "clamp(1rem, 2.2vw, 1.25rem)", color: "rgba(255,255,255,0.65)",
+            maxWidth: 620, margin: "0 auto 12px", lineHeight: 1.75, fontWeight: 300 }}>
+            Low Energy Nuclear Reactions — the peer-reviewed science driving the next energy revolution. Confirmed by NASA, the U.S. Navy, DOE, and published in Physical Review C.
           </p>
-          <p className="text-white/40 text-base leading-relaxed italic border-l-2 border-plasma-400/30 pl-4">
-            &ldquo;Within this white shadow is a dimension we have yet to
-            understand — Zero Point Energy that lights up a room with confidence,
-            bearing no visible harm to life. A forceless field bringing a new era
-            of freedom.&rdquo;
+          <p style={{ fontSize: "0.85rem", color: "rgba(0,184,230,0.55)", letterSpacing: "0.08em", fontWeight: 600 }}>
+            Zero Carbon · No Harmful Radiation · Scalable to MW
           </p>
         </div>
 
-        {/* Core mechanism */}
-        <div className="grid lg:grid-cols-2 gap-12 items-center mb-24">
-          <div>
-            <h2 className="font-display text-2xl sm:text-3xl font-bold text-white mb-6">
-              The Core Mechanism
+        <div style={{ position: "absolute", bottom: 28, left: "50%", transform: "translateX(-50%)", zIndex: 4,
+          display: "flex", flexDirection: "column", alignItems: "center", gap: 6,
+          color: "rgba(255,255,255,0.3)", fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase",
+          animation: "bounce 2s infinite" }}>
+          <span>Scroll</span><span style={{ fontSize: "1.1rem" }}>↓</span>
+        </div>
+      </section>
+
+      {/* ── WHAT IS LENR ── */}
+      <section style={{ padding: "100px 24px", background: "linear-gradient(180deg, #060E1F 0%, #0A1628 100%)" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+
+          <div style={{ textAlign: "center", marginBottom: 64 }}>
+            <div style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "5px 16px",
+              borderRadius: 999, border: "1px solid rgba(0,184,230,0.2)", background: "rgba(0,184,230,0.07)",
+              color: "#7FD8F0", fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.1em",
+              textTransform: "uppercase", marginBottom: 20 }}>
+              <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#00B8E6", display: "inline-block" }} />
+              The Science
+            </div>
+            <h2 style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)", fontWeight: 800, color: "#fff", margin: "0 0 20px" }}>
+              What is{" "}
+              <span style={{ background: "linear-gradient(90deg,#00B8E6,#2DD4BF)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+                LENR?
+              </span>
             </h2>
-            <div className="space-y-5">
-              {[
-                {
-                  icon: Atom,
-                  title: "Hydrogen Loading",
-                  desc: "Hydrogen isotopes (protium, deuterium) are loaded into a specially prepared metal lattice at elevated pressure and temperature.",
-                },
-                {
-                  icon: FlaskConical,
-                  title: "Lattice Confinement",
-                  desc: "The crystal lattice confines hydrogen nuclei at inter-atomic distances below the Bohr radius — conditions that dramatically increase quantum tunneling probability.",
-                },
-                {
-                  icon: Zap,
-                  title: "Nuclear Reaction",
-                  desc: "Hydrogen nuclei fuse with nickel nuclei or with each other, releasing energy as phonons (heat) rather than dangerous gamma radiation.",
-                },
-                {
-                  icon: BarChart3,
-                  title: "Excess Heat Output",
-                  desc: "The system outputs significantly more thermal energy than the electrical energy input — confirmed at COP 3.4 over sustained runs.",
-                },
-              ].map((step, i) => {
-                const Icon = step.icon;
-                return (
-                  <div key={step.title} className="flex gap-4">
-                    <div className="flex flex-col items-center">
-                      <div className="w-10 h-10 rounded-xl bg-plasma-500/10 border border-plasma-400/20 flex items-center justify-center shrink-0">
-                        <Icon className="w-5 h-5 text-plasma-400" />
-                      </div>
-                      {i < 3 && (
-                        <div className="w-px flex-1 bg-white/[0.05] mt-2 mb-0" />
-                      )}
-                    </div>
-                    <div className="pb-5">
-                      <h3 className="font-semibold text-white mb-1">
-                        {step.title}
-                      </h3>
-                      <p className="text-white/50 text-sm leading-relaxed">
-                        {step.desc}
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+            <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "1.05rem", maxWidth: 720, margin: "0 auto", lineHeight: 1.8 }}>
+              Low Energy Nuclear Reactions (LENR) is a <strong style={{ color: "rgba(255,255,255,0.75)" }}>peer-reviewed field of nuclear science</strong> in which nuclear-scale reactions occur at low input energies within a metal lattice — producing abundant heat with negligible radiation and zero carbon emissions.
+            </p>
           </div>
 
-          {/* Visual representation */}
-          <div className="glass-card p-8 relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-plasma-500/5 to-teal-500/5" />
-            <div className="relative z-10">
-              <div className="text-center mb-8">
-                <h3 className="font-display font-bold text-lg text-white mb-2">
-                  Energy Balance
-                </h3>
-                <p className="text-white/40 text-sm">
-                  Measured in our lab — Q4 2023
-                </p>
+          {/* 4 mechanism cards */}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 20, marginBottom: 64 }}>
+            {[
+              { icon: "⚛️", title: "Hydrogen Loading", desc: "Hydrogen isotopes are loaded into a specially prepared nickel or palladium metal lattice at elevated pressure and temperature." },
+              { icon: "🔬", title: "Lattice Confinement", desc: "The crystal lattice confines hydrogen nuclei below the Bohr radius — dramatically increasing quantum tunneling probability." },
+              { icon: "⚡", title: "Nuclear Reaction", desc: "Hydrogen nuclei fuse with metal nuclei, releasing energy as phonons (heat) rather than dangerous gamma radiation." },
+              { icon: "📈", title: "Excess Heat Output", desc: "The system outputs significantly more thermal energy than the electrical input — ENG8 demonstrated CoP up to 30." },
+            ].map((c) => (
+              <div key={c.title} style={{ background: "rgba(0,184,230,0.04)", border: "1px solid rgba(0,184,230,0.14)",
+                borderRadius: 16, padding: "28px 24px" }}>
+                <div style={{ fontSize: "2rem", marginBottom: 14 }}>{c.icon}</div>
+                <div style={{ color: "#7FD8F0", fontWeight: 700, fontSize: "1rem", marginBottom: 8 }}>{c.title}</div>
+                <div style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.85rem", lineHeight: 1.65 }}>{c.desc}</div>
               </div>
+            ))}
+          </div>
 
-              <div className="space-y-4">
-                {[
-                  { label: "Electrical Input", value: 100, color: "bg-white/20", pct: "100 W" },
-                  { label: "Thermal Output", value: 340, color: "bg-plasma-400", pct: "340 W" },
-                  { label: "Net Excess", value: 240, color: "bg-teal-400", pct: "+240 W" },
-                ].map((item) => (
-                  <div key={item.label}>
-                    <div className="flex justify-between text-sm mb-1.5">
-                      <span className="text-white/60">{item.label}</span>
-                      <span className="text-white font-mono font-medium">
-                        {item.pct}
-                      </span>
-                    </div>
-                    <div className="h-3 bg-white/[0.05] rounded-full overflow-hidden">
-                      <div
-                        className={`h-full rounded-full ${item.color} transition-all duration-1000`}
-                        style={{ width: `${(item.value / 340) * 100}%` }}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-8 p-4 rounded-xl bg-plasma-500/10 border border-plasma-400/20 text-center">
-                <div className="font-display text-3xl font-bold gradient-text mb-1">
-                  340%
-                </div>
-                <div className="text-white/50 text-sm">
-                  Coefficient of Performance
-                </div>
-              </div>
+          {/* ZPE note */}
+          <div style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(0,184,230,0.12)",
+            borderRadius: 16, padding: "28px 32px", maxWidth: 800, margin: "0 auto" }}>
+            <div style={{ color: "#7FD8F0", fontWeight: 700, fontSize: "0.9rem", marginBottom: 10 }}>
+              ⚛️ A Note on Zero Point Energy (ZPE)
             </div>
+            <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.9rem", lineHeight: 1.75, margin: 0 }}>
+              Zero Point Energy is referenced by certain portfolio companies within the LENR umbrella — such as ENG8 International — as a theoretical framework for energy derived from the quantum vacuum field. ZPE falls under the broader LENR investment thesis. New Fire Energy invests across the LENR ecosystem, which includes companies exploring ZPE, lattice confinement fusion, and catalyzed nuclear processes.
+            </p>
           </div>
         </div>
+      </section>
 
-        {/* Advantages */}
-        <div className="mb-24">
-          <h2 className="font-display text-2xl sm:text-3xl font-bold text-white mb-8 text-center">
-            LENR vs. Existing Energy Sources
-          </h2>
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-white/[0.08]">
-                  <th className="text-left py-4 px-4 text-white/40 text-sm font-medium">
-                    Attribute
-                  </th>
-                  {["LENR (Ours)", "Solar/Wind", "Natural Gas", "Nuclear Fission"].map(
-                    (h) => (
-                      <th
-                        key={h}
-                        className={`text-center py-4 px-4 text-sm font-semibold ${
-                          h === "LENR (Ours)"
-                            ? "text-plasma-400"
-                            : "text-white/60"
-                        }`}
-                      >
-                        {h}
-                      </th>
-                    )
-                  )}
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-white/[0.05]">
-                {[
-                  ["Carbon Emissions", "Zero", "Zero", "High", "Low"],
-                  ["Energy Density", "10,000× gas", "Very Low", "Baseline", "High"],
-                  ["24/7 Baseload", "Yes", "No", "Yes", "Yes"],
-                  ["Radioactive Waste", "None", "None", "None", "Yes (millennia)"],
-                  ["Fuel Cost", "$0.001/kWh", "$0/kWh*", "$0.04/kWh", "$0.005/kWh"],
-                  ["Scalability", "High", "Land-limited", "High", "Very slow/expensive"],
-                  ["Safety", "Intrinsically safe", "Safe", "Explosion risk", "Meltdown risk"],
-                ].map(([attr, ...values]) => (
-                  <tr key={attr} className="hover:bg-white/[0.02] transition-colors">
-                    <td className="py-3.5 px-4 text-white/60 text-sm font-medium">
-                      {attr}
-                    </td>
-                    {values.map((v, i) => (
-                      <td
-                        key={i}
-                        className={`py-3.5 px-4 text-center text-sm ${
-                          i === 0
-                            ? "text-plasma-400 font-semibold"
-                            : "text-white/40"
-                        }`}
-                      >
-                        {i === 0 ? (
-                          <span className="flex items-center justify-center gap-1.5">
-                            <CheckCircle className="w-3.5 h-3.5" />
-                            {v}
-                          </span>
-                        ) : (
-                          v
-                        )}
-                      </td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+      {/* ── TIMELINE ── */}
+      <section style={{ padding: "80px 24px", background: "#060E1F", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+        <div style={{ maxWidth: 900, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 56 }}>
+            <h2 style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.6rem)", fontWeight: 800, color: "#fff", margin: "0 0 12px" }}>
+              History of{" "}
+              <span style={{ background: "linear-gradient(90deg,#00B8E6,#2DD4BF)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+                LENR Science
+              </span>
+            </h2>
+            <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.95rem" }}>From first discovery to commercial deployment</p>
           </div>
-          <p className="text-white/25 text-xs mt-3">
-            * Solar/wind have zero fuel cost but require significant capex for storage and transmission.
-          </p>
-        </div>
 
-        {/* Roadmap */}
-        <div className="mb-24">
-          <div className="section-subtitle mb-4 text-center">Development Timeline</div>
-          <h2 className="font-display text-2xl sm:text-3xl font-bold text-white mb-12 text-center">
-            From Lab to Commercial Scale
-          </h2>
-          <div className="relative">
-            <div className="hidden md:block absolute top-5 left-0 right-0 h-px bg-gradient-to-r from-transparent via-plasma-400/30 to-transparent" />
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
-              {milestones.map((m, i) => {
-                const isPast = parseInt(m.year) <= 2025;
-                const isCurrent = m.year === "2025";
-                return (
-                  <div key={m.year} className="flex flex-col items-center text-center">
-                    <div
-                      className={`relative z-10 w-10 h-10 rounded-full flex items-center justify-center text-xs font-bold mb-3 border-2 transition-all duration-300 ${
-                        isPast
-                          ? "bg-plasma-500 border-plasma-400 text-white"
-                          : isCurrent
-                          ? "bg-fire-400 border-fire-300 text-navy-900"
-                          : "bg-navy-800 border-white/20 text-white/40"
-                      }`}
-                    >
-                      {isPast ? "✓" : isCurrent ? "◉" : String(i + 1)}
-                    </div>
-                    <div className={`font-mono text-xs font-bold mb-1 ${isCurrent ? "text-fire-300" : isPast ? "text-plasma-400" : "text-white/30"}`}>
-                      {m.year}
-                    </div>
-                    <div className={`text-xs font-semibold mb-1 ${isCurrent ? "text-white" : isPast ? "text-white/70" : "text-white/40"}`}>
-                      {m.title}
-                    </div>
-                    <div className="text-white/30 text-xs leading-tight hidden lg:block">
-                      {m.desc}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-
-        {/* FAQ */}
-        <div>
-          <div className="section-subtitle mb-4 text-center">Common Questions</div>
-          <h2 className="font-display text-2xl sm:text-3xl font-bold text-white mb-12 text-center">
-            Technical FAQ
-          </h2>
-          <div className="max-w-3xl mx-auto space-y-4">
-            {faqs.map((faq) => (
-              <details
-                key={faq.q}
-                className="glass-card group open:border-plasma-400/20 cursor-pointer"
-              >
-                <summary className="flex items-center justify-between p-6 list-none font-semibold text-white group-open:text-plasma-400 transition-colors duration-200">
-                  {faq.q}
-                  <span className="text-white/40 group-open:text-plasma-400 text-xl transition-transform duration-200 group-open:rotate-45 ml-4 shrink-0">
-                    +
-                  </span>
-                </summary>
-                <div className="px-6 pb-6 text-white/55 leading-relaxed text-sm border-t border-white/[0.06] pt-4">
-                  {faq.a}
+          <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+            {milestones.map((m, i) => (
+              <div key={m.year} style={{ display: "flex", gap: 24, alignItems: "flex-start", paddingBottom: 32, position: "relative" }}>
+                {/* Line */}
+                {i < milestones.length - 1 && (
+                  <div style={{ position: "absolute", left: 39, top: 44, width: 2, height: "calc(100% - 12px)",
+                    background: "linear-gradient(to bottom, rgba(0,184,230,0.3), rgba(0,184,230,0.05))" }} />
+                )}
+                {/* Year badge */}
+                <div style={{ flexShrink: 0, width: 80, height: 80, borderRadius: 16,
+                  background: "rgba(0,184,230,0.08)", border: "1px solid rgba(0,184,230,0.2)",
+                  display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
+                  <span style={{ color: "#00B8E6", fontWeight: 800, fontSize: "0.95rem" }}>{m.year}</span>
                 </div>
-              </details>
+                {/* Content */}
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{ color: "#fff", fontWeight: 700, fontSize: "1rem", marginBottom: 6 }}>{m.title}</div>
+                  <div style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.85rem", lineHeight: 1.65 }}>{m.desc}</div>
+                </div>
+              </div>
             ))}
           </div>
         </div>
+      </section>
 
-        {/* CTA */}
-        <div className="mt-16 text-center">
-          <Link href="/investors" className="btn-primary text-base">
-            Explore Investment Opportunity
-            <ArrowRight className="w-5 h-5" />
-          </Link>
+      {/* ── FAQs ── */}
+      <section style={{ padding: "80px 24px", background: "linear-gradient(180deg,#060E1F,#0A1628)", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+        <div style={{ maxWidth: 800, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 48 }}>
+            <h2 style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)", fontWeight: 800, color: "#fff", margin: "0 0 12px" }}>
+              Common Questions
+            </h2>
+            <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.95rem" }}>Understanding LENR science and our investment thesis</p>
+          </div>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+            {faqs.map((f) => (
+              <div key={f.q} style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)",
+                borderRadius: 14, padding: "24px 28px" }}>
+                <div style={{ color: "#7FD8F0", fontWeight: 700, fontSize: "1rem", marginBottom: 10 }}>Q: {f.q}</div>
+                <div style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.88rem", lineHeight: 1.75 }}>{f.a}</div>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-    </div>
+      </section>
+
+      {/* ── CTA ── */}
+      <section style={{ padding: "80px 24px", background: "#060E1F", borderTop: "1px solid rgba(255,255,255,0.05)", textAlign: "center" }}>
+        <div style={{ maxWidth: 700, margin: "0 auto" }}>
+          <h2 style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)", fontWeight: 800, color: "#fff", margin: "0 0 16px" }}>
+            Ready to Invest in the New Energy Revolution?
+          </h2>
+          <p style={{ color: "rgba(255,255,255,0.45)", fontSize: "1rem", margin: "0 0 36px", lineHeight: 1.7 }}>
+            New Fire Energy is raising $40.4M to invest in the world&apos;s most promising LENR companies. Minimum $20,000. Accredited investors only.
+          </p>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 16, justifyContent: "center" }}>
+            <a href="/investors" style={{ padding: "15px 36px", borderRadius: 10,
+              background: "linear-gradient(135deg,#F97316,#EF4444)", color: "#fff", fontWeight: 700,
+              fontSize: "1.05rem", textDecoration: "none", boxShadow: "0 4px 24px rgba(249,115,22,0.35)" }}>
+              🔥 Become an Investor →
+            </a>
+            <a href="/whitepaper" style={{ padding: "15px 36px", borderRadius: 10,
+              background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.15)",
+              color: "#fff", fontWeight: 600, fontSize: "1.05rem", textDecoration: "none" }}>
+              Read White Papers
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <style>{`
+        @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(7px)} }
+      `}</style>
+    </main>
   );
 }
