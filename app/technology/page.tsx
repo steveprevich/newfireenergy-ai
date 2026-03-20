@@ -31,12 +31,12 @@ export default function TechnologyPage() {
           ref={(el) => { if (el) { el.muted = true; el.play().catch(() => {}); } }}
           style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%",
             objectFit: "cover", objectPosition: "center center", zIndex: 0,
-            opacity: 0.72, filter: "hue-rotate(195deg) saturate(1.8) brightness(1.05)",
+            opacity: 0.80, filter: "hue-rotate(215deg) saturate(2.5) brightness(0.9)",
             transform: "scale(1.05)", transformOrigin: "center center" }}>
           <source src="/energy.mp4" type="video/mp4" />
         </video>
 
-        <div style={{ position: "absolute", inset: 0, background: "rgba(6,14,31,0.50)", zIndex: 1 }} />
+        <div style={{ position: "absolute", inset: 0, background: "rgba(0,18,50,0.52)", zIndex: 1 }} />
 
         {/* Side vignettes */}
         <div style={{ position: "absolute", top: 0, right: 0, width: "20%", height: "100%",
