@@ -71,9 +71,9 @@ export default function FireLogo({ size = 42 }: { size?: number }) {
           textAnchor="middle"
           fill="white"
           fontWeight="900"
-          fontSize="9"
+          fontSize="12"
           fontFamily="Arial, Helvetica, sans-serif"
-          letterSpacing="1"
+          letterSpacing="0.5"
         >NFE</text>
       </svg>
     </>
