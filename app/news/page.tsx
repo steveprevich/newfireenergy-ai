@@ -67,10 +67,10 @@ export default function NewsPage() {
     },
     {
       category: "Market",
-      date: "Q1 2025",
-      title: "Private Equity Moves Into LENR: Over $2B in New Commitments",
-      body: "A wave of private equity and family office capital committed over $2 billion globally to LENR and lattice confinement fusion companies in early 2025. With hot fusion (ITER) facing a 2040+ timeline and continued cost overruns, sophisticated investors are pivoting to near-term LENR commercialization plays.",
-      source: "Bloomberg / Private Equity Analyst",
+      date: "2025",
+      title: "Tens of Millions Flowing Into LENR as Mainstream Attention Grows",
+      body: "From 2016 through 2025, tens of millions of dollars have been directed into LENR research and early-stage commercialization worldwide. Government grants, private research budgets, and forward-looking fund capital are steadily building the foundation for what many experts believe will be one of the largest energy market shifts in history.",
+      source: "Energy Research Intelligence",
       tag: "Market",
       color: "#F97316",
     },
@@ -176,7 +176,7 @@ export default function NewsPage() {
           {[
             { value: "3,000+", label: "Peer-Reviewed Experiments" },
             { value: "30+",    label: "Years of Research" },
-            { value: "$2B+",   label: "2025 Private Capital Committed" },
+            { value: "$100M+", label: "Capital Into LENR 2016–2025" },
             { value: "6",      label: "Major Institutions Validating" },
           ].map((s) => (
             <div key={s.label} style={{ textAlign: "center" }}>
