@@ -64,12 +64,14 @@ export default function FireLogo({ size = 42 }: { size?: number }) {
           fill="url(#nfeFlameInner)"
         />
 
-        {/* NFE — always on top */}
+        {/* NFE — always on top, black so it pops against the blue flame */}
         <text
           x="21"
           y="34"
           textAnchor="middle"
-          fill="white"
+          fill="#060E1F"
+          stroke="#060E1F"
+          strokeWidth="0.3"
           fontWeight="900"
           fontSize="12"
           fontFamily="Arial, Helvetica, sans-serif"
