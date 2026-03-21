@@ -28,8 +28,8 @@ export default function InvestorsPage() {
           style={{
             position: "absolute", inset: 0, width: "100%", height: "100%",
             objectFit: "cover", objectPosition: "center",
-            filter: "hue-rotate(195deg) saturate(1.8) brightness(0.7)",
-            mixBlendMode: "screen", opacity: 0.65, zIndex: 0,
+            filter: "saturate(1.2) brightness(0.55)",
+            opacity: 0.72, zIndex: 0,
           }}
         >
           <source src="/investors-bg.mp4" type="video/mp4" />
