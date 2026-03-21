@@ -57,7 +57,7 @@ export default function InvestorsPage() {
           </h1>
 
           <p style={{ color: "rgba(255,255,255,0.7)", fontSize: "clamp(1rem,2vw,1.25rem)", lineHeight: 1.7, marginBottom: 36, maxWidth: 680, margin: "0 auto 36px" }}>
-            New Fire Energy is a private equity fund investing in Low Energy Nuclear Reactions (LENR) — the peer-reviewed science poised to disrupt a $100 trillion global energy market.
+            New Fire Energy issues the NFE tokenized security, backing LENR companies in their research and development. The peer-reviewed science of Low Energy Nuclear Reactions is poised to disrupt a $100 trillion global energy market.
           </p>
 
           <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
