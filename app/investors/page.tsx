@@ -1,11 +1,8 @@
 "use client";
 
-import { useRef } from "react";
 import Link from "next/link";
 
 export default function InvestorsPage() {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
   return (
     <div style={{ background: "#060E1F", minHeight: "100vh" }}>
 
@@ -14,7 +11,6 @@ export default function InvestorsPage() {
 
         {/* Video bg */}
         <video
-          ref={videoRef}
           autoPlay
           loop
           muted
