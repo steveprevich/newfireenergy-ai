@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import AIAssistant from "@/components/AIAssistant";
+import FireLogo from "@/components/FireLogo";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -54,14 +55,7 @@ export default function RootLayout({
 
           {/* Logo */}
           <a href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: 10 }}>
-            <div style={{
-              width: 36, height: 36, borderRadius: 10,
-              background: "linear-gradient(135deg, #00B8E6, #2DD4BF)",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              fontSize: "1.1rem", boxShadow: "0 0 16px rgba(0,184,230,0.35)",
-            }}>
-              🔥
-            </div>
+            <FireLogo size={42} />
             <div>
               <div style={{ color: "#fff", fontWeight: 800, fontSize: "0.95rem", lineHeight: 1.1, letterSpacing: "-0.01em" }}>
                 New Fire Energy
@@ -112,7 +106,7 @@ export default function RootLayout({
               {/* Brand */}
               <div style={{ gridColumn: "span 1" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
-                  <div style={{ width: 34, height: 34, borderRadius: 9, background: "linear-gradient(135deg,#00B8E6,#2DD4BF)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1rem" }}>🔥</div>
+                  <FireLogo size={34} />
                   <div>
                     <div style={{ color: "#fff", fontWeight: 800, fontSize: "0.9rem" }}>New Fire Energy</div>
                     <div style={{ color: "rgba(0,184,230,0.6)", fontSize: "0.58rem", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase" }}>Private Equity Fund</div>
