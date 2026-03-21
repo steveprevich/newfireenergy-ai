@@ -57,7 +57,7 @@ export default function ContactPage() {
             </h1>
             <p className="text-white/55 text-lg leading-relaxed mb-10">
               Whether you are an investor, potential partner, researcher, or
-              just curious about LENR — we want to hear from you.
+              just curious about LENR we want to hear from you.
             </p>
 
             {/* Contact info */}
@@ -117,7 +117,7 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Right side — Form */}
+          {/* Right side Form */}
           <div className="glass-card p-8">
             {status === "success" ? (
               <div className="text-center py-12">

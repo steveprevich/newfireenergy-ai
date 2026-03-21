@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import AIAssistant from "@/components/AIAssistant";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,11 +19,12 @@ export const metadata: Metadata = {
 };
 
 const navLinks = [
-  { label: "Home",               href: "/" },
-  { label: "ZPE / LENR",         href: "/technology" },
-  { label: "White Papers",       href: "/whitepaper" },
-  { label: "Board",              href: "/team" },
-  { label: "Contact Us",         href: "/contact" },
+  { label: "Home",         href: "/" },
+  { label: "ZPE / LENR",  href: "/technology" },
+  { label: "LENR News",   href: "/news" },
+  { label: "White Papers", href: "/whitepaper" },
+  { label: "Board",        href: "/team" },
+  { label: "Contact Us",  href: "/contact" },
 ];
 
 export default function RootLayout({
@@ -96,8 +98,9 @@ export default function RootLayout({
           </a>
         </header>
 
-        {/* Page content — no top padding needed since hero is full-screen */}
+        {/* Page content */}
         {children}
+        <AIAssistant />
 
         {/* ── FOOTER ── */}
         <footer style={{ background: "#040B18", borderTop: "1px solid rgba(0,184,230,0.12)", padding: "60px 32px 32px", marginTop: 0 }}>
@@ -129,7 +132,7 @@ export default function RootLayout({
               <div>
                 <h4 style={{ color: "rgba(255,255,255,0.3)", fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 16 }}>Company</h4>
                 <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-                  {[["Home", "/"], ["ZPE / LENR Technology", "/technology"], ["White Papers", "/whitepaper"], ["Our Board", "/team"], ["Contact Us", "/contact"]].map(([l, h]) => (
+                  {[["Home", "/"], ["ZPE / LENR Technology", "/technology"], ["LENR News", "/news"], ["White Papers", "/whitepaper"], ["Our Board", "/team"], ["Contact Us", "/contact"]].map(([l, h]) => (
                     <a key={l} href={h} style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.82rem", textDecoration: "none" }}>{l}</a>
                   ))}
                 </div>

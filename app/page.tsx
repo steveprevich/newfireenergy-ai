@@ -88,7 +88,7 @@ export default function Home() {
           {/* Quote */}
           <p style={{ fontSize: "clamp(1rem, 2.2vw, 1.25rem)", color: "rgba(255,255,255,0.62)",
             maxWidth: 600, margin: "0 auto 10px", lineHeight: 1.75, fontStyle: "italic", fontWeight: 300 }}>
-            &ldquo;Energy technology 100 years in the making — preparing for commercialization now.&rdquo;
+            &ldquo;Energy technology 100 years in the making, preparing for commercialization now.&rdquo;
           </p>
           <p style={{ fontSize: "clamp(0.8rem, 1.5vw, 0.95rem)", color: "rgba(0,184,230,0.55)",
             letterSpacing: "0.08em", fontWeight: 600, margin: 0 }}>
@@ -143,12 +143,12 @@ export default function Home() {
             <p style={{ fontSize: "clamp(1rem, 2.2vw, 1.15rem)", color: "rgba(255,255,255,0.75)",
               lineHeight: 1.85, margin: 0 }}>
               <span style={{ color: "#7FD8F0", fontWeight: 700 }}>New Fire Energy Inc.</span> is a private equity firm that invests in and accelerates advanced energy technologies, with a particular focus on{" "}
-              <span style={{ color: "#7FD8F0", fontWeight: 600 }}>Low Energy Nuclear Reactions (LENR)</span> — a peer-reviewed field of science — providing disciplined capital, technical support, and strategic guidance to move promising discoveries from the laboratory into commercial prototypes and market deployment.
+              <span style={{ color: "#7FD8F0", fontWeight: 600 }}>Low Energy Nuclear Reactions (LENR)</span>, a peer-reviewed field of science, providing disciplined capital, technical support, and strategic guidance to move promising discoveries from the laboratory into commercial prototypes and market deployment.
             </p>
             <div style={{ width: "100%", height: 1, background: "rgba(0,184,230,0.12)", margin: "24px 0" }} />
             <p style={{ fontSize: "clamp(0.9rem, 1.8vw, 1rem)", color: "rgba(255,255,255,0.5)",
               lineHeight: 1.75, margin: 0 }}>
-              Portfolio companies within the LENR umbrella reference technologies including Zero Point Energy (ZPE), lattice confinement fusion, and catalyzed low-energy nuclear processes — delivering safe, scalable energy solutions with zero carbon emissions and no hazardous radiation.
+              Portfolio companies within the LENR umbrella reference technologies including Zero Point Energy (ZPE), lattice confinement fusion, and catalyzed low-energy nuclear processes, delivering safe, scalable energy solutions with zero carbon emissions and no hazardous radiation.
             </p>
           </div>
 
@@ -218,7 +218,7 @@ export default function Home() {
               The Opportunity by the Numbers
             </div>
             <h2 style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)", fontWeight: 800, color: "#fff", margin: "0 0 16px", lineHeight: 1.2 }}>
-              LENR &amp; Zero Point Energy —{" "}
+              LENR &amp; Zero Point Energy:{" "}
               <span style={{ background: "linear-gradient(90deg,#00B8E6,#2DD4BF)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
                 Why It Changes Everything
               </span>

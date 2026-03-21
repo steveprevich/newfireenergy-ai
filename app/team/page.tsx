@@ -20,7 +20,7 @@ const boardMembers = [
   },
   {
     name: "Sam Massaquoi",
-    title: "Board Member — Technology & AI",
+    title: "Board Member, Technology & AI",
     photo: "https://newfireenergy.us/wp-content/uploads/2025/02/Sam-M.png",
     gradient: "from-teal-500 to-plasma-500",
     bio: "Mr. Sam Massaquoi holds a Master of Science degree in Computer Science & Software Engineering from Pace University (NY) and is an inductee of the National Who's Who Registry and Biltmore's Who's Who Business Executives in America. He served as Vice President and Technical Lead at JP Morgan — the largest investment bank in the United States — where he was one of the lead architects for CoIN (Contract Intelligence), the firm's first-ever AI & Machine Learning software, garnering rave reviews from Bloomberg, Harvard Business Review, and the Wall Street Journal. He has also facilitated successful launches for American Express, JetBlue, ADP, Getty Images, Citi Private Bank, Google Zagat, and A&E Television Network.",
@@ -28,7 +28,7 @@ const boardMembers = [
   },
   {
     name: "Michael Alvarez",
-    title: "Board Member — Finance & Capital",
+    title: "Board Member, Finance & Capital",
     photo: "https://newfireenergy.us/wp-content/uploads/2021/09/MichaelA.webp",
     gradient: "from-fire-400 to-plasma-500",
     bio: "Mr. Michael Alvarez is an experienced professional with a focus on project finance syndication for startups since 2009. He is currently the domestic sales manager and capital consultant for Dellepere Enterprises, and the managing member of Capital Funding Realty, specializing in securing investor financing through real estate. Michael is an active investor in blockchain infrastructures delivering financial services including algo trading, global currency transfers, and commodity-backed stable coins. His professional network comprises investment bankers, angel investors, C-level board members, and high-net-worth individuals.",
@@ -36,7 +36,7 @@ const boardMembers = [
   },
   {
     name: "Gaj Subudhi",
-    title: "Board Member — Solutions Architecture",
+    title: "Board Member, Solutions Architecture",
     photo: "https://newfireenergy.us/wp-content/uploads/2021/09/GajP.webp",
     gradient: "from-plasma-500 to-teal-400",
     bio: "Gaj is a Solutions Architect and Engineering Lead with 20+ years of experience in enterprise applications across Financial Services, Healthcare, Retail, IoT, Aviation, and Digital Advertising. He has delivered next-generation solution architecture on cloud, data platforms, and AI/ML decision-making for Fortune 50 clients including Abbott Labs, USAA, Google, Boeing, Western Union, Symantec, and Apple. He is currently engaged in Distributed Ledger Technologies, AI/ML, Blockchain as a Service, and Microservices-based application design.",
@@ -44,7 +44,7 @@ const boardMembers = [
   },
   {
     name: "George Miller",
-    title: "Board Member — Global Partnerships",
+    title: "Board Member, Global Partnerships",
     photo: "https://newfireenergy.us/wp-content/uploads/2021/09/GeorgeM.webp",
     gradient: "from-teal-400 to-fire-400",
     bio: "Mr. George Miller began his career in real estate in 1995 and quickly became an international public speaker, creator of \"Wealth Masters Live\" entrepreneur training courses. He has built thousands of relationships with family offices, prime ministers, financial leaders, UN delegates, and high-net-worth families globally. George has found his calling in creating an investment bank utilizing blockchain technologies, leveraging his vast global network to help accelerate the ZPE/LENR energy revolution.",
@@ -52,7 +52,7 @@ const boardMembers = [
   },
   {
     name: "Maria Lozovaia",
-    title: "Board Member — Administration",
+    title: "Board Member, Administration",
     photo: "https://newfireenergy.us/wp-content/uploads/2021/09/mariaL.webp",
     gradient: "from-plasma-400 to-fire-300",
     bio: "Mrs. Maria Lozovaia is a service-oriented administrator with a 15-year background in business environments. Her core competencies include office management, client relationships, and excellent communication and time-management skills. She handles tasks with accuracy and efficiency, and is multilingual in 4 languages — serving as a translator in high-profile international transactions. Her global perspective and administrative expertise are vital to New Fire Energy's operations.",
@@ -63,7 +63,7 @@ const boardMembers = [
 const advisors = [
   {
     name: "Peter Fiekowsky",
-    title: "Scientific Advisor — Physics",
+    title: "Scientific Advisor, Physics",
     photo: "https://newfireenergy.us/wp-content/uploads/2021/09/PeterF.webp",
     gradient: "from-plasma-500 to-teal-400",
     bio: "Mr. Peter Fiekowsky is an MIT-educated physicist with 27 patents, a serial entrepreneur, activist, and social innovator. He founded Silicon Valley software company Automated Visual Inspection in 1984, and later the Foundation for Climate Restoration (F4CR), the Methane Action Group, and the Methane Oxidation Corporation. He wrote the F4CR climate restoration and Healthy Sustainable Population white papers — the blueprint for keeping our planet hospitable for humanity. Over the last 8 years, Peter has worked closely with entrepreneurial and academic leaders to bring viable, scalable, and permanent climate solutions into operation.",

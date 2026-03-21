@@ -1,20 +1,20 @@
 "use client";
 
 const milestones = [
-  { year: "1909", title: "Excess Heat Discovered", desc: "Chemist Irving Langmuir discovers excess heat phenomena — the earliest roots of LENR science." },
+  { year: "1909", title: "Excess Heat Discovered", desc: "Chemist Irving Langmuir discovers excess heat phenomena the earliest roots of LENR science." },
   { year: "1989", title: "Cold Fusion Announced", desc: "Pons & Fleischmann announce cold fusion at University of Utah, igniting decades of global research." },
   { year: "2009", title: "U.S. Navy Confirms", desc: "U.S. Navy researchers publish peer-reviewed confirmation of LENR excess heat and nuclear signatures." },
   { year: "2015", title: "Google Research", desc: "Google launches major LENR research program collaborating with leading universities worldwide." },
   { year: "2020", title: "NASA Lattice Confinement", desc: "NASA Glenn Research Center publishes Lattice Confinement Fusion results confirming the reaction mechanism." },
-  { year: "2023", title: "DOE ARPA-E Funding", desc: "U.S. Dept. of Energy awards $10M to LENR research projects — mainstream recognition arrives." },
-  { year: "2024", title: "Andrea Rossi Demo", desc: "Leonardo Corp demonstrates the QLED Self-Sustaining Module live 24/7 on YouTube — commercialization begins." },
+  { year: "2023", title: "DOE ARPA-E Funding", desc: "U.S. Dept. of Energy awards $10M to LENR research projects mainstream recognition arrives." },
+  { year: "2024", title: "Andrea Rossi Demo", desc: "Leonardo Corp demonstrates the QLED Self-Sustaining Module live 24/7 on YouTube commercialization begins." },
   { year: "2025+", title: "Commercial Phase", desc: "E-Cat NGU and ENG8 EnergiCell preparing for distribution. New Fire Energy investing now." },
 ];
 
 const faqs = [
   { q: "Is LENR peer reviewed?", a: "Yes. Over 3,000 peer-reviewed experiments confirm LENR excess heat production. The U.S. Navy, NASA, DOE, and Physical Review C have all published findings. LENR is established science." },
-  { q: "What is Zero Point Energy (ZPE)?", a: "ZPE is referenced by portfolio companies within the LENR umbrella such as ENG8 International. It describes energy derived from the quantum vacuum field. It is not separately peer-reviewed as a commercial energy source — it is a theoretical framework explored by certain LENR-adjacent companies." },
-  { q: "How is LENR different from conventional nuclear fission?", a: "Fission splits heavy atoms (uranium, plutonium) producing radioactive waste and gamma radiation. LENR involves light hydrogen isotopes reacting in a metal lattice, producing primarily heat and helium-4 — no harmful radiation, no long-lived waste." },
+  { q: "What is Zero Point Energy (ZPE)?", a: "ZPE is referenced by portfolio companies within the LENR umbrella such as ENG8 International. It describes energy derived from the quantum vacuum field. It is not separately peer-reviewed as a commercial energy source it is a theoretical framework explored by certain LENR-adjacent companies." },
+  { q: "How is LENR different from conventional nuclear fission?", a: "Fission splits heavy atoms (uranium, plutonium) producing radioactive waste and gamma radiation. LENR involves light hydrogen isotopes reacting in a metal lattice, producing primarily heat and helium-4 no harmful radiation, no long-lived waste." },
   { q: "What does COP mean?", a: "COP (Coefficient of Performance) is the ratio of energy out to energy in. ENG8's EnergiCell has demonstrated a CoP of up to 30 in laboratory conditions, targeting CoP 5–10 for the minimum viable product." },
   { q: "Why hasn't LENR been commercialized before?", a: "The primary challenge has been reproducibility. Early experiments were variable. Multiple companies (Andrea Rossi/Leonardo Corp, ENG8 International) have now achieved consistent, repeatable results and are entering the commercialization phase." },
 ];
@@ -81,7 +81,7 @@ export default function TechnologyPage() {
 
           <p style={{ fontSize: "clamp(1rem, 2.2vw, 1.25rem)", color: "rgba(255,255,255,0.65)",
             maxWidth: 620, margin: "0 auto 12px", lineHeight: 1.75, fontWeight: 300 }}>
-            Low Energy Nuclear Reactions — the peer-reviewed science driving the next energy revolution. Confirmed by NASA, the U.S. Navy, DOE, and published in Physical Review C.
+            Low Energy Nuclear Reactions the peer-reviewed science driving the next energy revolution. Confirmed by NASA, the U.S. Navy, DOE, and published in Physical Review C.
           </p>
           <p style={{ fontSize: "0.85rem", color: "rgba(0,184,230,0.55)", letterSpacing: "0.08em", fontWeight: 600 }}>
             Zero Carbon · No Harmful Radiation · Scalable to MW
@@ -115,7 +115,7 @@ export default function TechnologyPage() {
               </span>
             </h2>
             <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "1.05rem", maxWidth: 720, margin: "0 auto", lineHeight: 1.8 }}>
-              Low Energy Nuclear Reactions (LENR) is a <strong style={{ color: "rgba(255,255,255,0.75)" }}>peer-reviewed field of nuclear science</strong> in which nuclear-scale reactions occur at low input energies within a metal lattice — producing abundant heat with negligible radiation and zero carbon emissions.
+              Low Energy Nuclear Reactions (LENR) is a <strong style={{ color: "rgba(255,255,255,0.75)" }}>peer-reviewed field of nuclear science</strong> in which nuclear-scale reactions occur at low input energies within a metal lattice producing abundant heat with negligible radiation and zero carbon emissions.
             </p>
           </div>
 
@@ -123,9 +123,9 @@ export default function TechnologyPage() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 20, marginBottom: 64 }}>
             {[
               { icon: "⚛️", title: "Hydrogen Loading", desc: "Hydrogen isotopes are loaded into a specially prepared nickel or palladium metal lattice at elevated pressure and temperature." },
-              { icon: "🔬", title: "Lattice Confinement", desc: "The crystal lattice confines hydrogen nuclei below the Bohr radius — dramatically increasing quantum tunneling probability." },
+              { icon: "🔬", title: "Lattice Confinement", desc: "The crystal lattice confines hydrogen nuclei below the Bohr radius dramatically increasing quantum tunneling probability." },
               { icon: "⚡", title: "Nuclear Reaction", desc: "Hydrogen nuclei fuse with metal nuclei, releasing energy as phonons (heat) rather than dangerous gamma radiation." },
-              { icon: "📈", title: "Excess Heat Output", desc: "The system outputs significantly more thermal energy than the electrical input — ENG8 demonstrated CoP up to 30." },
+              { icon: "📈", title: "Excess Heat Output", desc: "The system outputs significantly more thermal energy than the electrical input ENG8 demonstrated CoP up to 30." },
             ].map((c) => (
               <div key={c.title} style={{ background: "rgba(0,184,230,0.04)", border: "1px solid rgba(0,184,230,0.14)",
                 borderRadius: 16, padding: "28px 24px" }}>
@@ -143,7 +143,7 @@ export default function TechnologyPage() {
               ⚛️ A Note on Zero Point Energy (ZPE)
             </div>
             <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.9rem", lineHeight: 1.75, margin: 0 }}>
-              Zero Point Energy is referenced by certain portfolio companies within the LENR umbrella — such as ENG8 International — as a theoretical framework for energy derived from the quantum vacuum field. ZPE falls under the broader LENR investment thesis. New Fire Energy invests across the LENR ecosystem, which includes companies exploring ZPE, lattice confinement fusion, and catalyzed nuclear processes.
+              Zero Point Energy is referenced by certain portfolio companies within the LENR umbrella such as ENG8 International as a theoretical framework for energy derived from the quantum vacuum field. ZPE falls under the broader LENR investment thesis. New Fire Energy invests across the LENR ecosystem, which includes companies exploring ZPE, lattice confinement fusion, and catalyzed nuclear processes.
             </p>
           </div>
         </div>
