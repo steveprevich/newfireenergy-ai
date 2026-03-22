@@ -19,8 +19,11 @@ export default function InvestorsPage() {
           ref={(el) => {
             if (el) {
               el.muted = true;
-              el.play().catch(() => {});
-              el.addEventListener("timeupdate", () => {
+              el.currentTime = 0;
+              const tryPlay = () => el.play().catch(() => {});
+              el.addEventListener('canplay', tryPlay, { once: true });
+              tryPlay();
+              el.addEventListener('timeupdate', () => {
                 if (el.duration && el.currentTime > el.duration - 0.3) el.currentTime = 0;
               });
             }
