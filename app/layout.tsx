@@ -116,7 +116,7 @@ export default function RootLayout({
                   The NFE tokenized security backs LENR companies in research and development, bridging the gap from laboratory discovery to global clean energy commercialization.
                 </p>
                 <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                  <a href="mailto:steve@newfireenergy.com" style={{ color: "rgba(255,255,255,0.35)", fontSize: "0.75rem", textDecoration: "none" }}>✉ steve@newfireenergy.com</a>
+                  <a href="mailto:contact@newfireenergy.com" style={{ color: "rgba(255,255,255,0.35)", fontSize: "0.75rem", textDecoration: "none" }}>✉ contact@newfireenergy.com</a>
                   <a href="tel:+13059721030" style={{ color: "rgba(255,255,255,0.35)", fontSize: "0.75rem", textDecoration: "none" }}>📞 (305) 972-1030</a>
                   <span style={{ color: "rgba(255,255,255,0.25)", fontSize: "0.72rem" }}>📍 30 N Gould St STE R, Sheridan, WY 82801</span>
                 </div>

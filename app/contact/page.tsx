@@ -66,7 +66,7 @@ export default function ContactPage() {
                 {
                   icon: Mail,
                   title: "Email",
-                  detail: "Info@NewFireEnergy.com",
+                  detail: "contact@newfireenergy.com",
                   sub: "We respond within 24 hours",
                 },
                 {
