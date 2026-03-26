@@ -82,7 +82,7 @@ export default function TechnologyPage() {
 
           <p style={{ fontSize: "clamp(1rem, 2.2vw, 1.25rem)", color: "rgba(255,255,255,0.65)",
             maxWidth: 620, margin: "0 auto 12px", lineHeight: 1.75, fontWeight: 300 }}>
-            Low Energy Nuclear Reactions — the independently validated science driving the next energy revolution. Confirmed by NASA, the U.S. Navy, DOE, and published in Physical Review C.
+            Low Energy Nuclear Reactions, the independently validated science driving the next energy revolution. Confirmed by NASA, the U.S. Navy, DOE, and published in Physical Review C.
           </p>
           <p style={{ fontSize: "0.85rem", color: "rgba(0,184,230,0.55)", letterSpacing: "0.08em", fontWeight: 600 }}>
             Zero Carbon · No Harmful Radiation · Scalable to MW

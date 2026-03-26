@@ -12,7 +12,7 @@ const whitepapers = [
   {
     title: "Zero Point Energy: The Science Behind the New Fire",
     description:
-      "A comprehensive overview of Zero Point Energy — the quantum vacuum phenomenon that New Fire Energy is harnessing for clean, limitless power. Includes theoretical foundations, experimental results, and commercialization pathway.",
+      "A comprehensive overview of Zero Point Energy, a quantum vacuum phenomenon that New Fire Energy is harnessing for clean, limitless power. Includes theoretical foundations, experimental results, and commercialization pathway.",
     tags: ["ZPE", "Quantum Physics", "Energy"],
     icon: Atom,
     color: "plasma",
@@ -21,7 +21,7 @@ const whitepapers = [
   {
     title: "LENR / Cold Fusion: 30 Years of Validation",
     description:
-      "Low Energy Nuclear Reactions — also known as Cold Fusion or Lattice Confinement Fusion — have been confirmed by decades of independent third-party research. This paper reviews the scientific validation from NASA, DOE, MIT, Google, and the U.S. Navy.",
+      "Low Energy Nuclear Reactions, also known as Cold Fusion or Lattice Confinement Fusion, have been confirmed by decades of independent third-party research. This paper reviews the scientific validation from NASA, DOE, MIT, Google, and the U.S. Navy.",
     tags: ["LENR", "Cold Fusion", "Third-Party Reviewed"],
     icon: Zap,
     color: "teal",
@@ -30,7 +30,7 @@ const whitepapers = [
   {
     title: "Decentralized Energy: The ZPE/LENR Opportunity",
     description:
-      "How ZPE modules can run continuously, exporting kW to MW of clean DC power — disconnected from traditional power grids. This paper covers the technical specifications, scalability, and global deployment model.",
+      "How ZPE modules can run continuously, exporting kW to MW of clean DC power, disconnected from traditional power grids. This paper covers the technical specifications, scalability, and global deployment model.",
     tags: ["Decentralized", "Grid", "Scale"],
     icon: Globe,
     color: "fire",
@@ -181,11 +181,11 @@ export default function WhitepaperPage() {
         <div className="glass-card p-8 mb-20 border-plasma-400/20 bg-plasma-500/5 text-center">
           <p className="text-white/60 text-lg leading-relaxed italic max-w-3xl mx-auto">
             &ldquo;Within this white shadow is a dimension we have yet to understand
-            — Zero Point Energy that lights up a room with confidence, bearing no visible
+            Zero Point Energy lights up a room with confidence, bearing no visible
             harm to life. A forceless field bringing a new era of freedom.&rdquo;
           </p>
           <p className="text-plasma-400/70 text-sm mt-4">
-            — New Fire Energy ZPE White Paper
+            New Fire Energy ZPE White Paper
           </p>
         </div>
 

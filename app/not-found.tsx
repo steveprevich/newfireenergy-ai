@@ -15,7 +15,7 @@ export default function NotFound() {
           Page Not Found
         </h2>
         <p className="text-white/50 mb-8">
-          This page seems to have evaporated — much like the skepticism around
+          This page seems to have evaporated, much like the skepticism around
           LENR. Let&apos;s get you back on track.
         </p>
         <Link href="/" className="btn-primary">

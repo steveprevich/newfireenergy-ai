@@ -15,7 +15,7 @@ export default function NewsPage() {
       category: "Corporate 2025",
       date: "Feb 2025",
       title: "ENG8 International EnergiCell Hits CoP 30 in Independent Lab Tests",
-      body: "ENG8 International's EnergiCell device recorded a Coefficient of Performance of up to 30 in independently verified laboratory conditions — meaning 30 times more energy output than input. The company is targeting a minimum viable product with CoP 5-10 for initial commercial deployment, making the current lab results a significant proof of concept.",
+      body: "ENG8 International's EnergiCell device recorded a Coefficient of Performance of up to 30 in independently verified laboratory conditions, meaning 30 times more energy output than input. The company is targeting a minimum viable product with CoP 5-10 for initial commercial deployment, making the current lab results a significant proof of concept.",
       source: "ENG8 International",
       tag: "Breakthrough",
       color: "#22D3EE",
@@ -42,7 +42,7 @@ export default function NewsPage() {
       category: "Corporate",
       date: "2024",
       title: "Leonardo Corp QLED Module Runs Live 24/7 on YouTube",
-      body: "Andrea Rossi's Leonardo Corporation began a continuous live-streamed demonstration of the QLED Self-Sustaining Module on YouTube, showing the device running autonomously around the clock. The public demonstration is a major commercialization milestone — inviting real-time global scientific scrutiny.",
+      body: "Andrea Rossi's Leonardo Corporation began a continuous live-streamed demonstration of the QLED Self-Sustaining Module on YouTube, showing the device running autonomously around the clock. The public demonstration is a major commercialization milestone, inviting real-time global scientific scrutiny.",
       source: "Leonardo Corp / YouTube",
       tag: "Milestone",
       color: "#F97316",
@@ -87,7 +87,7 @@ export default function NewsPage() {
       category: "Science",
       date: "Sep 2024",
       title: "Physical Review C Publishes Quantum Tunneling Mechanism for LENR",
-      body: "In one of the most significant theoretical papers of the year, Physical Review C published a model explaining hydrogen isotope quantum tunneling in metal lattice structures — providing the strongest theoretical foundation yet for why LENR produces consistent excess heat without dangerous radiation.",
+      body: "In one of the most significant theoretical papers of the year, Physical Review C published a model explaining hydrogen isotope quantum tunneling in metal lattice structures, providing the strongest theoretical foundation yet for why LENR produces consistent excess heat without dangerous radiation.",
       source: "Physical Review C / APS",
       tag: "Independently Reviewed",
       color: "#22D3EE",
@@ -96,7 +96,7 @@ export default function NewsPage() {
       category: "Industry",
       date: "2025",
       title: "Fortune 500 Energy Companies Begin Quiet LENR Partnerships",
-      body: "Multiple Fortune 500 energy companies — including undisclosed oil majors and utility providers — have entered confidential partnership agreements with LENR developers. Industry analysts describe this as the 'stealth phase' of LENR adoption, where incumbents secure IP positions before public announcements.",
+      body: "Multiple Fortune 500 energy companies, including undisclosed oil majors and utility providers, have entered confidential partnership agreements with LENR developers. Industry analysts describe this as the 'stealth phase' of LENR adoption, where incumbents secure IP positions before public announcements.",
       source: "Energy Industry Intelligence",
       tag: "Industry",
       color: "#2DD4BF",
@@ -168,7 +168,7 @@ export default function NewsPage() {
             &amp; Breakthroughs
           </h1>
           <p style={{ color: "rgba(255,255,255,0.58)", fontSize: "1rem", lineHeight: 1.75, maxWidth: 580, margin: "0 auto" }}>
-            The latest independent research, government recognition, and corporate milestones in Low Energy Nuclear Reactions — updated through 2025.
+            The latest independent research, government recognition, and corporate milestones in Low Energy Nuclear Reactions, updated through 2025.
           </p>
         </div>
       </section>

@@ -114,7 +114,7 @@ export default function InvestorsPage() {
               icon: "⚡",
               color: "#F97316",
               title: "Decentralized Clean Energy",
-              body: "Energy that is abundant, nontoxic, and nearly free — available 24/7, disconnected from traditional power grids. LENR modules can run continuously, exporting kW to MW of clean power. Not just a vision; an impending reality.",
+              body: "Energy that is abundant, nontoxic, and nearly free, available 24/7, disconnected from traditional power grids. LENR modules can run continuously, exporting kW to MW of clean power. Not just a vision; an impending reality.",
               stat: "24/7",
             },
           ].map((card) => (
