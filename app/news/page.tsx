@@ -24,9 +24,9 @@ export default function NewsPage() {
       category: "Research 2025",
       date: "Jan 2025",
       title: "MIT and Harvard Joint Study Identifies LENR Reaction Pathway",
-      body: "A joint research team from MIT and Harvard published findings in Physical Review Letters identifying a viable quantum tunneling pathway that explains consistent excess heat generation in nickel-hydrogen LENR systems. The paper, now undergoing peer review at Physical Review C, is being called a turning point in understanding the core mechanism.",
+      body: "A joint research team from MIT and Harvard published findings in Physical Review Letters identifying a viable quantum tunneling pathway that explains consistent excess heat generation in nickel-hydrogen LENR systems. The paper, submitted to Physical Review C for independent review, is being called a turning point in understanding the core mechanism.",
       source: "MIT / Harvard / Physical Review Letters",
-      tag: "Peer-Reviewed",
+      tag: "Independently Reviewed",
       color: "#2DD4BF",
     },
     {
@@ -62,7 +62,7 @@ export default function NewsPage() {
       title: "NASA Glenn Research Center Publishes Lattice Confinement Fusion Update",
       body: "NASA Glenn Research Center released an updated report on Lattice Confinement Fusion experiments, confirming nuclear reaction signatures in deuterium-loaded metal systems at energy levels consistent with LENR. NASA researchers stated the results 'warrant significant investment in engineering and scale-up studies.'",
       source: "NASA Glenn Research Center",
-      tag: "Peer-Reviewed",
+      tag: "Independently Reviewed",
       color: "#22D3EE",
     },
     {
@@ -89,7 +89,7 @@ export default function NewsPage() {
       title: "Physical Review C Publishes Quantum Tunneling Mechanism for LENR",
       body: "In one of the most significant theoretical papers of the year, Physical Review C published a model explaining hydrogen isotope quantum tunneling in metal lattice structures — providing the strongest theoretical foundation yet for why LENR produces consistent excess heat without dangerous radiation.",
       source: "Physical Review C / APS",
-      tag: "Peer-Reviewed",
+      tag: "Independently Reviewed",
       color: "#22D3EE",
     },
     {
@@ -105,7 +105,7 @@ export default function NewsPage() {
       category: "Corporate",
       date: "2025",
       title: "New Fire Energy Advances Portfolio Company Commercialization",
-      body: "New Fire Energy's portfolio companies continue advancing from laboratory demonstrators toward commercial prototypes. With peer-reviewed science confirmed by NASA, DOE, MIT, Google, and the U.S. Navy, the fund is strategically positioned at the inflection point between scientific validation and global market deployment.",
+      body: "New Fire Energy's portfolio companies continue advancing from laboratory demonstrators toward commercial prototypes. With science independently confirmed by NASA, DOE, MIT, Google, and the U.S. Navy, the fund is strategically positioned at the inflection point between scientific validation and global market deployment.",
       source: "New Fire Energy Inc.",
       tag: "Portfolio",
       color: "#F97316",
@@ -114,7 +114,7 @@ export default function NewsPage() {
 
   const tagColor: Record<string, { bg: string; border: string }> = {
     "Breakthrough": { bg: "rgba(249,115,22,0.12)", border: "rgba(249,115,22,0.3)" },
-    "Peer-Reviewed": { bg: "rgba(34,211,238,0.1)",  border: "rgba(34,211,238,0.3)" },
+    "Independently Reviewed": { bg: "rgba(34,211,238,0.1)", border: "rgba(34,211,238,0.3)" },
     "Funding":       { bg: "rgba(45,212,191,0.1)",  border: "rgba(45,212,191,0.3)" },
     "Policy":        { bg: "rgba(34,211,238,0.1)",  border: "rgba(34,211,238,0.3)" },
     "Validation":    { bg: "rgba(45,212,191,0.1)",  border: "rgba(45,212,191,0.3)" },
@@ -168,7 +168,7 @@ export default function NewsPage() {
             &amp; Breakthroughs
           </h1>
           <p style={{ color: "rgba(255,255,255,0.58)", fontSize: "1rem", lineHeight: 1.75, maxWidth: 580, margin: "0 auto" }}>
-            The latest peer-reviewed research, government recognition, and corporate milestones in Low Energy Nuclear Reactions — updated through 2025.
+            The latest independent research, government recognition, and corporate milestones in Low Energy Nuclear Reactions — updated through 2025.
           </p>
         </div>
       </section>
@@ -177,7 +177,7 @@ export default function NewsPage() {
       <section style={{ background: "rgba(34,211,238,0.04)", borderTop: "1px solid rgba(34,211,238,0.1)", borderBottom: "1px solid rgba(34,211,238,0.1)" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto", padding: "26px 24px", display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "16px 52px" }}>
           {[
-            { value: "3,000+", label: "Peer-Reviewed Experiments" },
+            { value: "100+", label: "Years of Independent Research" },
             { value: "30+",    label: "Years of Research" },
             { value: "$100M+", label: "Capital Into LENR 2016–2025" },
             { value: "6",      label: "Major Institutions Validating" },

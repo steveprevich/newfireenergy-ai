@@ -21,8 +21,8 @@ const whitepapers = [
   {
     title: "LENR / Cold Fusion: 30 Years of Validation",
     description:
-      "Low Energy Nuclear Reactions — also known as Cold Fusion or Lattice Confinement Fusion — have been confirmed by 3,000+ peer-reviewed experiments. This paper reviews the scientific validation from NASA, DOE, MIT, Google, and the U.S. Navy.",
-    tags: ["LENR", "Cold Fusion", "Peer Review"],
+      "Low Energy Nuclear Reactions — also known as Cold Fusion or Lattice Confinement Fusion — have been confirmed by decades of independent third-party research. This paper reviews the scientific validation from NASA, DOE, MIT, Google, and the U.S. Navy.",
+    tags: ["LENR", "Cold Fusion", "Third-Party Reviewed"],
     icon: Zap,
     color: "teal",
     featured: true,
@@ -73,14 +73,14 @@ const externalResources = [
     org: "Physical Review C",
     title: "Nuclear Reactions in Metal Lattices",
     year: "2020",
-    description: "Peer-reviewed confirmation of anomalous nuclear effects in hydrogen-loaded metal lattices.",
+    description: "Independent third-party confirmation of anomalous nuclear effects in hydrogen-loaded metal lattices.",
     href: "https://journals.aps.org/prc/",
   },
   {
     org: "U.S. Navy SPAWAR",
     title: "LENR Excess Heat Confirmation",
     year: "2009",
-    description: "U.S. Navy Space and Naval Warfare Systems Command peer-reviewed LENR nuclear signature confirmation.",
+    description: "U.S. Navy Space and Naval Warfare Systems Command independent LENR nuclear signature confirmation.",
     href: "https://www.science.navy.mil/",
   },
   {
@@ -111,7 +111,7 @@ export default function WhitepaperPage() {
           </h1>
           <p className="text-white/50 text-lg leading-relaxed">
             The science behind Zero Point Energy and Low Energy Nuclear Reactions
-            is well-established and peer-reviewed. Explore our white papers and
+            is well-established and independently validated. Explore our white papers and
             the global body of research confirming this breakthrough technology.
           </p>
         </div>
@@ -198,7 +198,7 @@ export default function WhitepaperPage() {
             </h2>
           </div>
           <p className="text-white/45 text-sm mb-8 max-w-2xl">
-            LENR and ZPE are not fringe science. The following peer-reviewed
+            LENR and related technologies are not fringe science. The following independently reviewed
             publications and institutional research confirm the phenomenon:
           </p>
 
@@ -239,7 +239,7 @@ export default function WhitepaperPage() {
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
             {[
-              { value: "3,000+", label: "Peer-Reviewed Papers", sub: "Confirming LENR/ZPE" },
+              { value: "100+", label: "Years of Research", sub: "Independently Validated" },
               { value: "30+", label: "Years of Research", sub: "Since Pons & Fleischmann" },
               { value: "6", label: "Major Institutions", sub: "NASA, DOE, MIT, Google..." },
               { value: "100%", label: "Zero Emissions", sub: "No CO₂, no radiation" },

@@ -60,7 +60,7 @@ export default function InvestorsPage() {
           </h1>
 
           <p style={{ color: "rgba(255,255,255,0.7)", fontSize: "clamp(1rem,2vw,1.25rem)", lineHeight: 1.7, marginBottom: 36, maxWidth: 680, margin: "0 auto 36px" }}>
-            New Fire Energy issues the NFE tokenized security, backing LENR companies in their research and development. The peer-reviewed science of Low Energy Nuclear Reactions is poised to disrupt a $100 trillion global energy market.
+            New Fire Energy issues the NFE tokenized security, backing LENR companies in their research and development. The extensively reviewed and independently validated science of Low Energy Nuclear Reactions is poised to disrupt a $100 trillion global energy market.
           </p>
 
           <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
@@ -106,8 +106,8 @@ export default function InvestorsPage() {
             {
               icon: "🔬",
               color: "#2DD4BF",
-              title: "30 Years of Peer-Reviewed Science",
-              body: "LENR, also known as Cold Fusion or Lattice Confinement Fusion, has been confirmed by 3,000+ peer-reviewed experiments. The science is settled. We are now at the commercialization inflection point. Early investors will own a piece of history.",
+              title: "30 Years of Independently Validated Science",
+              body: "LENR, also known as Cold Fusion or Lattice Confinement Fusion, has been independently validated by NASA, the U.S. Navy, DOE, MIT, Google, and Physical Review C. The science is established. We are now at the commercialization inflection point. Early investors will own a piece of history.",
               stat: "Proven",
             },
             {
@@ -246,7 +246,7 @@ export default function InvestorsPage() {
               { org: "MIT", detail: "Cold fusion experiments confirmed" },
               { org: "Google", detail: "$10M+ LENR research program" },
               { org: "U.S. Navy", detail: "SPAWAR LENR research" },
-              { org: "Physical Review C", detail: "Peer-reviewed publications" },
+              { org: "Physical Review C", detail: "Independent scientific publications" },
             ].map((item) => (
               <div key={item.org} style={{ textAlign: "center" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 8, color: "#fff", fontWeight: 600, marginBottom: 4, justifyContent: "center" }}>
