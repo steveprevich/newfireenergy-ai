@@ -64,7 +64,7 @@ export default function InvestorsPage() {
           </p>
 
           <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
-            <a href="https://www.investready.com" target="_blank" rel="noopener noreferrer"
+            <a href="https://newfireenergy.investready.com/" target="_blank" rel="noopener noreferrer"
               style={{ padding: "13px 28px", borderRadius: 12, background: "linear-gradient(135deg,#F97316,#EF4444)", color: "#fff", fontWeight: 700, fontSize: "0.95rem", textDecoration: "none", boxShadow: "0 4px 20px rgba(249,115,22,0.4)", display: "inline-flex", alignItems: "center", gap: 8 }}>
               Verify Accredited Status
             </a>
@@ -162,7 +162,7 @@ export default function InvestorsPage() {
                 <div style={{ color: "#F97316", fontWeight: 700, marginBottom: 12, fontSize: "0.9rem" }}>What to Expect</div>
                 <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.875rem", lineHeight: 1.75, margin: 0 }}>
                   This process involves uploading one or more documents proving income ($200K+ individual or $300K+ joint) or net worth ($1M+ excluding primary residence). For full details on InvestReady's security,{" "}
-                  <a href="https://www.investready.com" target="_blank" rel="noopener noreferrer" style={{ color: "#22D3EE", textDecoration: "underline" }}>click here</a>.
+                  <a href="https://newfireenergy.investready.com/" target="_blank" rel="noopener noreferrer" style={{ color: "#22D3EE", textDecoration: "underline" }}>click here</a>.
                 </p>
               </div>
             </div>
@@ -174,7 +174,7 @@ export default function InvestorsPage() {
                 Register with InvestReady below. Once verified, contact us directly to begin the investor onboarding process.
               </p>
               <a
-                href="https://www.investready.com"
+                href="https://newfireenergy.investready.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "14px 36px", borderRadius: 12, background: "linear-gradient(135deg,#22D3EE,#2DD4BF)", color: "#060E1F", fontWeight: 800, fontSize: "1rem", textDecoration: "none", boxShadow: "0 4px 24px rgba(34,211,238,0.35)", letterSpacing: "0.01em" }}>
@@ -199,7 +199,7 @@ export default function InvestorsPage() {
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(280px,1fr))", gap: 24, marginBottom: 32 }}>
           {[
-            { step: "01", title: "Verify Accreditation", body: "Complete accredited investor verification through InvestReady Inc., our trusted third-party verification partner.", cta: "Start Verification", href: "https://www.investready.com", external: true },
+            { step: "01", title: "Verify Accreditation", body: "Complete accredited investor verification through InvestReady Inc., our trusted third-party verification partner.", cta: "Start Verification", href: "https://newfireenergy.investready.com/", external: true },
             { step: "02", title: "Request Materials", body: "Contact us to receive our investor deck, white papers, and access to the data room for verified investors.", cta: "Request Materials", href: "/contact?type=investor", external: false },
             { step: "03", title: "Schedule a Call", body: "Schedule a direct call with CEO Steve Previch to discuss the opportunity and have your questions answered.", cta: "Schedule Call", href: "/contact?type=investor", external: false },
           ].map((item) => (
@@ -295,7 +295,7 @@ export default function InvestorsPage() {
         <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
           {[
             { q: "Who can invest?", a: "This opportunity is limited to accredited investors as defined by SEC Rule 501 of Regulation D. You must meet income ($200K+ individual or $300K+ joint) or net worth ($1M+ excluding primary residence) thresholds. Verification is handled through InvestReady Inc." },
-            { q: "How do I verify my accredited investor status?", a: "We partner with InvestReady Inc. for accredited investor verification. Visit investready.com to complete the verification process. Once verified, contact us at contact@newfireenergy.com or call 656-666-1210 to begin the investor onboarding process." },
+            { q: "How do I verify my accredited investor status?", a: "We partner with InvestReady Inc. for accredited investor verification. Visit newfireenergy.investready.com/ to complete the verification process. Once verified, contact us at contact@newfireenergy.com or call 656-666-1210 to begin the investor onboarding process." },
             { q: "What is the investment structure?", a: "New Fire Energy uses blockchain smart contracts and token-backed funding to bridge lab demonstrators to commercialization. This model provides transparency, potential liquidity options, and direct participation in the energy technology ecosystem. Contact us for full details on the current investment structure." },
             { q: "What is the exit strategy?", a: "We anticipate multiple paths to liquidity as LENR technologies reach commercialization. These include strategic partnerships with global energy companies, licensing deals, and potential token liquidity as the blockchain-based funding model matures. The technology commercialization timeline is accelerating." },
             { q: "How do I get in touch?", a: "Email us at contact@newfireenergy.com or call 656-666-1210. Our office is located at 30 N. Gould St. Suite R, Sheridan, Wyoming 82801. We respond to all investor inquiries within 24 to 48 hours." },
@@ -325,7 +325,7 @@ export default function InvestorsPage() {
             Schedule a call with Steve Previch, CEO, to discuss the LENR opportunity and learn how New Fire Energy is commercializing the technology that will change the world.
           </p>
           <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
-            <a href="https://www.investready.com" target="_blank" rel="noopener noreferrer"
+            <a href="https://newfireenergy.investready.com/" target="_blank" rel="noopener noreferrer"
               style={{ padding: "13px 28px", borderRadius: 12, background: "linear-gradient(135deg,#F97316,#EF4444)", color: "#fff", fontWeight: 700, fontSize: "0.95rem", textDecoration: "none", boxShadow: "0 4px 20px rgba(249,115,22,0.4)", display: "inline-flex", alignItems: "center", gap: 8 }}>
               Verify Accredited Status →
             </a>

@@ -139,7 +139,7 @@ export default function RootLayout({
                   {[
                     ["Become an Investor", "/investors"],
                     ["Investor Materials", "/investors#documents"],
-                    ["Verify Accreditation", "https://investready.com"],
+                    ["Verify Accreditation", "https://newfireenergy.investready.com/"],
                     ["Schedule a Call", "/contact?type=investor"],
                   ].map(([l, h]) => (
                     <a key={l} href={h} style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.82rem", textDecoration: "none" }}>{l}</a>
@@ -156,7 +156,7 @@ export default function RootLayout({
                     ["SEC EDGAR Filings", "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&company=new+fire+energy"],
                     ["FINRA BrokerCheck", "https://brokercheck.finra.org"],
                     ["Investor.gov Resources", "https://www.investor.gov"],
-                    ["InvestReady Verification", "https://investready.com"],
+                    ["InvestReady Verification", "https://newfireenergy.investready.com/"],
                   ].map(([l, h]) => (
                     <a key={l} href={h} target="_blank" rel="noopener noreferrer" style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.82rem", textDecoration: "none" }}>{l} ↗</a>
                   ))}
