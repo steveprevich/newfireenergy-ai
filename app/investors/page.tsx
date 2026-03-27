@@ -184,7 +184,7 @@ export default function InvestorsPage() {
               <p style={{ color: "rgba(255,255,255,0.3)", fontSize: "0.75rem", marginTop: 14 }}>
                 Questions about the offering? Email{" "}
                 <a href="mailto:contact@newfireenergy.com" style={{ color: "#22D3EE" }}>contact@newfireenergy.com</a>{" "}
-                or call <a href="tel:+16566661210" style={{ color: "#22D3EE" }}>656-666-1210</a>
+                or call <a href="tel:+18137781209" style={{ color: "#22D3EE" }}>813-778-1209</a>
               </p>
             </div>
           </div>
@@ -227,7 +227,7 @@ export default function InvestorsPage() {
           </div>
           <div style={{ display: "flex", gap: 20, flexWrap: "wrap" }}>
             <a href="mailto:contact@newfireenergy.com" style={{ color: "#22D3EE", fontSize: "0.875rem", fontWeight: 500, textDecoration: "none" }}>✉ contact@newfireenergy.com</a>
-            <a href="tel:+16566661210" style={{ color: "#22D3EE", fontSize: "0.875rem", fontWeight: 500, textDecoration: "none" }}>📞 656-666-1210</a>
+            <a href="tel:+18137781209" style={{ color: "#22D3EE", fontSize: "0.875rem", fontWeight: 500, textDecoration: "none" }}>📞 813-778-1209</a>
           </div>
         </div>
       </section>
@@ -295,10 +295,10 @@ export default function InvestorsPage() {
         <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
           {[
             { q: "Who can invest?", a: "This opportunity is limited to accredited investors as defined by SEC Rule 501 of Regulation D. You must meet income ($200K+ individual or $300K+ joint) or net worth ($1M+ excluding primary residence) thresholds. Verification is handled through InvestReady Inc." },
-            { q: "How do I verify my accredited investor status?", a: "We partner with InvestReady Inc. for accredited investor verification. Visit newfireenergy.investready.com/ to complete the verification process. Once verified, contact us at contact@newfireenergy.com or call 656-666-1210 to begin the investor onboarding process." },
+            { q: "How do I verify my accredited investor status?", a: "We partner with InvestReady Inc. for accredited investor verification. Visit newfireenergy.investready.com/ to complete the verification process. Once verified, contact us at contact@newfireenergy.com or call 813-778-1209 to begin the investor onboarding process." },
             { q: "What is the investment structure?", a: "New Fire Energy uses blockchain smart contracts and token-backed funding to bridge lab demonstrators to commercialization. This model provides transparency, potential liquidity options, and direct participation in the energy technology ecosystem. Contact us for full details on the current investment structure." },
             { q: "What is the exit strategy?", a: "We anticipate multiple paths to liquidity as LENR technologies reach commercialization. These include strategic partnerships with global energy companies, licensing deals, and potential token liquidity as the blockchain-based funding model matures. The technology commercialization timeline is accelerating." },
-            { q: "How do I get in touch?", a: "Email us at contact@newfireenergy.com or call 656-666-1210. Our office is located at 30 N. Gould St. Suite R, Sheridan, Wyoming 82801. We respond to all investor inquiries within 24 to 48 hours." },
+            { q: "How do I get in touch?", a: "Email us at contact@newfireenergy.com or call 813-778-1209. Our office is located at 30 N. Gould St. Suite R, Sheridan, Wyoming 82801. We respond to all investor inquiries within 24 to 48 hours." },
           ].map((item) => (
             <details key={item.q} style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 14, cursor: "pointer" }}>
               <summary style={{ padding: "20px 24px", color: "#fff", fontWeight: 600, fontSize: "0.95rem", listStyle: "none", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
@@ -338,7 +338,7 @@ export default function InvestorsPage() {
             Questions? Email{" "}
             <a href="mailto:contact@newfireenergy.com" style={{ color: "rgba(34,211,238,0.7)" }}>contact@newfireenergy.com</a>{" "}
             or call{" "}
-            <a href="tel:+16566661210" style={{ color: "rgba(34,211,238,0.7)" }}>656-666-1210</a>
+            <a href="tel:+18137781209" style={{ color: "rgba(34,211,238,0.7)" }}>813-778-1209</a>
           </p>
         </div>
       </section>
