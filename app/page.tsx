@@ -21,7 +21,7 @@ export default function Home() {
       <section style={{ height: "100vh", position: "relative", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center" }}>
 
         {/* Video background */}
-        <video autoPlay muted playsInline preload="auto"
+        <video autoPlay loop muted playsInline preload="auto"
           ref={(el) => {
             if (el) {
               el.muted = true;
@@ -29,19 +29,12 @@ export default function Home() {
               const tryPlay = () => el.play().catch(() => {});
               el.addEventListener('canplay', tryPlay, { once: true });
               tryPlay();
-              el.addEventListener('timeupdate', () => {
-                // Hard-cap at 22 s — icons appear around 24 s, never let it get there
-                if (el.currentTime >= 22) {
-                  el.currentTime = 0;
-                  el.play().catch(() => {});
-                }
-              });
             }
           }}
           style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%",
             objectFit: "cover", objectPosition: "center center", zIndex: 0,
             opacity: 0.65, filter: "hue-rotate(195deg) saturate(2.0) brightness(0.9)", mixBlendMode: "screen" }}>
-          <source src="/bg2.mp4" type="video/mp4" />
+          <source src="/energy.mp4" type="video/mp4" />
         </video>
 
         {/* Dark overlay */}
