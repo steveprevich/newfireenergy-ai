@@ -1,5 +1,7 @@
 
 
+"use client";
+
 export default function Home() {
   const stats = [
     { value: "$100T", label: "Market Horizon", sub: "ZPE addresses the entire global energy market", accent: "#00B8E6" },
@@ -20,6 +22,20 @@ export default function Home() {
 
         {/* Video — brighter */}
         <video autoPlay loop muted playsInline preload="auto"
+          ref={(el) => {
+            if (el) {
+              el.muted = true;
+              // Start 2s in to skip the TikTok opening frames
+              el.currentTime = 2;
+              const tryPlay = () => el.play().catch(() => {});
+              el.addEventListener('canplay', tryPlay, { once: true });
+              tryPlay();
+              // On every loop restart, skip back to 2s not 0
+              el.addEventListener('timeupdate', () => {
+                if (el.duration && el.currentTime > el.duration - 0.3) el.currentTime = 2;
+              });
+            }
+          }}
           style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover", zIndex: 0,
             opacity: 0.62, filter: "hue-rotate(195deg) saturate(2.0) brightness(0.88)", mixBlendMode: "screen" }}>
           <source src="/bg.mp4" type="video/mp4" />
