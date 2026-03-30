@@ -28,6 +28,14 @@ export default function Home() {
         {/* Dark overlay — lighter so video shows through more */}
         <div style={{ position: "absolute", inset: 0, background: "rgba(6,14,31,0.38)", zIndex: 1 }} />
 
+        {/* Edge mask — RIGHT: hides TikTok UI icons */}
+        <div style={{ position: "absolute", top: 0, right: 0, width: "22%", height: "100%", zIndex: 2, pointerEvents: "none",
+          background: "linear-gradient(to left, rgba(6,14,31,1) 0%, rgba(6,14,31,0.85) 40%, transparent 100%)" }} />
+
+        {/* Edge mask — LEFT: matches right for balance */}
+        <div style={{ position: "absolute", top: 0, left: 0, width: "22%", height: "100%", zIndex: 2, pointerEvents: "none",
+          background: "linear-gradient(to right, rgba(6,14,31,1) 0%, rgba(6,14,31,0.85) 40%, transparent 100%)" }} />
+
         {/* Subtle centre glow behind text */}
         <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)",
           width: 700, height: 700, borderRadius: "50%", zIndex: 1,
