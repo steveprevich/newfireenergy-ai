@@ -25,6 +25,7 @@ export default function AIAssistant() {
 
   // Voice state
   const [isListening, setIsListening] = useState(false);
+  const [isSpeaking, setIsSpeaking] = useState(false);
   const [voiceEnabled, setVoiceEnabled] = useState(true);
   const [isSupported, setIsSupported] = useState(false);
 
@@ -69,16 +70,18 @@ export default function AIAssistant() {
     // Strip markdown-style formatting for cleaner speech
     const clean = text.replace(/\*\*/g, "").replace(/\*/g, "").replace(/#{1,6}\s/g, "").replace(/\n/g, " ").slice(0, 400);
     const utterance = new SpeechSynthesisUtterance(clean);
-    utterance.rate = 1.0;
+    utterance.rate = 1.05;
     utterance.pitch = 1.0;
     utterance.volume = 0.9;
-    // Try to use a natural-sounding voice
     const voices = synthRef.current.getVoices();
     const preferred = voices.find(v =>
       v.name.includes("Samantha") || v.name.includes("Google US English") ||
       v.name.includes("Microsoft Aria") || v.name.includes("Karen") || (v.lang === "en-US" && v.localService)
     );
     if (preferred) utterance.voice = preferred;
+    utterance.onstart = () => setIsSpeaking(true);
+    utterance.onend = () => setIsSpeaking(false);
+    utterance.onerror = () => setIsSpeaking(false);
     synthRef.current.speak(utterance);
   }, [voiceEnabled]);
 
@@ -119,6 +122,7 @@ export default function AIAssistant() {
 
     // Stop any ongoing speech
     synthRef.current?.cancel();
+    setIsSpeaking(false);
 
     const userMessage: Message = { role: "user", content: text.trim() };
     const newMessages = [...messages, userMessage];
@@ -342,6 +346,20 @@ export default function AIAssistant() {
               <div className="flex items-center gap-2 mb-2 px-3 py-2 rounded-xl bg-teal-500/10 border border-teal-400/20">
                 <div className="w-2 h-2 rounded-full bg-teal-400 animate-pulse" />
                 <span className="text-teal-300 text-xs font-medium">Listening... speak now</span>
+              </div>
+            )}
+            {isSpeaking && (
+              <div className="flex items-center justify-between mb-2 px-3 py-2 rounded-xl bg-plasma-500/10 border border-plasma-400/20">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-plasma-400 animate-pulse" />
+                  <span className="text-plasma-300 text-xs font-medium">NOVA is speaking...</span>
+                </div>
+                <button
+                  onClick={() => { synthRef.current?.cancel(); setIsSpeaking(false); }}
+                  className="text-xs text-white/50 hover:text-white px-2 py-0.5 rounded-lg hover:bg-white/10 transition-all"
+                >
+                  Stop ✕
+                </button>
               </div>
             )}
             <form onSubmit={handleSubmit} className="flex gap-2 items-end">
