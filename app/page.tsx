@@ -37,7 +37,7 @@ export default function Home() {
           style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%",
             objectFit: "cover", objectPosition: "center center", zIndex: 0,
             opacity: 0.65, filter: "hue-rotate(195deg) saturate(2.0) brightness(0.9)", mixBlendMode: "screen" }}>
-          <source src="/bg.mp4" type="video/mp4" />
+          <source src="/bg2.mp4" type="video/mp4" />
         </video>
 
         {/* Dark overlay */}
