@@ -139,7 +139,10 @@ export default function AIAssistant() {
         body: JSON.stringify({ messages: newMessages }),
       });
 
-      if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+      if (!response.ok) {
+        const errData = await response.json().catch(() => ({}));
+        throw new Error(`HTTP ${response.status}: ${JSON.stringify(errData)}`);
+      }
 
       const data = await response.json();
       const fullText: string = data.text || "Sorry, I could not get a response. Please try again.";
@@ -161,13 +164,14 @@ export default function AIAssistant() {
         }
       }, 18);
 
-    } catch {
+    } catch (err) {
       setIsLoading(false);
+      const errMsg = err instanceof Error ? err.message : "Unknown error";
       setMessages((prev) => {
         const updated = [...prev];
         updated[updated.length - 1] = {
           role: "assistant",
-          content: "I encountered an issue. Please try again or contact us at contact@newfireenergy.com.",
+          content: `Error: ${errMsg}`,
         };
         return updated;
       });
