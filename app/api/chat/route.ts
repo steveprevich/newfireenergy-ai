@@ -1,6 +1,8 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { NextRequest } from "next/server";
 
+export const maxDuration = 30;
+
 const client = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
 });
@@ -54,7 +56,7 @@ Zero Point Energy (ZPE) is referenced by certain portfolio companies within the 
 - Peter Fiekowsky (Scientific Advisor): MIT physicist; 27 patents; founder of Foundation for Climate Restoration
 
 ## Response Guidelines
-- Be professional, warm, and concise — 2 to 4 sentences unless more detail is asked for
+- Be professional, warm, and concise — 2 to 3 sentences only
 - LENR is independently validated science; ZPE is a theoretical framework referenced by specific portfolio companies
 - For investment questions: always note accredited investors only; this is not a securities offer or solicitation
 - Do not make specific financial projections or guarantee returns
@@ -67,10 +69,7 @@ export async function POST(request: NextRequest) {
     const { messages } = body;
 
     if (!messages || !Array.isArray(messages)) {
-      return new Response(
-        JSON.stringify({ error: "Invalid messages format" }),
-        { status: 400, headers: { "Content-Type": "application/json" } }
-      );
+      return Response.json({ error: "Invalid messages format" }, { status: 400 });
     }
 
     const validMessages = messages.filter(
@@ -82,53 +81,21 @@ export async function POST(request: NextRequest) {
     );
 
     if (validMessages.length === 0) {
-      return new Response(
-        JSON.stringify({ error: "No valid messages provided" }),
-        { status: 400, headers: { "Content-Type": "application/json" } }
-      );
+      return Response.json({ error: "No valid messages provided" }, { status: 400 });
     }
 
-    const stream = await client.messages.stream({
+    const message = await client.messages.create({
       model: "claude-haiku-4-5",
       max_tokens: 200,
       system: SYSTEM_PROMPT,
       messages: validMessages,
     });
 
-    const readableStream = new ReadableStream({
-      async start(controller) {
-        const encoder = new TextEncoder();
-        try {
-          for await (const event of stream) {
-            if (event.type === "content_block_delta" && event.delta.type === "text_delta") {
-              const data = JSON.stringify({ text: event.delta.text });
-              controller.enqueue(encoder.encode(`data: ${data}\n\n`));
-            } else if (event.type === "message_stop") {
-              controller.enqueue(encoder.encode(`data: [DONE]\n\n`));
-            }
-          }
-        } catch (error) {
-          console.error("Stream error:", error);
-          controller.enqueue(encoder.encode(`data: ${JSON.stringify({ error: "Stream error" })}\n\n`));
-        } finally {
-          controller.close();
-        }
-      },
-    });
+    const text = message.content[0].type === "text" ? message.content[0].text : "";
+    return Response.json({ text });
 
-    return new Response(readableStream, {
-      headers: {
-        "Content-Type": "text/event-stream",
-        "Cache-Control": "no-cache",
-        Connection: "keep-alive",
-        "X-Accel-Buffering": "no",
-      },
-    });
   } catch (error) {
     console.error("Chat API error:", error);
-    return new Response(
-      JSON.stringify({ error: "Internal server error" }),
-      { status: 500, headers: { "Content-Type": "application/json" } }
-    );
+    return Response.json({ error: "Internal server error" }, { status: 500 });
   }
 }

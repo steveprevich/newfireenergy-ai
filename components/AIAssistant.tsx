@@ -141,45 +141,28 @@ export default function AIAssistant() {
 
       if (!response.ok) throw new Error(`HTTP error ${response.status}`);
 
-      const reader = response.body?.getReader();
-      const decoder = new TextDecoder();
-      let buffer = "";
-      let assistantText = "";
-      let streamDone = false;
+      const data = await response.json();
+      const fullText: string = data.text || "Sorry, I could not get a response. Please try again.";
 
-      if (!reader) throw new Error("No reader");
-
-      while (!streamDone) {
-        const { done, value } = await reader.read();
-        if (done) break;
-
-        buffer += decoder.decode(value, { stream: true });
-        const lines = buffer.split("\n");
-        buffer = lines.pop() || "";
-
-        for (const line of lines) {
-          if (line.startsWith("data: ")) {
-            const data = line.slice(6).trim();
-            if (data === "[DONE]") { streamDone = true; break; }
-            try {
-              const parsed = JSON.parse(data);
-              if (parsed.text) {
-                assistantText += parsed.text;
-                setMessages((prev) => {
-                  const updated = [...prev];
-                  updated[updated.length - 1] = { role: "assistant", content: assistantText };
-                  return updated;
-                });
-              }
-            } catch { /* ignore */ }
-          }
+      // Typewriter effect
+      let i = 0;
+      setIsLoading(false);
+      const interval = setInterval(() => {
+        i += 3;
+        const chunk = fullText.slice(0, i);
+        setMessages((prev) => {
+          const updated = [...prev];
+          updated[updated.length - 1] = { role: "assistant", content: chunk };
+          return updated;
+        });
+        if (i >= fullText.length) {
+          clearInterval(interval);
+          speak(fullText);
         }
-      }
-
-      // Speak the completed response
-      if (assistantText) speak(assistantText);
+      }, 18);
 
     } catch {
+      setIsLoading(false);
       setMessages((prev) => {
         const updated = [...prev];
         updated[updated.length - 1] = {
@@ -188,8 +171,6 @@ export default function AIAssistant() {
         };
         return updated;
       });
-    } finally {
-      setIsLoading(false);
     }
   };
 
