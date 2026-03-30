@@ -37,10 +37,10 @@ const whitepapers = [
     featured: false,
   },
   {
-    title: "NFE Token-Backed Funding for LENR Commercialization",
+    title: "LENR-Backed Token Funding for LENR Commercialization",
     description:
-      "New Fire Energy issues the NFE tokenized security to fund LENR companies in their research and development. The structure bridges laboratory discovery and commercial deployment for accredited investors.",
-    tags: ["NFE Token", "Investment", "LENR Funding"],
+      "New Fire Energy issues the LENR-backed token (NFE) to fund LENR companies in their research and development. The structure bridges laboratory discovery and commercial deployment for accredited investors.",
+    tags: ["LENR Token", "Investment", "LENR Funding"],
     icon: FileText,
     color: "plasma",
     featured: false,

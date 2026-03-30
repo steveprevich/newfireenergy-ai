@@ -143,7 +143,7 @@ export default function Home() {
             borderRadius: 20, padding: "36px 40px", marginBottom: 40, textAlign: "left", maxWidth: 800, margin: "0 auto 40px" }}>
             <p style={{ fontSize: "clamp(1rem, 2.2vw, 1.15rem)", color: "rgba(255,255,255,0.75)",
               lineHeight: 1.85, margin: 0 }}>
-              <span style={{ color: "#7FD8F0", fontWeight: 700 }}>New Fire Energy Inc.</span> issues the <span style={{ color: "#7FD8F0", fontWeight: 700 }}>NFE tokenized security</span>, backing{" "}
+              <span style={{ color: "#7FD8F0", fontWeight: 700 }}>New Fire Energy Inc.</span> issues the <span style={{ color: "#7FD8F0", fontWeight: 700 }}>LENR-backed token (NFE)</span>, backing{" "}
               <span style={{ color: "#7FD8F0", fontWeight: 600 }}>Low Energy Nuclear Reactions (LENR)</span> companies in their research and development. We provide capital, technical support, and strategic guidance to move independently validated LENR discoveries from the laboratory into commercial prototypes and global market deployment.
             </p>
             <div style={{ width: "100%", height: 1, background: "rgba(0,184,230,0.12)", margin: "24px 0" }} />
