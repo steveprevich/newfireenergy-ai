@@ -41,7 +41,23 @@ export default function Home() {
         </video>
 
         {/* Dark overlay */}
-        <div style={{ position: "absolute", inset: 0, background: "rgba(6,14,31,0.35)", zIndex: 1 }} />
+        <div style={{ position: "absolute", inset: 0, background: "rgba(6,14,31,0.45)", zIndex: 1 }} />
+
+        {/* RIGHT dark frame */}
+        <div style={{ position: "absolute", top: 0, right: 0, width: "38%", height: "100%", zIndex: 2, pointerEvents: "none",
+          background: "linear-gradient(to left, rgba(6,14,31,1) 0%, rgba(6,14,31,1) 35%, rgba(6,14,31,0.6) 70%, transparent 100%)" }} />
+
+        {/* LEFT dark frame */}
+        <div style={{ position: "absolute", top: 0, left: 0, width: "38%", height: "100%", zIndex: 2, pointerEvents: "none",
+          background: "linear-gradient(to right, rgba(6,14,31,1) 0%, rgba(6,14,31,1) 35%, rgba(6,14,31,0.6) 70%, transparent 100%)" }}  />
+
+        {/* TOP dark frame */}
+        <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "18%", zIndex: 2, pointerEvents: "none",
+          background: "linear-gradient(to bottom, rgba(6,14,31,0.9) 0%, transparent 100%)" }} />
+
+        {/* BOTTOM dark frame */}
+        <div style={{ position: "absolute", bottom: 0, left: 0, width: "100%", height: "18%", zIndex: 2, pointerEvents: "none",
+          background: "linear-gradient(to top, rgba(6,14,31,0.9) 0%, transparent 100%)" }} />
 
         {/* Subtle centre glow behind text */}
         <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)",
