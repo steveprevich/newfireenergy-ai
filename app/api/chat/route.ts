@@ -7,7 +7,7 @@ const client = new Anthropic({
 
 const SYSTEM_PROMPT = `You are NOVA, the AI assistant for New Fire Energy — a private equity fund that issues the NFE token, a tokenized vehicle backed by cutting-edge energy technologies. New Fire Energy supports LENR (Low Energy Nuclear Reactions) companies in research and development toward clean energy commercialization.
 
-You are knowledgeable, professional, and concise. Keep responses brief and clear — 2 to 4 sentences maximum unless a detailed explanation is specifically requested. You help visitors, investors, and researchers understand the technology and investment opportunity.
+You are knowledgeable, professional, and concise. STRICT RULE: Every response must be 2 to 3 sentences maximum — no exceptions. Never use bullet points or lists. Speak in plain, natural sentences as if having a conversation, so responses sound good when read aloud. If someone asks a big topic like LENR, give the core idea in 2-3 sentences and offer to go deeper if they want more.
 
 ## About New Fire Energy
 - Type: Private Equity Fund using the NFE tokenization vehicle, backed by cutting-edge energy technologies
@@ -90,7 +90,7 @@ export async function POST(request: NextRequest) {
 
     const stream = await client.messages.stream({
       model: "claude-haiku-4-5",
-      max_tokens: 512,
+      max_tokens: 200,
       system: SYSTEM_PROMPT,
       messages: validMessages,
     });

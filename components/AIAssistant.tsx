@@ -67,7 +67,7 @@ export default function AIAssistant() {
     if (!voiceEnabled || !synthRef.current) return;
     synthRef.current.cancel();
     // Strip markdown-style formatting for cleaner speech
-    const clean = text.replace(/\*\*/g, "").replace(/\*/g, "").replace(/#{1,6}\s/g, "").replace(/\n/g, " ");
+    const clean = text.replace(/\*\*/g, "").replace(/\*/g, "").replace(/#{1,6}\s/g, "").replace(/\n/g, " ").slice(0, 400);
     const utterance = new SpeechSynthesisUtterance(clean);
     utterance.rate = 1.0;
     utterance.pitch = 1.0;
