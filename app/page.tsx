@@ -1,8 +1,10 @@
 
 
 "use client";
+import { useRef, useCallback } from "react";
 
 export default function Home() {
+  const loopCoverRef = useRef<HTMLDivElement>(null);
   const stats = [
     { value: "$100T", label: "Market Horizon", sub: "ZPE addresses the entire global energy market", accent: "#00B8E6" },
     { value: "100%", label: "Zero CO₂ Emissions", sub: "No carbon. No hazardous waste. Ever.", accent: "#2DD4BF" },
@@ -21,18 +23,25 @@ export default function Home() {
       <section style={{ height: "100vh", position: "relative", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center" }}>
 
         {/* Video — brighter */}
-        <video autoPlay loop muted playsInline preload="auto"
+        <video autoPlay muted playsInline preload="auto"
           ref={(el) => {
             if (el) {
               el.muted = true;
-              // Start 2s in to skip the TikTok opening frames
               el.currentTime = 2;
               const tryPlay = () => el.play().catch(() => {});
               el.addEventListener('canplay', tryPlay, { once: true });
               tryPlay();
-              // On every loop restart, skip back to 2s not 0
+              // When near end: flash cover, seek to 2s, then release cover
               el.addEventListener('timeupdate', () => {
-                if (el.duration && el.currentTime > el.duration - 0.3) el.currentTime = 2;
+                if (el.duration && el.currentTime > el.duration - 0.4) {
+                  // Show cover instantly
+                  if (loopCoverRef.current) loopCoverRef.current.style.opacity = "1";
+                  el.currentTime = 2;
+                  // Hide cover after seek settles (150ms)
+                  setTimeout(() => {
+                    if (loopCoverRef.current) loopCoverRef.current.style.opacity = "0";
+                  }, 150);
+                }
               });
             }
           }}
@@ -40,6 +49,10 @@ export default function Home() {
             opacity: 0.62, filter: "hue-rotate(195deg) saturate(2.0) brightness(0.88)", mixBlendMode: "screen" }}>
           <source src="/bg.mp4" type="video/mp4" />
         </video>
+
+        {/* Loop cover — blocks the 1-frame flash when video seeks back to 2s */}
+        <div ref={loopCoverRef} style={{ position: "absolute", inset: 0, background: "#060E1F",
+          zIndex: 1, opacity: 0, transition: "opacity 0.15s ease", pointerEvents: "none" }} />
 
         {/* Dark overlay — lighter so video shows through more */}
         <div style={{ position: "absolute", inset: 0, background: "rgba(6,14,31,0.38)", zIndex: 1 }} />
