@@ -30,8 +30,8 @@ export default function Home() {
               el.addEventListener('canplay', tryPlay, { once: true });
               tryPlay();
               el.addEventListener('timeupdate', () => {
-                // Jump back 3 s before the end to skip icon frames at the tail
-                if (el.duration && el.currentTime > el.duration - 3) {
+                // Hard-cap at 22 s — icons appear around 24 s, never let it get there
+                if (el.currentTime >= 22) {
                   el.currentTime = 0;
                   el.play().catch(() => {});
                 }
