@@ -33,20 +33,20 @@ export default function Home() {
           }}
           style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%",
             objectFit: "cover", objectPosition: "center center", zIndex: 0,
-            opacity: 0.7, filter: "brightness(0.85) saturate(1.4)" }}>
-          <source src="/energy.mp4" type="video/mp4" />
+            opacity: 0.65, filter: "hue-rotate(195deg) saturate(2.0) brightness(0.9)", mixBlendMode: "screen" }}>
+          <source src="/bg2.mp4" type="video/mp4" />
         </video>
 
         {/* Dark overlay */}
         <div style={{ position: "absolute", inset: 0, background: "rgba(6,14,31,0.45)", zIndex: 1 }} />
 
-        {/* RIGHT — solid black from edge, slow fade into center */}
+        {/* RIGHT — gentle fade from solid edge */}
         <div style={{ position: "absolute", top: 0, right: 0, width: "100%", height: "100%", zIndex: 2, pointerEvents: "none",
-          background: "linear-gradient(to left, #060E1F 0%, #060E1F 28%, rgba(6,14,31,0.92) 38%, rgba(6,14,31,0.6) 50%, rgba(6,14,31,0.1) 65%, transparent 72%)" }} />
+          background: "linear-gradient(to left, #060E1F 0%, #060E1F 18%, rgba(6,14,31,0.7) 32%, rgba(6,14,31,0.2) 50%, transparent 62%)" }} />
 
-        {/* LEFT — solid black from edge, slow fade into center */}
+        {/* LEFT — gentle fade from solid edge */}
         <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", zIndex: 2, pointerEvents: "none",
-          background: "linear-gradient(to right, #060E1F 0%, #060E1F 22%, rgba(6,14,31,0.92) 33%, rgba(6,14,31,0.6) 46%, rgba(6,14,31,0.1) 60%, transparent 68%)" }}  />
+          background: "linear-gradient(to right, #060E1F 0%, #060E1F 12%, rgba(6,14,31,0.7) 26%, rgba(6,14,31,0.2) 44%, transparent 56%)" }}  />
 
         {/* TOP dark frame */}
         <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "22%", zIndex: 2, pointerEvents: "none",
