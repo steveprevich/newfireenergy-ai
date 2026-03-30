@@ -1,10 +1,8 @@
 
 
 "use client";
-import { useRef, useCallback } from "react";
 
 export default function Home() {
-  const loopCoverRef = useRef<HTMLDivElement>(null);
   const stats = [
     { value: "$100T", label: "Market Horizon", sub: "ZPE addresses the entire global energy market", accent: "#00B8E6" },
     { value: "100%", label: "Zero CO₂ Emissions", sub: "No carbon. No hazardous waste. Ever.", accent: "#2DD4BF" },
@@ -22,48 +20,28 @@ export default function Home() {
       ══════════════════════════════════════════ */}
       <section style={{ height: "100vh", position: "relative", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center" }}>
 
-        {/* Video — brighter */}
-        <video autoPlay muted playsInline preload="auto"
+        {/* Video background */}
+        <video autoPlay loop muted playsInline preload="auto"
           ref={(el) => {
             if (el) {
               el.muted = true;
-              el.currentTime = 2;
+              el.currentTime = 0;
               const tryPlay = () => el.play().catch(() => {});
               el.addEventListener('canplay', tryPlay, { once: true });
               tryPlay();
-              // When near end: flash cover, seek to 2s, then release cover
               el.addEventListener('timeupdate', () => {
-                if (el.duration && el.currentTime > el.duration - 0.4) {
-                  // Show cover instantly
-                  if (loopCoverRef.current) loopCoverRef.current.style.opacity = "1";
-                  el.currentTime = 2;
-                  // Hide cover after seek settles (150ms)
-                  setTimeout(() => {
-                    if (loopCoverRef.current) loopCoverRef.current.style.opacity = "0";
-                  }, 150);
-                }
+                if (el.duration && el.currentTime > el.duration - 0.3) el.currentTime = 0;
               });
             }
           }}
-          style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "35% center", zIndex: 0,
-            opacity: 0.62, filter: "hue-rotate(195deg) saturate(2.0) brightness(0.88)", mixBlendMode: "screen" }}>
+          style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%",
+            objectFit: "cover", objectPosition: "center center", zIndex: 0,
+            opacity: 0.65, filter: "hue-rotate(195deg) saturate(2.0) brightness(0.9)", mixBlendMode: "screen" }}>
           <source src="/bg.mp4" type="video/mp4" />
         </video>
 
-        {/* Loop cover — blocks the 1-frame flash when video seeks back to 2s */}
-        <div ref={loopCoverRef} style={{ position: "absolute", inset: 0, background: "#060E1F",
-          zIndex: 1, opacity: 0, transition: "opacity 0.15s ease", pointerEvents: "none" }} />
-
-        {/* Dark overlay — lighter so video shows through more */}
-        <div style={{ position: "absolute", inset: 0, background: "rgba(6,14,31,0.38)", zIndex: 1 }} />
-
-        {/* Edge mask — RIGHT: hides TikTok UI icons — wide enough to fully cover them */}
-        <div style={{ position: "absolute", top: 0, right: 0, width: "32%", height: "100%", zIndex: 2, pointerEvents: "none",
-          background: "linear-gradient(to left, rgba(6,14,31,1) 0%, rgba(6,14,31,1) 30%, rgba(6,14,31,0.7) 65%, transparent 100%)" }} />
-
-        {/* Edge mask — LEFT: matches right for balance */}
-        <div style={{ position: "absolute", top: 0, left: 0, width: "32%", height: "100%", zIndex: 2, pointerEvents: "none",
-          background: "linear-gradient(to right, rgba(6,14,31,1) 0%, rgba(6,14,31,1) 30%, rgba(6,14,31,0.7) 65%, transparent 100%)" }} />
+        {/* Dark overlay */}
+        <div style={{ position: "absolute", inset: 0, background: "rgba(6,14,31,0.35)", zIndex: 1 }} />
 
         {/* Subtle centre glow behind text */}
         <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)",
