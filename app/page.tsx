@@ -40,13 +40,13 @@ export default function Home() {
         {/* Dark overlay */}
         <div style={{ position: "absolute", inset: 0, background: "rgba(6,14,31,0.45)", zIndex: 1 }} />
 
-        {/* RIGHT — gentle fade from solid edge */}
-        <div style={{ position: "absolute", top: 0, right: 0, width: "100%", height: "100%", zIndex: 2, pointerEvents: "none",
-          background: "linear-gradient(to left, #060E1F 0%, #060E1F 18%, rgba(6,14,31,0.7) 32%, rgba(6,14,31,0.2) 50%, transparent 62%)" }} />
+        {/* RIGHT dark frame */}
+        <div style={{ position: "absolute", top: 0, right: 0, width: "45%", height: "100%", zIndex: 2, pointerEvents: "none",
+          background: "linear-gradient(to left, rgba(6,14,31,1) 0%, rgba(6,14,31,1) 40%, rgba(6,14,31,0.6) 70%, transparent 100%)" }} />
 
-        {/* LEFT — gentle fade from solid edge */}
-        <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", zIndex: 2, pointerEvents: "none",
-          background: "linear-gradient(to right, #060E1F 0%, #060E1F 12%, rgba(6,14,31,0.7) 26%, rgba(6,14,31,0.2) 44%, transparent 56%)" }}  />
+        {/* LEFT dark frame */}
+        <div style={{ position: "absolute", top: 0, left: 0, width: "45%", height: "100%", zIndex: 2, pointerEvents: "none",
+          background: "linear-gradient(to right, rgba(6,14,31,1) 0%, rgba(6,14,31,1) 40%, rgba(6,14,31,0.6) 70%, transparent 100%)" }} />
 
         {/* TOP dark frame */}
         <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "22%", zIndex: 2, pointerEvents: "none",
