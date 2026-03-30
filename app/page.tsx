@@ -21,7 +21,7 @@ export default function Home() {
       <section style={{ height: "100vh", position: "relative", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center" }}>
 
         {/* Video background */}
-        <video autoPlay loop muted playsInline preload="auto"
+        <video autoPlay muted playsInline preload="auto"
           ref={(el) => {
             if (el) {
               el.muted = true;
@@ -29,12 +29,18 @@ export default function Home() {
               const tryPlay = () => el.play().catch(() => {});
               el.addEventListener('canplay', tryPlay, { once: true });
               tryPlay();
+              el.addEventListener('timeupdate', () => {
+                if (el.currentTime >= 22) {
+                  el.currentTime = 0;
+                  el.play().catch(() => {});
+                }
+              });
             }
           }}
           style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%",
             objectFit: "cover", objectPosition: "center center", zIndex: 0,
-            opacity: 0.65, filter: "hue-rotate(195deg) saturate(2.0) brightness(0.9)", mixBlendMode: "screen" }}>
-          <source src="/bg2.mp4" type="video/mp4" />
+            opacity: 0.85, filter: "hue-rotate(195deg) saturate(3.5) brightness(1.05) contrast(1.15)" }}>
+          <source src="/hero-bg.mp4" type="video/mp4" />
         </video>
 
         {/* Dark overlay */}
