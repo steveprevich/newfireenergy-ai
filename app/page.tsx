@@ -21,7 +21,7 @@ export default function Home() {
       <section style={{ height: "100vh", position: "relative", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center" }}>
 
         {/* Video background */}
-        <video autoPlay loop muted playsInline preload="auto"
+        <video autoPlay muted playsInline preload="auto"
           ref={(el) => {
             if (el) {
               el.muted = true;
@@ -30,7 +30,11 @@ export default function Home() {
               el.addEventListener('canplay', tryPlay, { once: true });
               tryPlay();
               el.addEventListener('timeupdate', () => {
-                if (el.duration && el.currentTime > el.duration - 0.3) el.currentTime = 0;
+                // Jump back 3 s before the end to skip icon frames at the tail
+                if (el.duration && el.currentTime > el.duration - 3) {
+                  el.currentTime = 0;
+                  el.play().catch(() => {});
+                }
               });
             }
           }}
