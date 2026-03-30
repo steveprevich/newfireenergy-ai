@@ -70,15 +70,23 @@ export default function AIAssistant() {
     // Strip markdown-style formatting for cleaner speech
     const clean = text.replace(/\*\*/g, "").replace(/\*/g, "").replace(/#{1,6}\s/g, "").replace(/\n/g, " ").slice(0, 400);
     const utterance = new SpeechSynthesisUtterance(clean);
-    utterance.rate = 1.05;
-    utterance.pitch = 1.0;
     utterance.volume = 0.9;
     const voices = synthRef.current.getVoices();
-    const preferred = voices.find(v =>
-      v.name.includes("Samantha") || v.name.includes("Google US English") ||
-      v.name.includes("Microsoft Aria") || v.name.includes("Karen") || (v.lang === "en-US" && v.localService)
-    );
+    // Prefer smooth UK English female voices
+    const preferred =
+      voices.find(v => v.name.includes("Google UK English Female")) ||
+      voices.find(v => v.name.includes("Microsoft Libby")) ||
+      voices.find(v => v.name.includes("Microsoft Mia")) ||
+      voices.find(v => v.name.includes("Microsoft Hazel")) ||
+      voices.find(v => v.name.includes("Serena")) ||
+      voices.find(v => v.lang === "en-GB" && v.name.toLowerCase().includes("female")) ||
+      voices.find(v => v.lang === "en-GB") ||
+      voices.find(v => v.name.includes("Samantha")) ||
+      voices.find(v => v.name.includes("Microsoft Aria")) ||
+      voices.find(v => v.lang === "en-US" && v.localService);
     if (preferred) utterance.voice = preferred;
+    utterance.rate = 0.95;
+    utterance.pitch = 1.05;
     utterance.onstart = () => setIsSpeaking(true);
     utterance.onend = () => setIsSpeaking(false);
     utterance.onerror = () => setIsSpeaking(false);
