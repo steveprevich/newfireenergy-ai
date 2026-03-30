@@ -45,7 +45,7 @@ export default function Home() {
               });
             }
           }}
-          style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover", zIndex: 0,
+          style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "35% center", zIndex: 0,
             opacity: 0.62, filter: "hue-rotate(195deg) saturate(2.0) brightness(0.88)", mixBlendMode: "screen" }}>
           <source src="/bg.mp4" type="video/mp4" />
         </video>
@@ -57,13 +57,13 @@ export default function Home() {
         {/* Dark overlay — lighter so video shows through more */}
         <div style={{ position: "absolute", inset: 0, background: "rgba(6,14,31,0.38)", zIndex: 1 }} />
 
-        {/* Edge mask — RIGHT: hides TikTok UI icons */}
-        <div style={{ position: "absolute", top: 0, right: 0, width: "22%", height: "100%", zIndex: 2, pointerEvents: "none",
-          background: "linear-gradient(to left, rgba(6,14,31,1) 0%, rgba(6,14,31,0.85) 40%, transparent 100%)" }} />
+        {/* Edge mask — RIGHT: hides TikTok UI icons — wide enough to fully cover them */}
+        <div style={{ position: "absolute", top: 0, right: 0, width: "32%", height: "100%", zIndex: 2, pointerEvents: "none",
+          background: "linear-gradient(to left, rgba(6,14,31,1) 0%, rgba(6,14,31,1) 30%, rgba(6,14,31,0.7) 65%, transparent 100%)" }} />
 
         {/* Edge mask — LEFT: matches right for balance */}
-        <div style={{ position: "absolute", top: 0, left: 0, width: "22%", height: "100%", zIndex: 2, pointerEvents: "none",
-          background: "linear-gradient(to right, rgba(6,14,31,1) 0%, rgba(6,14,31,0.85) 40%, transparent 100%)" }} />
+        <div style={{ position: "absolute", top: 0, left: 0, width: "32%", height: "100%", zIndex: 2, pointerEvents: "none",
+          background: "linear-gradient(to right, rgba(6,14,31,1) 0%, rgba(6,14,31,1) 30%, rgba(6,14,31,0.7) 65%, transparent 100%)" }} />
 
         {/* Subtle centre glow behind text */}
         <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)",
