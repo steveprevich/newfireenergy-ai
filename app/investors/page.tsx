@@ -87,7 +87,7 @@ export default function InvestorsPage() {
         <div style={{ background: "rgba(249,115,22,0.05)", border: "1px solid rgba(249,115,22,0.2)", borderRadius: 20, padding: "40px 48px", textAlign: "center" }}>
           <h2 style={{ color: "#fff", fontSize: "1.6rem", fontWeight: 700, marginBottom: 16 }}>Why Now?</h2>
           <p style={{ color: "rgba(255,255,255,0.6)", maxWidth: 700, margin: "0 auto", lineHeight: 1.8, fontSize: "1rem" }}>
-            A breakthrough 30 years in development is now at the commercialization inflection point. NASA, the U.S. Department of Energy, MIT, and Google have all confirmed the science. New Fire Energy is positioned to bridge the gap from lab demonstrator to global deployment using blockchain smart contracts to fund the companies poised to change the world.
+            A breakthrough 30 years in development is now at the commercialization inflection point. NASA, the U.S. Department of Energy, MIT, and Google have all confirmed the science. New Fire Energy is positioned to provide capital and strategic support to LENR companies advancing from laboratory discovery to commercial deployment through the NFE tokenized security.
           </p>
         </div>
       </section>
@@ -296,8 +296,8 @@ export default function InvestorsPage() {
           {[
             { q: "Who can invest?", a: "This opportunity is limited to accredited investors as defined by SEC Rule 501 of Regulation D. You must meet income ($200K+ individual or $300K+ joint) or net worth ($1M+ excluding primary residence) thresholds. Verification is handled through InvestReady Inc." },
             { q: "How do I verify my accredited investor status?", a: "We partner with InvestReady Inc. for accredited investor verification. Visit newfireenergy.investready.com/ to complete the verification process. Once verified, contact us at contact@newfireenergy.com or call 813-778-1209 to begin the investor onboarding process." },
-            { q: "What is the investment structure?", a: "New Fire Energy uses blockchain smart contracts and token-backed funding to bridge lab demonstrators to commercialization. This model provides transparency, potential liquidity options, and direct participation in the energy technology ecosystem. Contact us for full details on the current investment structure." },
-            { q: "What is the exit strategy?", a: "We anticipate multiple paths to liquidity as LENR technologies reach commercialization. These include strategic partnerships with global energy companies, licensing deals, and potential token liquidity as the blockchain-based funding model matures. The technology commercialization timeline is accelerating." },
+            { q: "What is the investment structure?", a: "New Fire Energy issues the NFE tokenized security, which backs LENR companies in their research and development. This structure provides accredited investors with direct participation in the clean energy technology ecosystem. Contact us for full details on the offering structure." },
+            { q: "What is the exit strategy?", a: "We anticipate multiple paths to liquidity as LENR technologies reach commercialization. These include strategic partnerships with global energy companies, licensing deals, and potential token liquidity as LENR portfolio companies mature toward commercialization. The technology commercialization timeline is accelerating." },
             { q: "How do I get in touch?", a: "Email us at contact@newfireenergy.com or call 813-778-1209. Our office is located at 30 N. Gould St. Suite R, Sheridan, Wyoming 82801. We respond to all investor inquiries within 24 to 48 hours." },
           ].map((item) => (
             <details key={item.q} style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 14, cursor: "pointer" }}>

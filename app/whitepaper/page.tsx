@@ -37,10 +37,10 @@ const whitepapers = [
     featured: false,
   },
   {
-    title: "Blockchain Funding for Clean Energy Commercialization",
+    title: "NFE Token-Backed Funding for LENR Commercialization",
     description:
-      "New Fire Energy's innovative approach to funding ZPE/LENR commercialization through smart contracts and ZPE token-backed investment. Bridging the gap between lab demonstrators and global deployment.",
-    tags: ["Blockchain", "Investment", "Smart Contracts"],
+      "New Fire Energy issues the NFE tokenized security to fund LENR companies in their research and development. The structure bridges laboratory discovery and commercial deployment for accredited investors.",
+    tags: ["NFE Token", "Investment", "LENR Funding"],
     icon: FileText,
     color: "plasma",
     featured: false,
