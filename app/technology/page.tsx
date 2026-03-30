@@ -214,7 +214,7 @@ export default function TechnologyPage() {
       <section style={{ padding: "80px 24px", background: "#060E1F", borderTop: "1px solid rgba(255,255,255,0.05)", textAlign: "center" }}>
         <div style={{ maxWidth: 700, margin: "0 auto" }}>
           <h2 style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)", fontWeight: 800, color: "#fff", margin: "0 0 16px" }}>
-            Ready to Invest in the New Energy Revolution?
+            Advancing the Future of Clean Energy
           </h2>
           <p style={{ color: "rgba(255,255,255,0.45)", fontSize: "1rem", margin: "0 0 36px", lineHeight: 1.7 }}>
             New Fire Energy is raising $40.4M to invest in the world&apos;s most promising LENR companies. Minimum $20,000. Accredited investors only.
@@ -223,7 +223,7 @@ export default function TechnologyPage() {
             <a href="/investors" style={{ padding: "15px 36px", borderRadius: 10,
               background: "linear-gradient(135deg,#F97316,#EF4444)", color: "#fff", fontWeight: 700,
               fontSize: "1.05rem", textDecoration: "none", boxShadow: "0 4px 24px rgba(249,115,22,0.35)" }}>
-              🔥 Become an Investor →
+              Request Access →
             </a>
             <a href="/whitepaper" style={{ padding: "15px 36px", borderRadius: 10,
               background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.15)",

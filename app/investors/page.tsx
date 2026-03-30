@@ -54,13 +54,13 @@ export default function InvestorsPage() {
           </div>
 
           <h1 style={{ fontSize: "clamp(2.8rem, 7vw, 5rem)", fontWeight: 800, lineHeight: 1.1, letterSpacing: "-0.02em", marginBottom: 20, color: "#fff" }}>
-            Invest in the{" "}
-            <span style={{ background: "linear-gradient(90deg,#22D3EE,#2DD4BF)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>New Energy</span>{" "}
-            Revolution
+            A Regulated Investment in{" "}
+            <span style={{ background: "linear-gradient(90deg,#22D3EE,#2DD4BF)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Advanced Energy</span>{" "}
+            Technology
           </h1>
 
           <p style={{ color: "rgba(255,255,255,0.7)", fontSize: "clamp(1rem,2vw,1.25rem)", lineHeight: 1.7, marginBottom: 36, maxWidth: 680, margin: "0 auto 36px" }}>
-            New Fire Energy issues the LENR-backed token (NFE), backing LENR companies in their research and development. The extensively reviewed and independently validated science of Low Energy Nuclear Reactions is poised to disrupt a $100 trillion global energy market.
+            New Fire Energy is a private equity fund issuing the NFE token, a tokenized vehicle backed by cutting-edge energy technologies. We support LENR companies in research and development, targeting the $100 trillion global energy market.
           </p>
 
           <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
@@ -100,7 +100,7 @@ export default function InvestorsPage() {
               icon: "🌍",
               color: "#22D3EE",
               title: "$100 Trillion Market Horizon",
-              body: "As LENR technologies disrupt traditional energy markets, analysts project a valuation surge creating entirely new industries, redefining energy and global trade. This is not incremental improvement; it is a complete paradigm shift.",
+              body: "As LENR technologies transform traditional energy markets, analysts project a valuation surge creating entirely new industries, redefining energy and global trade. This is not incremental improvement; it is a complete paradigm shift.",
               stat: "$100T",
             },
             {
@@ -320,7 +320,7 @@ export default function InvestorsPage() {
             <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#F97316", display: "inline-block" }} />
             <span style={{ color: "#FCD34D", fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase" }}>Accredited Investors Only</span>
           </div>
-          <h2 style={{ color: "#fff", fontSize: "clamp(1.6rem,4vw,2.4rem)", fontWeight: 700, marginBottom: 16 }}>Ready to Be Part of the New Energy Revolution?</h2>
+          <h2 style={{ color: "#fff", fontSize: "clamp(1.6rem,4vw,2.4rem)", fontWeight: 700, marginBottom: 16 }}>Advancing the Future of Clean Energy</h2>
           <p style={{ color: "rgba(255,255,255,0.5)", marginBottom: 32, maxWidth: 520, margin: "0 auto 32px", lineHeight: 1.7 }}>
             Schedule a call with Steve Previch, CEO, to discuss the LENR opportunity and learn how New Fire Energy is commercializing the technology that will change the world.
           </p>

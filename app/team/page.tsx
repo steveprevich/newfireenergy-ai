@@ -163,7 +163,7 @@ export default function TeamPage() {
           <div className="absolute inset-0 bg-gradient-to-r from-plasma-500/5 via-teal-500/5 to-plasma-500/5 pointer-events-none" />
           <div className="relative z-10">
             <h3 className="font-display text-2xl font-bold text-white mb-3">
-              Ready to Join the New Energy Revolution?
+              Advancing the Future of Clean Energy
             </h3>
             <p className="text-white/50 max-w-xl mx-auto text-sm mb-6">
               New Fire Energy seeks accredited investors who share our vision of a decentralized, zero-carbon energy future.

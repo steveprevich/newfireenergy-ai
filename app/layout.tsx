@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "New Fire Energy | LENR-Backed Token (NFE) · LENR R&D Investment",
+  title: "New Fire Energy | Private Equity Fund · Advanced Energy Technology",
   description: "New Fire Energy Inc. issues the LENR-backed token (NFE), backing LENR companies in their research and development toward clean energy commercialization. Accredited investors only. Rule 506(c) Reg D.",
 };
 
@@ -61,7 +61,7 @@ export default function RootLayout({
                 New Fire Energy
               </div>
               <div style={{ color: "rgba(0,184,230,0.65)", fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase" }}>
-                LENR-Backed Token (NFE)
+                Private Equity Fund
               </div>
             </div>
           </a>
@@ -88,7 +88,7 @@ export default function RootLayout({
             boxShadow: "0 3px 14px rgba(249,115,22,0.35)",
             letterSpacing: "0.01em",
           }}>
-            🔥 Become an Investor
+            Request Access
           </a>
         </header>
 
@@ -109,11 +109,11 @@ export default function RootLayout({
                   <FireLogo size={34} />
                   <div>
                     <div style={{ color: "#fff", fontWeight: 800, fontSize: "0.9rem" }}>New Fire Energy</div>
-                    <div style={{ color: "rgba(0,184,230,0.6)", fontSize: "0.58rem", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase" }}>LENR-Backed Token (NFE)</div>
+                    <div style={{ color: "rgba(0,184,230,0.6)", fontSize: "0.58rem", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase" }}>Private Equity Fund</div>
                   </div>
                 </div>
                 <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.78rem", lineHeight: 1.7, marginBottom: 16, maxWidth: 240 }}>
-                  The LENR-backed token (NFE) backs LENR companies in research and development, bridging the gap from laboratory discovery to global clean energy commercialization.
+                  A private equity fund using the NFE tokenization vehicle, backed by cutting-edge energy technologies. Supporting LENR companies from laboratory to commercial deployment.
                 </p>
                 <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
                   <a href="mailto:contact@newfireenergy.com" style={{ color: "rgba(255,255,255,0.35)", fontSize: "0.75rem", textDecoration: "none" }}>✉ contact@newfireenergy.com</a>
