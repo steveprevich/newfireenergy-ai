@@ -47,13 +47,13 @@ export default function Home() {
         {/* Dark overlay */}
         <div style={{ position: "absolute", inset: 0, background: "rgba(6,14,31,0.45)", zIndex: 1 }} />
 
-        {/* RIGHT dark frame — solid 50% then fade to hide embedded icons */}
-        <div style={{ position: "absolute", top: 0, right: 0, width: "52%", height: "100%", zIndex: 2, pointerEvents: "none",
-          background: "linear-gradient(to left, rgba(6,14,31,1) 0%, rgba(6,14,31,1) 45%, rgba(6,14,31,0.75) 65%, rgba(6,14,31,0.3) 85%, transparent 100%)" }} />
+        {/* RIGHT — solid black from edge, slow fade into center */}
+        <div style={{ position: "absolute", top: 0, right: 0, width: "100%", height: "100%", zIndex: 2, pointerEvents: "none",
+          background: "linear-gradient(to left, #060E1F 0%, #060E1F 28%, rgba(6,14,31,0.92) 38%, rgba(6,14,31,0.6) 50%, rgba(6,14,31,0.1) 65%, transparent 72%)" }} />
 
-        {/* LEFT dark frame — solid 45% then fade */}
-        <div style={{ position: "absolute", top: 0, left: 0, width: "48%", height: "100%", zIndex: 2, pointerEvents: "none",
-          background: "linear-gradient(to right, rgba(6,14,31,1) 0%, rgba(6,14,31,1) 42%, rgba(6,14,31,0.7) 65%, rgba(6,14,31,0.25) 85%, transparent 100%)" }}  />
+        {/* LEFT — solid black from edge, slow fade into center */}
+        <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", zIndex: 2, pointerEvents: "none",
+          background: "linear-gradient(to right, #060E1F 0%, #060E1F 22%, rgba(6,14,31,0.92) 33%, rgba(6,14,31,0.6) 46%, rgba(6,14,31,0.1) 60%, transparent 68%)" }}  />
 
         {/* TOP dark frame */}
         <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "22%", zIndex: 2, pointerEvents: "none",
