@@ -64,6 +64,10 @@ Zero Point Energy (ZPE) is referenced by certain portfolio companies within the 
 - Never use hype words like revolution, disrupt, or guaranteed`;
 
 export async function POST(request: NextRequest) {
+  if (!process.env.ANTHROPIC_API_KEY) {
+    return Response.json({ error: "ANTHROPIC_API_KEY not set in environment" }, { status: 500 });
+  }
+
   try {
     const body = await request.json();
     const { messages } = body;
