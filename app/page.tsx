@@ -105,7 +105,7 @@ export default function Home() {
           {/* Quote */}
           <p style={{ fontSize: "clamp(1rem, 2.2vw, 1.25rem)", color: "rgba(255,255,255,0.62)",
             maxWidth: 580, margin: "0 auto 10px", lineHeight: 1.75, fontStyle: "italic", fontWeight: 300 }}>
-            &ldquo;The Number One Company for the World&rsquo;s New Energy Technology&rdquo;
+            &ldquo;Where patient capital meets the science that will power the next century.&rdquo;
           </p>
           <p style={{ fontSize: "clamp(0.8rem, 1.5vw, 0.95rem)", color: "rgba(0,184,230,0.55)",
             letterSpacing: "0.08em", fontWeight: 600, margin: 0 }}>
