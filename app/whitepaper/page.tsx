@@ -180,9 +180,10 @@ export default function WhitepaperPage() {
         {/* ZPE Quote */}
         <div className="glass-card p-8 mb-20 border-plasma-400/20 bg-plasma-500/5 text-center">
           <p className="text-white/60 text-lg leading-relaxed italic max-w-3xl mx-auto">
-            &ldquo;There is a fire the universe has never let go out &mdash; burning at the heart of empty space,
-            at the floor of every field, beneath every particle since before time had a name.
-            We call it Zero Point Energy. Future generations will call it everything.&rdquo;
+            &ldquo;In the quiet between atoms lives the oldest power in creation.
+            It needs no fuel. It casts no shadow.
+            It has filled the cosmos since before the first star was born.
+            Zero Point Energy is not new. We are.&rdquo;
           </p>
           <p className="text-plasma-400/70 text-sm mt-4">
             New Fire Energy ZPE White Paper
