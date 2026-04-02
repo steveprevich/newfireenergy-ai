@@ -12,7 +12,7 @@ const highlights = [
     icon: Globe,
     title: "$100 Trillion Market Horizon",
     description:
-      "As ZPE and LENR technologies disrupt traditional energy markets, analysts project a valuation surge creating entirely new industries — redefining energy and money in global trade.",
+      "As ZPE and LENR technologies disrupt traditional energy markets, analysts project a valuation surge creating entirely new industries, redefining energy and money in global trade.",
     stat: "$100T",
     statLabel: "Projected market shift",
   },
@@ -28,7 +28,7 @@ const highlights = [
     icon: Zap,
     title: "Decentralized Clean Energy",
     description:
-      "Imagine energy that is abundant, nontoxic, and nearly free — available 24/7, disconnected from traditional power grids. Not just a vision; an impending reality.",
+      "Imagine energy that is abundant, nontoxic, and nearly free, available 24/7, disconnected from traditional power grids. Not just a vision, an impending reality.",
     stat: "24/7",
     statLabel: "Continuous clean output",
   },
@@ -36,7 +36,7 @@ const highlights = [
     icon: DollarSign,
     title: "Capital Efficient via Blockchain",
     description:
-      "New Fire Energy uses smart contracts and blockchain technology to bridge lab demonstrators to commercialization — funding the companies poised to change the world.",
+      "New Fire Energy uses smart contracts and blockchain technology to bridge lab demonstrators to commercialization, funding the companies poised to change the world.",
     stat: "ZPE",
     statLabel: "Token-backed funding",
   },
@@ -106,7 +106,7 @@ export default function InvestorHighlights() {
           <div className="relative z-10">
             <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-fire-400/10 border border-fire-400/20 text-fire-300 text-xs font-semibold mb-4">
               <span className="w-1.5 h-1.5 rounded-full bg-fire-400 animate-pulse" />
-              Limited Window — Accredited Investors Only
+              Limited Window, Accredited Investors Only
             </span>
             <h3 className="font-display text-2xl sm:text-3xl font-bold text-white mb-3">
               Join the New Energy Revolution

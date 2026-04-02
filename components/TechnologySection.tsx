@@ -6,28 +6,28 @@ const features = [
     icon: Atom,
     title: "Zero Point Energy (ZPE)",
     description:
-      "Within this white shadow is a dimension we have yet to understand — Zero Point Energy that lights up a room with confidence, bearing no visible harm to life. A forceless field bringing a new era of freedom.",
+      "Within this white shadow is a dimension we have yet to understand, Zero Point Energy that lights up a room with confidence, bearing no visible harm to life. A forceless field bringing a new era of freedom.",
     color: "plasma",
   },
   {
     icon: Zap,
     title: "Low Energy Nuclear Reactions",
     description:
-      "LENR — also known as Cold Fusion or Lattice Confinement Fusion — releases virtually limitless energy on-demand using simple, inexpensive elements like Nickel. Confirmed by NASA, DOE, and MIT research.",
+      "LENR, also known as Cold Fusion or Lattice Confinement Fusion, releases virtually limitless energy on-demand using simple, inexpensive elements like Nickel. Confirmed by NASA, DOE, and MIT research.",
     color: "teal",
   },
   {
     icon: Globe,
     title: "Decentralized Global Energy",
     description:
-      "Imagine energy that is abundant, nontoxic, and nearly free — available 24/7 and disconnected from traditional power grids. ZPE modules can run continuously, exporting kW to MW of clean DC power.",
+      "Imagine energy that is abundant, nontoxic, and nearly free, available 24/7 and disconnected from traditional power grids. ZPE modules can run continuously, exporting kW to MW of clean DC power.",
     color: "fire",
   },
   {
     icon: Shield,
     title: "Zero Harmful Byproducts",
     description:
-      "100% no direct CO₂ emissions. No hazardous waste, fuel, or radiation emitted. Negligible CO₂ footprint. Modular and scalable from KW to MW — grid and off-grid, stationary and mobile.",
+      "100% no direct CO₂ emissions. No hazardous waste, fuel, or radiation emitted. Negligible CO₂ footprint. Modular and scalable from KW to MW, grid and off-grid, stationary and mobile.",
     color: "plasma",
   },
 ];
@@ -66,8 +66,8 @@ export default function TechnologySection() {
             World Has Been Waiting For
           </h2>
           <p className="text-white/50 text-lg leading-relaxed">
-            Low Energy Nuclear Reactions — confirmed by NASA, the U.S. Department of Energy,
-            MIT, and Google — represent a paradigm shift in energy production.
+            Low Energy Nuclear Reactions, confirmed by NASA, the U.S. Department of Energy,
+            MIT, and Google, represent a paradigm shift in energy production.
             A technology 30 years in development is now ready for the world to have.
           </p>
         </div>

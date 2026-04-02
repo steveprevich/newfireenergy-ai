@@ -217,7 +217,7 @@ export default function AIAssistant() {
               <span className="absolute -top-1 -right-1 w-4 h-4 bg-fire-400 rounded-full border-2 border-navy-900 animate-pulse" />
             )}
             <div className="absolute bottom-full right-0 mb-3 px-3 py-2 bg-navy-800 border border-white/10 rounded-xl text-white text-xs font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-xl">
-              <span className="gradient-text font-semibold">Ask NOVA</span> — Voice or Text
+              <span className="gradient-text font-semibold">Ask NOVA</span>, Voice or Text
               <div className="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-navy-800" />
             </div>
           </div>
@@ -282,7 +282,7 @@ export default function AIAssistant() {
                       I can answer questions about LENR technology, our investment structure, and the science.
                       {isSupported && (
                         <span className="block mt-2 text-teal-400 text-xs">
-                          🎤 Use the microphone to ask by voice — I&apos;ll respond in text and audio.
+                          🎤 Use the microphone to ask by voice. I&apos;ll respond in text and audio.
                         </span>
                       )}
                     </div>
@@ -422,7 +422,7 @@ export default function AIAssistant() {
             <Bot className="w-4 h-4 text-white" />
           </div>
           <div className="text-left">
-            <div className="text-white text-xs font-semibold">NOVA — AI Assistant</div>
+            <div className="text-white text-xs font-semibold">NOVA, AI Assistant</div>
             <div className="text-white/40 text-[10px]">Click to expand</div>
           </div>
           <ChevronDown className="w-4 h-4 text-white/30 group-hover:text-white/60 transition-colors" />

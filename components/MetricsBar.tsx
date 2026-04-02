@@ -27,7 +27,7 @@ const stats = [
   {
     value: "24/7",
     label: "Continuous Output",
-    sublabel: "Always-on power — no grid, no weather dependency",
+    sublabel: "Always-on power, no grid or weather dependency",
     icon: Clock,
     color: "from-plasma-400 to-teal-400",
     iconColor: "text-plasma-400",
@@ -47,7 +47,7 @@ const stats = [
   {
     value: "KW→MW",
     label: "Fully Scalable",
-    sublabel: "Modular design — grid, off-grid, mobile",
+    sublabel: "Modular design, grid, off-grid, and mobile",
     icon: Layers,
     color: "from-fire-300 to-fire-400",
     iconColor: "text-fire-300",
@@ -82,7 +82,7 @@ export default function MetricsBar() {
             The New Fire by the Numbers
           </div>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
-            Zero Point Energy —{" "}
+            Zero Point Energy:{" "}
             <span className="gradient-text">Why It Changes Everything</span>
           </h2>
           <p className="text-white/45 text-lg max-w-2xl mx-auto">

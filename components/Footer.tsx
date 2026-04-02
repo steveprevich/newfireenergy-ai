@@ -57,7 +57,7 @@ export default function Footer() {
 
             <p className="text-white/50 text-sm leading-relaxed mb-5 max-w-xs">
               The Number One Company for the World&apos;s New Energy Revolution.
-              ZPE and LENR technology — clean, safe, and virtually limitless.
+              ZPE and LENR technology, clean, safe, and virtually limitless.
             </p>
 
             {/* Contact info */}
