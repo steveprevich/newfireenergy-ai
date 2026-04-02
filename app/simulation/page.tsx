@@ -914,9 +914,13 @@ export default function SimulationPage() {
           <div className="text-center mb-12">
             <p className="text-plasma-400 text-xs font-medium tracking-widest uppercase mb-3">Real-World Devices</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">LENR Device Library</h2>
-            <p className="text-white/50 max-w-2xl mx-auto">
-              Click any company to load their real parameters into the simulator — based on published patents,
-              conference presentations, and verified research. Each device uses a different physics approach.
+            <p className="text-white/50 max-w-2xl mx-auto leading-relaxed">
+              Select any of the few pioneering companies below to load estimated parameters into the simulator.
+              These figures are informed by published patents and conference presentations, but they are{" "}
+              <span className="text-white/70 font-medium">not</span> the true formulas — and should not be treated as such.
+              Each of these companies has conducted thousands of experiments over years, or in some cases decades,
+              to arrive at their actual operating conditions. What you see here is an interactive approximation,
+              intended to illustrate the different physics approaches each device uses. It is for educational exploration only.
             </p>
           </div>
 
