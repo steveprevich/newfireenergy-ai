@@ -71,7 +71,7 @@ const COMPANY_PRESETS: CompanyPreset[] = [
     keyTech: "LiAlH4 solid hydrogen source · E-Cat SK plasma arc",
     patentRef: "WO 2015/052683 · EP 3,159,890",
     claim: "Ni-H · LiAlH4 hydrogen source · 900–1400°C plasma arc mode",
-    description: "Andrea Rossi's E-Cat uses nickel powder infused with hydrogen from lithium-aluminum hydride (LiAlH4), heated under vacuum. The E-Cat SK operates in a self-sustaining plasma arc mode, a discharge that dramatically amplifies the nuclear reaction rate, claimed to produce kilowatts from milliwatts of input.",
+    description: "Andrea Rossi's E-Cat uses nickel powder infused with hydrogen from lithium-aluminum hydride (LiAlH4), heated under vacuum. The E-Cat SK operates in a self-sustaining plasma arc mode, a discharge intended to dramatically amplify the nuclear reaction rate. Independent verification of output results is ongoing.",
     physics: "LiAlH4 decomposes at ~150°C releasing atomic hydrogen which loads into nanometer-scale nickel particle lattices under vacuum at 800–1200°C. Resonant phonon coupling drives proton-nickel interactions producing stable copper and zinc isotopes. The E-Cat SK plasma mode creates a self-sustaining arc where the plasma itself becomes the reaction medium, analogous to ball lightning, delivering orders of magnitude higher power density.",
     params: { material: "Ni", loading: 0.86, temperature: 380, currentDensity: 175, pressure: 2, rfStimulus: 0, runTime: 168 },
     quickPrompts: ["How does the E-Cat work?", "What is LiAlH4 in LENR?", "What is E-Cat SK plasma mode?", "What has independent testing shown about the E-Cat?"],
@@ -967,7 +967,7 @@ export default function SimulationPage() {
                 {/* Stats row */}
                 <div className="pl-4 flex flex-wrap gap-3 mb-4 text-[10px]">
                   <div>
-                    <span className="text-white/25 uppercase tracking-wide">Claim </span>
+                    <span className="text-white/25 uppercase tracking-wide">Approach </span>
                     <span className="font-mono font-bold" style={{ color: company.color }}>{company.claim.split("·")[0].trim()}</span>
                   </div>
                   <div>
