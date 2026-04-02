@@ -10,6 +10,7 @@ const navLinks = [
   { href: "/technology", label: "ZPE / LENR" },
   { href: "/whitepaper", label: "White Papers" },
   { href: "/team", label: "Board" },
+  { href: "/simulation", label: "AI Simulation" },
   { href: "/investors", label: "Become an Investor" },
   { href: "/contact", label: "Contact Us" },
 ];

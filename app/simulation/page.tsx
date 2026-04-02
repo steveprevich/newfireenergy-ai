@@ -1,0 +1,1007 @@
+"use client";
+
+import { useState, useEffect, useRef, useCallback } from "react";
+import Link from "next/link";
+import { Zap, Mic, MicOff, Send, RotateCcw, Play, Volume2, VolumeX, ChevronRight, Atom, Thermometer, Activity } from "lucide-react";
+
+// ── Types ──────────────────────────────────────────────────────────────────
+interface SimParams {
+  material: "Pd" | "Ni" | "Ti";
+  loading: number;
+  temperature: number;
+  currentDensity: number;
+  pressure: number;
+  rfStimulus: number;
+  runTime: number;
+}
+
+interface SimResults {
+  cop: number;
+  excessHeat: number;
+  reactionEvents: number;
+  latticeCoherence: number;
+  hasReaction: boolean;
+}
+
+interface ChatMessage {
+  role: "user" | "assistant";
+  content: string;
+}
+
+// ── Physics Engine ─────────────────────────────────────────────────────────
+const THRESHOLDS: Record<string, number> = { Pd: 0.60, Ni: 0.70, Ti: 0.55 };
+const MATERIAL_PROPS: Record<string, { maxCop: number; heatScale: number; coherenceBase: number }> = {
+  Pd: { maxCop: 6.0, heatScale: 120, coherenceBase: 88 },
+  Ni: { maxCop: 4.5, heatScale: 90, coherenceBase: 82 },
+  Ti: { maxCop: 3.8, heatScale: 75, coherenceBase: 78 },
+};
+
+function computeSimulation(p: SimParams): SimResults {
+  const props = MATERIAL_PROPS[p.material];
+  const threshold = THRESHOLDS[p.material];
+  const above = Math.max(0, p.loading - threshold);
+  const loadingFactor = above > 0 ? Math.min(1, above / (1 - threshold)) : 0;
+  const tempFactor = p.temperature < 50 ? 0.3 : p.temperature < 200 ? 0.7 + (p.temperature - 50) / 500 : Math.max(0.4, 1 - (p.temperature - 200) / 400);
+  const currentFactor = Math.min(1, p.currentDensity / 400);
+  const pressureFactor = Math.min(1, 0.5 + p.pressure / 200);
+  const rfFactor = p.rfStimulus > 0 ? 0.9 + (p.rfStimulus / 100) * 0.2 : 1.0;
+  const timeFactor = Math.min(1, p.runTime / 100);
+  const efficiency = loadingFactor * tempFactor * currentFactor * pressureFactor * rfFactor * timeFactor;
+  const hasReaction = p.loading >= threshold && efficiency > 0.1;
+  const cop = hasReaction ? Math.max(1, 1 + efficiency * (props.maxCop - 1)) : 1.0;
+  const inputPower = (p.currentDensity * 0.001) * 50;
+  const excessHeat = hasReaction ? efficiency * props.heatScale * loadingFactor : 0;
+  const reactionEvents = hasReaction ? Math.round(efficiency * 4.8 * 10) / 10 : 0;
+  const latticeCoherence = hasReaction
+    ? Math.round(props.coherenceBase + efficiency * (100 - props.coherenceBase))
+    : Math.round(props.coherenceBase * (0.5 + p.loading * 0.5));
+  void inputPower;
+  return {
+    cop: Math.round(cop * 10) / 10,
+    excessHeat: Math.round(excessHeat * 10) / 10,
+    reactionEvents: Math.round(reactionEvents * 10) / 10,
+    latticeCoherence: Math.min(99, latticeCoherence),
+    hasReaction,
+  };
+}
+
+// ── Voice helpers ──────────────────────────────────────────────────────────
+function speakText(text: string, onEnd?: () => void) {
+  if (typeof window === "undefined" || !window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  const utt = new SpeechSynthesisUtterance(text);
+  const voices = window.speechSynthesis.getVoices();
+  const voice =
+    voices.find((v) => v.name.includes("Google UK English Female")) ||
+    voices.find((v) => v.name.includes("Microsoft Libby")) ||
+    voices.find((v) => v.name.includes("Microsoft Hazel")) ||
+    voices.find((v) => v.lang === "en-GB" && v.name.toLowerCase().includes("female")) ||
+    voices.find((v) => v.lang.startsWith("en"));
+  if (voice) utt.voice = voice;
+  utt.rate = 0.95;
+  utt.pitch = 1.05;
+  utt.volume = 1;
+  if (onEnd) utt.onend = onEnd;
+  window.speechSynthesis.speak(utt);
+}
+
+// ── Canvas: Lattice ────────────────────────────────────────────────────────
+function drawLattice(
+  canvas: HTMLCanvasElement,
+  params: SimParams,
+  results: SimResults,
+  animated: boolean,
+  frame: number
+) {
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+  const W = canvas.width;
+  const H = canvas.height;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = "#060E1F";
+  ctx.fillRect(0, 0, W, H);
+
+  const cols = 8, rows = 6;
+  const spacingX = W / (cols + 1);
+  const spacingY = H / (rows + 1);
+  const r = Math.min(spacingX, spacingY) * 0.28;
+
+  for (let row = 0; row < rows; row++) {
+    for (let col = 0; col < cols; col++) {
+      const x = spacingX * (col + 1);
+      const y = spacingY * (row + 1);
+
+      // Bond lines
+      if (col < cols - 1) {
+        ctx.beginPath();
+        ctx.moveTo(x + r, y);
+        ctx.lineTo(x + spacingX - r, y);
+        ctx.strokeStyle = "rgba(34,211,238,0.15)";
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+      if (row < rows - 1) {
+        ctx.beginPath();
+        ctx.moveTo(x, y + r);
+        ctx.lineTo(x, y + spacingY - r);
+        ctx.strokeStyle = "rgba(34,211,238,0.15)";
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+
+      // Determine node type based on loading
+      const seed = (row * cols + col) * 137.5;
+      const isLoaded = Math.sin(seed) * 0.5 + 0.5 < params.loading;
+      const isReaction = results.hasReaction && Math.sin(seed * 1.7) * 0.5 + 0.5 < results.reactionEvents / 6;
+
+      let color = "#3B82F6"; // Pd atom — blue
+      if (params.material === "Ni") color = "#8B5CF6";
+      if (params.material === "Ti") color = "#6B7280";
+
+      const pulse = animated && isReaction ? Math.sin(frame * 0.15 + seed) * 0.3 + 0.7 : 1;
+
+      // Glow for reaction sites
+      if (isReaction && results.hasReaction) {
+        ctx.beginPath();
+        ctx.arc(x, y, r * 2.2 * pulse, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(251,146,60,0.2)";
+        ctx.fill();
+      }
+
+      // Main atom
+      const grad = ctx.createRadialGradient(x - r * 0.3, y - r * 0.3, 0, x, y, r);
+      if (isReaction && results.hasReaction) {
+        grad.addColorStop(0, `rgba(251,146,60,${pulse})`);
+        grad.addColorStop(1, "rgba(239,68,68,0.6)");
+      } else if (isLoaded) {
+        grad.addColorStop(0, `rgba(52,211,153,${0.9})`);
+        grad.addColorStop(1, "rgba(16,185,129,0.5)");
+      } else {
+        grad.addColorStop(0, color.replace(")", `,0.9)`).replace("rgb(", "rgba(") + "");
+        grad.addColorStop(0, color);
+        grad.addColorStop(1, color + "88");
+      }
+      ctx.beginPath();
+      ctx.arc(x, y, r, 0, Math.PI * 2);
+      ctx.fillStyle = grad;
+      ctx.fill();
+    }
+  }
+
+  // Legend
+  const legend = [
+    { color: params.material === "Ni" ? "#8B5CF6" : params.material === "Ti" ? "#6B7280" : "#3B82F6", label: `${params.material} atoms` },
+    { color: "#34D399", label: "D/H loaded" },
+    { color: "#FB923C", label: "Reaction sites" },
+  ];
+  legend.forEach((item, i) => {
+    const lx = 12, ly = H - 60 + i * 18;
+    ctx.beginPath();
+    ctx.arc(lx + 6, ly + 6, 5, 0, Math.PI * 2);
+    ctx.fillStyle = item.color;
+    ctx.fill();
+    ctx.fillStyle = "rgba(255,255,255,0.6)";
+    ctx.font = "10px system-ui";
+    ctx.fillText(item.label, lx + 16, ly + 10);
+  });
+}
+
+// ── Canvas: Heat Chart ─────────────────────────────────────────────────────
+function drawHeatChart(canvas: HTMLCanvasElement, results: SimResults, runTime: number) {
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+  const W = canvas.width;
+  const H = canvas.height;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = "#060E1F";
+  ctx.fillRect(0, 0, W, H);
+
+  const pad = { top: 16, right: 16, bottom: 32, left: 44 };
+  const cW = W - pad.left - pad.right;
+  const cH = H - pad.top - pad.bottom;
+
+  // Grid
+  ctx.strokeStyle = "rgba(255,255,255,0.06)";
+  ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + (cH / 4) * i;
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(pad.left + cW, y); ctx.stroke();
+  }
+
+  // Points
+  const points: [number, number][] = [];
+  const maxHeat = Math.max(results.excessHeat * 1.1, 10);
+  for (let t = 0; t <= runTime; t += Math.max(1, runTime / 80)) {
+    let heat = 0;
+    if (results.hasReaction) {
+      const warmup = Math.min(1, t / (runTime * 0.15));
+      const threshold = t > runTime * 0.08 ? 1 : 0;
+      heat = results.excessHeat * warmup * threshold * (1 + Math.sin(t * 0.3) * 0.04);
+    }
+    const px = pad.left + (t / runTime) * cW;
+    const py = pad.top + cH - (heat / maxHeat) * cH;
+    points.push([px, py]);
+  }
+
+  if (points.length > 1) {
+    // Fill
+    const grad = ctx.createLinearGradient(0, pad.top, 0, pad.top + cH);
+    grad.addColorStop(0, "rgba(34,211,238,0.3)");
+    grad.addColorStop(1, "rgba(34,211,238,0.02)");
+    ctx.beginPath();
+    ctx.moveTo(points[0][0], pad.top + cH);
+    points.forEach(([x, y]) => ctx.lineTo(x, y));
+    ctx.lineTo(points[points.length - 1][0], pad.top + cH);
+    ctx.closePath();
+    ctx.fillStyle = grad;
+    ctx.fill();
+
+    // Line
+    ctx.beginPath();
+    ctx.strokeStyle = "#22D3EE";
+    ctx.lineWidth = 2;
+    points.forEach(([x, y], i) => i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y));
+    ctx.stroke();
+
+    // Threshold marker
+    if (results.hasReaction) {
+      const tx = pad.left + cW * 0.08;
+      ctx.beginPath();
+      ctx.setLineDash([3, 3]);
+      ctx.strokeStyle = "rgba(251,146,60,0.5)";
+      ctx.moveTo(tx, pad.top); ctx.lineTo(tx, pad.top + cH);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle = "rgba(251,146,60,0.8)";
+      ctx.font = "9px system-ui";
+      ctx.fillText("threshold", tx + 3, pad.top + 10);
+    }
+  }
+
+  // Axes labels
+  ctx.fillStyle = "rgba(255,255,255,0.4)";
+  ctx.font = "9px system-ui";
+  ctx.fillText("0", pad.left - 6, pad.top + cH + 4);
+  ctx.fillText(`${runTime}h`, pad.left + cW - 12, pad.top + cH + 12);
+  ctx.fillText(`${Math.round(maxHeat)}W`, pad.left - 36, pad.top + 8);
+  ctx.fillText("0W", pad.left - 20, pad.top + cH + 4);
+}
+
+// ── Completed Model Canvas (showcase) ────────────────────────────────────
+function ShowcaseLattice() {
+  const ref = useRef<HTMLCanvasElement>(null);
+  const frameRef = useRef(0);
+  useEffect(() => {
+    const canvas = ref.current;
+    if (!canvas) return;
+    let id: number;
+    const loop = () => {
+      frameRef.current++;
+      drawLattice(
+        canvas,
+        { material: "Pd", loading: 0.93, temperature: 85, currentDensity: 480, pressure: 10, rfStimulus: 0, runTime: 200 },
+        { cop: 4.2, excessHeat: 78, reactionEvents: 4.8, latticeCoherence: 94, hasReaction: true },
+        true,
+        frameRef.current
+      );
+      id = requestAnimationFrame(loop);
+    };
+    id = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(id);
+  }, []);
+  return <canvas ref={ref} width={460} height={240} className="w-full rounded-xl" />;
+}
+
+function ShowcaseChart() {
+  const ref = useRef<HTMLCanvasElement>(null);
+  useEffect(() => {
+    const canvas = ref.current;
+    if (!canvas) return;
+    drawHeatChart(canvas, { cop: 4.2, excessHeat: 78, reactionEvents: 4.8, latticeCoherence: 94, hasReaction: true }, 200);
+  }, []);
+  return <canvas ref={ref} width={460} height={160} className="w-full rounded-xl" />;
+}
+
+// ── Quick Prompts ──────────────────────────────────────────────────────────
+const QUICK_PROMPTS = [
+  "What is D/Pd loading ratio?",
+  "Fleischmann-Pons explained",
+  "Quantum tunneling & LENR",
+  "Pd vs Ni vs Ti comparison",
+  "What COP is commercially viable?",
+  "Why is LENR controversial?",
+];
+
+// ── Main Page ──────────────────────────────────────────────────────────────
+export default function SimulationPage() {
+  // Sim state
+  const [params, setParams] = useState<SimParams>({
+    material: "Pd", loading: 0.65, temperature: 85, currentDensity: 300,
+    pressure: 10, rfStimulus: 0, runTime: 100,
+  });
+  const [results, setResults] = useState<SimResults>({
+    cop: 1.0, excessHeat: 0, reactionEvents: 0, latticeCoherence: 80, hasReaction: false,
+  });
+  const [hasRun, setHasRun] = useState(false);
+  const [isRunning, setIsRunning] = useState(false);
+  const [log, setLog] = useState<string[]>(["Simulation ready. Set parameters and click Run."]);
+
+  // Chat state
+  const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
+  const [chatInput, setChatInput] = useState("");
+  const [isChatLoading, setIsChatLoading] = useState(false);
+  const [isSpeaking, setIsSpeaking] = useState(false);
+  const [voiceEnabled, setVoiceEnabled] = useState(true);
+  const [isListening, setIsListening] = useState(false);
+
+  // Device viz state
+  const [deviceDescription, setDeviceDescription] = useState("");
+  const [isLoadingDevice, setIsLoadingDevice] = useState(false);
+
+  // Canvas refs
+  const latticeRef = useRef<HTMLCanvasElement>(null);
+  const chartRef = useRef<HTMLCanvasElement>(null);
+  const frameRef = useRef(0);
+  const animRef = useRef<number>(0);
+  const chatBottomRef = useRef<HTMLDivElement>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const recogRef = useRef<any>(null);
+
+  // ── Animation loop ──────────────────────────────────────────────────────
+  useEffect(() => {
+    const canvas = latticeRef.current;
+    if (!canvas) return;
+    const loop = () => {
+      frameRef.current++;
+      drawLattice(canvas, params, results, hasRun, frameRef.current);
+      animRef.current = requestAnimationFrame(loop);
+    };
+    animRef.current = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(animRef.current);
+  }, [params, results, hasRun]);
+
+  // ── Chart redraws ───────────────────────────────────────────────────────
+  useEffect(() => {
+    const canvas = chartRef.current;
+    if (!canvas) return;
+    drawHeatChart(canvas, results, params.runTime);
+  }, [results, params.runTime]);
+
+  // ── Auto-scroll chat ────────────────────────────────────────────────────
+  useEffect(() => {
+    chatBottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [chatMessages, isChatLoading]);
+
+  // ── Run simulation ──────────────────────────────────────────────────────
+  const runSimulation = useCallback(async () => {
+    setIsRunning(true);
+    setLog(["Initializing lattice matrix..."]);
+    await new Promise((r) => setTimeout(r, 400));
+    setLog((l) => [...l, `Loading ${params.material} with D/H at ratio ${params.loading}...`]);
+    await new Promise((r) => setTimeout(r, 400));
+    setLog((l) => [...l, `Applying ${params.currentDensity} mA/cm² current density...`]);
+    await new Promise((r) => setTimeout(r, 400));
+    const res = computeSimulation(params);
+    setResults(res);
+    setHasRun(true);
+    if (res.hasReaction) {
+      setLog((l) => [...l, `⚡ Threshold crossed! COP ${res.cop}× detected.`, `Excess heat: ${res.excessHeat}W sustained.`, `Lattice coherence: ${res.latticeCoherence}%`, "Simulation complete."]);
+    } else {
+      setLog((l) => [...l, `Loading below threshold (need ≥${THRESHOLDS[params.material]}).`, "No excess heat detected.", "Try increasing D/H loading or current density."]);
+    }
+    setIsRunning(false);
+
+    // Auto-send to AI for interpretation
+    const simContext = `Simulation just completed for ${params.material} system. Parameters: D/H loading=${params.loading}, temperature=${params.temperature}°C, current density=${params.currentDensity} mA/cm², pressure=${params.pressure} atm, RF=${params.rfStimulus} MHz, run time=${params.runTime}h. Results: COP=${res.cop}×, excess heat=${res.excessHeat}W, reaction events=${res.reactionEvents}×10⁶/hr, lattice coherence=${res.latticeCoherence}%. ${res.hasReaction ? "Reaction detected!" : "No reaction — below threshold."} Please interpret these results briefly.`;
+    const autoMsg: ChatMessage = { role: "user", content: simContext };
+    const newHistory = [...chatMessages, autoMsg];
+    setChatMessages(newHistory);
+    setIsChatLoading(true);
+    try {
+      const resp = await fetch("/api/lenr-chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: newHistory }),
+      });
+      const data = await resp.json();
+      if (data.text) {
+        const aiMsg: ChatMessage = { role: "assistant", content: data.text };
+        setChatMessages((m) => [...m, aiMsg]);
+        if (voiceEnabled) {
+          setIsSpeaking(true);
+          speakText(data.text, () => setIsSpeaking(false));
+        }
+      }
+    } catch (e) { void e; }
+    setIsChatLoading(false);
+
+    // Generate device description
+    if (res.hasReaction) {
+      setIsLoadingDevice(true);
+      try {
+        const dr = await fetch("/api/lenr-chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            mode: "device",
+            messages: [{ role: "user", content: "Describe this device." }],
+            simState: { ...params, ...res },
+          }),
+        });
+        const dd = await dr.json();
+        if (dd.text) setDeviceDescription(dd.text);
+      } catch (e) { void e; }
+      setIsLoadingDevice(false);
+    } else {
+      setDeviceDescription("");
+    }
+  }, [params, chatMessages, voiceEnabled]);
+
+  // ── Reset ───────────────────────────────────────────────────────────────
+  const resetSim = () => {
+    setResults({ cop: 1.0, excessHeat: 0, reactionEvents: 0, latticeCoherence: 80, hasReaction: false });
+    setHasRun(false);
+    setLog(["Simulation reset. Set parameters and click Run."]);
+    setDeviceDescription("");
+    window.speechSynthesis?.cancel();
+    setIsSpeaking(false);
+  };
+
+  // ── Send chat ───────────────────────────────────────────────────────────
+  const sendChat = useCallback(async (text: string) => {
+    if (!text.trim() || isChatLoading) return;
+    const simCtx = `[Current simulation: ${params.material}, loading=${params.loading}, temp=${params.temperature}°C, COP=${results.cop}×, excess heat=${results.excessHeat}W] `;
+    const userMsg: ChatMessage = { role: "user", content: simCtx + text.trim() };
+    const newHistory = [...chatMessages, userMsg];
+    setChatMessages(newHistory);
+    setChatInput("");
+    setIsChatLoading(true);
+    window.speechSynthesis?.cancel();
+    setIsSpeaking(false);
+    try {
+      const resp = await fetch("/api/lenr-chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: newHistory }),
+      });
+      const data = await resp.json();
+      if (data.text) {
+        const aiMsg: ChatMessage = { role: "assistant", content: data.text };
+        setChatMessages((m) => [...m, aiMsg]);
+        if (voiceEnabled) {
+          setIsSpeaking(true);
+          speakText(data.text, () => setIsSpeaking(false));
+        }
+      }
+    } catch (e) { void e; }
+    setIsChatLoading(false);
+  }, [chatMessages, isChatLoading, params, results, voiceEnabled]);
+
+  // ── Voice input ─────────────────────────────────────────────────────────
+  const toggleListening = () => {
+    if (isListening) {
+      recogRef.current?.stop();
+      setIsListening(false);
+      return;
+    }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const w = window as any;
+    const SR = w.SpeechRecognition || w.webkitSpeechRecognition;
+    if (!SR) { alert("Voice not supported in this browser. Try Chrome."); return; }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const recog = new SR() as any;
+    recog.continuous = false;
+    recog.interimResults = false;
+    recog.lang = "en-US";
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    recog.onresult = (e: any) => {
+      const transcript = e.results[0][0].transcript;
+      setChatInput(transcript);
+      setIsListening(false);
+      sendChat(transcript);
+    };
+    recog.onerror = () => setIsListening(false);
+    recog.onend = () => setIsListening(false);
+    recogRef.current = recog;
+    recog.start();
+    setIsListening(true);
+  };
+
+  const stopSpeaking = () => {
+    window.speechSynthesis?.cancel();
+    setIsSpeaking(false);
+  };
+
+  // ── Slider helper ───────────────────────────────────────────────────────
+  const slider = (key: keyof SimParams, label: string, min: number, max: number, step: number, unit: string) => (
+    <div key={key} className="space-y-1.5">
+      <div className="flex justify-between items-center">
+        <span className="text-white/60 text-xs font-medium">{label}</span>
+        <span className="text-plasma-400 text-xs font-mono font-bold">
+          {typeof params[key] === "number" ? (params[key] as number).toFixed(step < 1 ? 2 : 0) : params[key]}{unit}
+        </span>
+      </div>
+      <input
+        type="range" min={min} max={max} step={step}
+        value={params[key] as number}
+        onChange={(e) => setParams((p) => ({ ...p, [key]: parseFloat(e.target.value) }))}
+        className="w-full h-1.5 rounded-full appearance-none cursor-pointer"
+        style={{ background: `linear-gradient(to right, #22D3EE ${((params[key] as number - min) / (max - min)) * 100}%, rgba(255,255,255,0.1) 0%)` }}
+      />
+    </div>
+  );
+
+  return (
+    <main className="min-h-screen bg-navy-900 text-white">
+
+      {/* ── SECTION 1: Hero ─────────────────────────────────────────────── */}
+      <section className="relative pt-32 pb-20 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-900 via-navy-800 to-navy-900" />
+        <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse 80% 50% at 50% 0%, rgba(34,211,238,0.08) 0%, transparent 70%)" }} />
+        {/* Animated grid */}
+        <div className="absolute inset-0 opacity-[0.03]"
+          style={{ backgroundImage: "linear-gradient(rgba(34,211,238,1) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,1) 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
+
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-plasma-400/30 bg-plasma-400/5 mb-6">
+            <Zap className="w-3.5 h-3.5 text-plasma-400" />
+            <span className="text-plasma-400 text-xs font-medium tracking-widest uppercase">New Fire Energy · R&D Platform</span>
+          </div>
+
+          <h1 className="text-4xl sm:text-6xl font-bold mb-6 leading-tight">
+            <span className="gradient-text">Interactive AI</span>
+            <br />
+            <span className="text-white">Simulation Engine</span>
+          </h1>
+
+          <p className="text-white/60 text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+            Explore low-energy nuclear reactions in real time. Adjust lattice parameters,
+            observe material science in action, and ask our AI guide anything.
+          </p>
+
+          {/* Badge tags */}
+          <div className="flex flex-wrap justify-center gap-2.5 mb-12">
+            {["Live LENR Model", "Pd · Ni · Ti Systems", "AI-Powered Guide", "Materials Science", "Voice Interactive"].map((tag) => (
+              <span key={tag} className="px-3 py-1 rounded-full text-xs font-medium border border-white/10 bg-white/[0.04] text-white/70">
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          {/* Stats row */}
+          <div className="grid grid-cols-3 gap-4 max-w-lg mx-auto">
+            {[["3", "Materials"], ["6", "Parameters"], ["Real-time", "AI Guide"]].map(([val, lbl]) => (
+              <div key={lbl} className="glass-card rounded-xl p-4">
+                <div className="text-2xl font-bold gradient-text">{val}</div>
+                <div className="text-white/40 text-xs mt-1">{lbl}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── SECTION 2: Completed Model Showcase ─────────────────────────── */}
+      <section className="py-20 border-t border-white/[0.05]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <p className="text-plasma-400 text-xs font-medium tracking-widest uppercase mb-3">Reference Model</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">What a Completed LENR Model Looks Like</h2>
+            <p className="text-white/50 max-w-xl mx-auto">A fully optimized Palladium-Deuterium system at peak loading. This is the target state your simulation aims to reach.</p>
+          </div>
+
+          {/* Parameter flow diagram */}
+          <div className="glass-card rounded-2xl p-6 mb-8 overflow-x-auto">
+            <p className="text-white/40 text-xs uppercase tracking-widest mb-6 text-center">Optimized Parameter Chain</p>
+            <div className="flex items-center justify-center gap-2 min-w-max mx-auto">
+              {[
+                { label: "D/Pd Loading", val: "0.93", color: "#22D3EE" },
+                { label: "Current Density", val: "480 mA/cm²", color: "#2DD4BF" },
+                { label: "Lattice Coherence", val: "94%", color: "#A78BFA" },
+                { label: "Excess Heat", val: "78W", color: "#FB923C" },
+                { label: "COP Output", val: "4.2×", color: "#34D399" },
+              ].map((step, i) => (
+                <div key={step.label} className="flex items-center gap-2">
+                  <div className="text-center">
+                    <div className="px-4 py-3 rounded-xl border text-sm font-bold whitespace-nowrap"
+                      style={{ borderColor: step.color + "40", background: step.color + "10", color: step.color }}>
+                      {step.val}
+                    </div>
+                    <div className="text-white/40 text-[10px] mt-1 whitespace-nowrap">{step.label}</div>
+                  </div>
+                  {i < 4 && <ChevronRight className="w-4 h-4 text-white/20 flex-shrink-0" />}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Canvases */}
+          <div className="grid lg:grid-cols-2 gap-6 mb-8">
+            <div className="glass-card rounded-2xl p-4">
+              <p className="text-white/40 text-xs uppercase tracking-widest mb-3 flex items-center gap-2">
+                <Atom className="w-3.5 h-3.5 text-plasma-400" /> Pd Lattice — Peak D Loading (animated)
+              </p>
+              <ShowcaseLattice />
+            </div>
+            <div className="glass-card rounded-2xl p-4">
+              <p className="text-white/40 text-xs uppercase tracking-widest mb-3 flex items-center gap-2">
+                <Activity className="w-3.5 h-3.5 text-plasma-400" /> 200-Hour Sustained Excess Heat Run
+              </p>
+              <ShowcaseChart />
+            </div>
+          </div>
+
+          {/* Stat cards */}
+          <div className="grid sm:grid-cols-3 gap-4">
+            {[
+              { val: "78W", label: "Avg Excess Heat", desc: "Energy produced above what was put in — the signature of a working LENR reaction.", color: "#FB923C" },
+              { val: "4.2×", label: "COP Ratio", desc: "Coefficient of Performance: for every 1W input, the system outputs 4.2W. Above 1× means net energy gain.", color: "#22D3EE" },
+              { val: "0.93", label: "D/Pd Ratio", desc: "Deuterium atoms loaded per Palladium atom in the lattice. Above 0.85 is considered \"deep loading\" — the sweet spot for reactions.", color: "#34D399" },
+            ].map((s) => (
+              <div key={s.label} className="glass-card rounded-2xl p-5 border" style={{ borderColor: s.color + "20" }}>
+                <div className="text-3xl font-bold mb-1" style={{ color: s.color }}>{s.val}</div>
+                <div className="text-white font-semibold text-sm mb-2">{s.label}</div>
+                <div className="text-white/40 text-xs leading-relaxed">{s.desc}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── SECTION 3 + 4: Simulator + AI Guide ─────────────────────────── */}
+      <section className="py-20 border-t border-white/[0.05]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <p className="text-plasma-400 text-xs font-medium tracking-widest uppercase mb-3">Interactive Lab</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Run Your Own Simulation</h2>
+            <p className="text-white/50 max-w-xl mx-auto">Adjust the parameters, hit Run, and watch the AI interpret your results in real time.</p>
+          </div>
+
+          <div className="grid xl:grid-cols-[1fr_400px] gap-6">
+
+            {/* ── LEFT: Simulator ── */}
+            <div className="space-y-5">
+
+              {/* Material tabs */}
+              <div className="glass-card rounded-2xl p-5">
+                <p className="text-white/40 text-xs uppercase tracking-widest mb-4">Select Material</p>
+                <div className="flex gap-2">
+                  {(["Pd", "Ni", "Ti"] as const).map((mat) => (
+                    <button key={mat} onClick={() => setParams((p) => ({ ...p, material: mat }))}
+                      className={`flex-1 py-3 rounded-xl font-bold text-sm transition-all duration-200 ${params.material === mat
+                        ? "bg-plasma-400/20 border border-plasma-400/60 text-plasma-400"
+                        : "border border-white/10 text-white/40 hover:border-white/20 hover:text-white/60"}`}>
+                      {mat}
+                      <div className="text-[10px] font-normal mt-0.5 opacity-60">
+                        {mat === "Pd" ? "Palladium" : mat === "Ni" ? "Nickel" : "Titanium"}
+                      </div>
+                      <div className="text-[10px] font-normal opacity-50">
+                        threshold ≥{THRESHOLDS[mat]}
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Sliders */}
+              <div className="glass-card rounded-2xl p-5">
+                <p className="text-white/40 text-xs uppercase tracking-widest mb-5">Simulation Parameters</p>
+                <div className="space-y-5">
+                  {slider("loading", "D/H Loading Ratio", 0, 1.0, 0.01, "")}
+                  {slider("temperature", "Temperature", 20, 400, 5, "°C")}
+                  {slider("currentDensity", "Current Density", 0, 500, 10, " mA/cm²")}
+                  {slider("pressure", "Pressure", 1, 100, 1, " atm")}
+                  {slider("rfStimulus", "RF Stimulus", 0, 100, 1, " MHz")}
+                  {slider("runTime", "Run Time", 1, 200, 1, "h")}
+                </div>
+                <div className="flex gap-3 mt-6">
+                  <button onClick={runSimulation} disabled={isRunning}
+                    className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl font-semibold text-sm transition-all duration-200 disabled:opacity-50"
+                    style={{ background: isRunning ? "rgba(34,211,238,0.2)" : "linear-gradient(135deg,#22D3EE,#2DD4BF)", color: "#060E1F" }}>
+                    {isRunning ? <><div className="w-4 h-4 border-2 border-current/30 border-t-current rounded-full animate-spin" /> Running…</> : <><Play className="w-4 h-4 fill-current" /> Run Simulation</>}
+                  </button>
+                  <button onClick={resetSim} className="px-4 py-3 rounded-xl border border-white/10 text-white/50 hover:text-white hover:border-white/20 transition-all duration-200">
+                    <RotateCcw className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+
+              {/* Output metrics */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                {[
+                  { label: "COP Ratio", val: results.cop + "×", active: results.cop > 1, color: "#22D3EE" },
+                  { label: "Excess Heat", val: results.excessHeat + "W", active: results.excessHeat > 0, color: "#FB923C" },
+                  { label: "Reactions", val: results.reactionEvents + "×10⁶/hr", active: results.reactionEvents > 0, color: "#A78BFA" },
+                  { label: "Coherence", val: results.latticeCoherence + "%", active: true, color: "#34D399" },
+                ].map((m) => (
+                  <div key={m.label} className="glass-card rounded-xl p-3.5 text-center border transition-all duration-500"
+                    style={{ borderColor: m.active ? m.color + "30" : "rgba(255,255,255,0.05)" }}>
+                    <div className="text-lg font-bold font-mono" style={{ color: m.active ? m.color : "rgba(255,255,255,0.3)" }}>{m.val}</div>
+                    <div className="text-white/40 text-[10px] mt-1">{m.label}</div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Canvases */}
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div className="glass-card rounded-2xl p-4">
+                  <p className="text-white/40 text-xs uppercase tracking-widest mb-3 flex items-center gap-1.5">
+                    <Atom className="w-3 h-3 text-plasma-400" /> Lattice Cross-Section
+                  </p>
+                  <canvas ref={latticeRef} width={400} height={220} className="w-full rounded-xl" />
+                </div>
+                <div className="glass-card rounded-2xl p-4">
+                  <p className="text-white/40 text-xs uppercase tracking-widest mb-3 flex items-center gap-1.5">
+                    <Thermometer className="w-3 h-3 text-plasma-400" /> Excess Heat over Time
+                  </p>
+                  <canvas ref={chartRef} width={400} height={220} className="w-full rounded-xl" />
+                </div>
+              </div>
+
+              {/* Activity log */}
+              <div className="glass-card rounded-2xl p-4">
+                <p className="text-white/40 text-xs uppercase tracking-widest mb-3">Activity Log</p>
+                <div className="space-y-1.5 max-h-32 overflow-y-auto">
+                  {log.map((line, i) => (
+                    <div key={i} className="text-xs font-mono flex items-start gap-2">
+                      <span className="text-plasma-400/50 flex-shrink-0">›</span>
+                      <span className={line.startsWith("⚡") ? "text-yellow-400" : line.startsWith("No") || line.startsWith("Loading below") ? "text-red-400/70" : "text-white/60"}>{line}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Device Visualization — appears after successful run */}
+              {(hasRun && results.hasReaction) && (
+                <div className="glass-card rounded-2xl p-6 border border-plasma-400/20">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-8 h-8 rounded-lg bg-plasma-400/10 flex items-center justify-center">
+                      <Zap className="w-4 h-4 text-plasma-400" />
+                    </div>
+                    <div>
+                      <p className="text-white font-semibold text-sm">Your LENR Device — What It Looks Like</p>
+                      <p className="text-white/40 text-xs">Based on your simulation parameters</p>
+                    </div>
+                  </div>
+
+                  {/* SVG Device Schematic */}
+                  <div className="mb-5 bg-navy-900/80 rounded-xl p-4 border border-white/[0.06]">
+                    <svg viewBox="0 0 500 280" className="w-full" style={{ maxHeight: 220 }}>
+                      {/* Outer housing */}
+                      <rect x="60" y="40" width="380" height="200" rx="16" fill="none" stroke="#22D3EE" strokeWidth="1.5" strokeDasharray="6 3" opacity="0.4" />
+                      <text x="250" y="28" textAnchor="middle" fill="rgba(34,211,238,0.5)" fontSize="9" fontFamily="system-ui">LENR Reactor Housing ({params.material === "Pd" ? "Palladium-D" : params.material === "Ni" ? "Nickel-H" : "Titanium-D"} System)</text>
+
+                      {/* Electrolyte cell */}
+                      <rect x="100" y="70" width="140" height="140" rx="10" fill="rgba(34,211,238,0.05)" stroke="#22D3EE" strokeWidth="1.2" opacity="0.8" />
+                      <text x="170" y="88" textAnchor="middle" fill="rgba(34,211,238,0.7)" fontSize="8" fontFamily="system-ui">Electrolyte Cell</text>
+
+                      {/* Cathode */}
+                      <rect x="130" y="100" width="16" height="88" rx="3"
+                        fill={params.material === "Pd" ? "rgba(59,130,246,0.8)" : params.material === "Ni" ? "rgba(139,92,246,0.8)" : "rgba(107,114,128,0.8)"}
+                        stroke="rgba(255,255,255,0.3)" strokeWidth="0.5" />
+                      <text x="138" y="200" textAnchor="middle" fill="rgba(255,255,255,0.5)" fontSize="7" fontFamily="system-ui">{params.material}</text>
+                      <text x="138" y="209" textAnchor="middle" fill="rgba(255,255,255,0.4)" fontSize="6" fontFamily="system-ui">cathode</text>
+
+                      {/* Anode */}
+                      <rect x="190" y="100" width="12" height="88" rx="2" fill="rgba(251,191,36,0.5)" stroke="rgba(251,191,36,0.4)" strokeWidth="0.5" />
+                      <text x="196" y="200" textAnchor="middle" fill="rgba(251,191,36,0.5)" fontSize="7" fontFamily="system-ui">Pt</text>
+                      <text x="196" y="209" textAnchor="middle" fill="rgba(251,191,36,0.4)" fontSize="6" fontFamily="system-ui">anode</text>
+
+                      {/* D bubbles */}
+                      {[110, 125, 145, 160, 175].map((bx, bi) => (
+                        <circle key={bi} cx={bx + 50} cy={130 + bi * 12} r="4" fill="rgba(52,211,153,0.3)" stroke="rgba(52,211,153,0.6)" strokeWidth="0.8" />
+                      ))}
+                      <text x="170" y="165" textAnchor="middle" fill="rgba(52,211,153,0.5)" fontSize="7" fontFamily="system-ui">D₂O electrolyte</text>
+
+                      {/* Heat exchanger */}
+                      <rect x="270" y="80" width="120" height="80" rx="8" fill="rgba(251,146,60,0.05)" stroke="#FB923C" strokeWidth="1.2" opacity="0.7" />
+                      <text x="330" y="96" textAnchor="middle" fill="rgba(251,146,60,0.7)" fontSize="8" fontFamily="system-ui">Heat Exchanger</text>
+                      {[0, 1, 2, 3].map((i) => (
+                        <line key={i} x1="280" y1={105 + i * 16} x2="380" y2={105 + i * 16} stroke="rgba(251,146,60,0.4)" strokeWidth="1.5" />
+                      ))}
+                      <text x="330" y="175" textAnchor="middle" fill="rgba(251,146,60,0.6)" fontSize="8" fontFamily="system-ui">{results.excessHeat}W excess heat out</text>
+
+                      {/* Power supply */}
+                      <rect x="270" y="175" width="120" height="50" rx="6" fill="rgba(34,211,238,0.05)" stroke="rgba(34,211,238,0.4)" strokeWidth="1" />
+                      <text x="330" y="196" textAnchor="middle" fill="rgba(34,211,238,0.6)" fontSize="8" fontFamily="system-ui">Power Supply</text>
+                      <text x="330" y="208" textAnchor="middle" fill="rgba(34,211,238,0.4)" fontSize="7" fontFamily="system-ui">{params.currentDensity} mA/cm²</text>
+                      <text x="330" y="219" textAnchor="middle" fill="rgba(34,211,238,0.4)" fontSize="7" fontFamily="system-ui">COP {results.cop}×</text>
+
+                      {/* Connections */}
+                      <line x1="240" y1="140" x2="270" y2="120" stroke="rgba(251,146,60,0.3)" strokeWidth="1" strokeDasharray="3 2" />
+                      <line x1="240" y1="140" x2="270" y2="200" stroke="rgba(34,211,238,0.3)" strokeWidth="1" strokeDasharray="3 2" />
+
+                      {/* Pressure vessel indicator */}
+                      {params.pressure > 10 && (
+                        <>
+                          <circle cx="430" cy="68" r="14" fill="rgba(167,139,250,0.1)" stroke="rgba(167,139,250,0.5)" strokeWidth="1" />
+                          <text x="430" y="64" textAnchor="middle" fill="rgba(167,139,250,0.7)" fontSize="7" fontFamily="system-ui">{params.pressure}</text>
+                          <text x="430" y="74" textAnchor="middle" fill="rgba(167,139,250,0.5)" fontSize="6" fontFamily="system-ui">atm</text>
+                        </>
+                      )}
+
+                      {/* RF antenna */}
+                      {params.rfStimulus > 0 && (
+                        <>
+                          <line x1="95" y1="90" x2="70" y2="75" stroke="rgba(250,204,21,0.5)" strokeWidth="1" />
+                          <line x1="95" y1="100" x2="65" y2="100" stroke="rgba(250,204,21,0.4)" strokeWidth="1" />
+                          <line x1="95" y1="110" x2="70" y2="125" stroke="rgba(250,204,21,0.3)" strokeWidth="1" />
+                          <text x="62" y="105" textAnchor="end" fill="rgba(250,204,21,0.5)" fontSize="7" fontFamily="system-ui">RF</text>
+                          <text x="62" y="114" textAnchor="end" fill="rgba(250,204,21,0.4)" fontSize="6" fontFamily="system-ui">{params.rfStimulus}MHz</text>
+                        </>
+                      )}
+
+                      {/* Glow overlay on active reaction */}
+                      {results.hasReaction && (
+                        <ellipse cx="138" cy="144" rx="20" ry="30" fill="rgba(251,146,60,0.1)" />
+                      )}
+                    </svg>
+                  </div>
+
+                  {/* AI device description */}
+                  {isLoadingDevice ? (
+                    <div className="flex items-center gap-3 text-white/40 text-sm">
+                      <div className="w-4 h-4 border-2 border-plasma-400/30 border-t-plasma-400 rounded-full animate-spin" />
+                      Generating device description…
+                    </div>
+                  ) : deviceDescription ? (
+                    <div className="text-white/70 text-sm leading-relaxed">{deviceDescription}</div>
+                  ) : null}
+                </div>
+              )}
+
+              {/* Below-threshold message */}
+              {hasRun && !results.hasReaction && (
+                <div className="glass-card rounded-2xl p-5 border border-red-500/20">
+                  <p className="text-red-400 font-semibold text-sm mb-1">No Reaction Detected</p>
+                  <p className="text-white/40 text-xs">Loading ratio is below the {params.material} threshold ({THRESHOLDS[params.material]}). Increase loading, current density, or try Palladium which has the lowest threshold.</p>
+                </div>
+              )}
+            </div>
+
+            {/* ── RIGHT: AI Guide ── */}
+            <div className="flex flex-col h-full">
+              <div className="glass-card rounded-2xl flex flex-col" style={{ minHeight: 600 }}>
+                {/* Header */}
+                <div className="p-5 border-b border-white/[0.06]">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-plasma-400 to-teal-500 flex items-center justify-center shadow-lg shadow-plasma-400/30">
+                        <Zap className="w-4 h-4 text-white fill-white" />
+                      </div>
+                      <div>
+                        <div className="text-white font-semibold text-sm">LENR AI Guide</div>
+                        <div className="text-white/40 text-xs flex items-center gap-1.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse inline-block" />
+                          Powered by Claude · Voice ready
+                        </div>
+                      </div>
+                    </div>
+                    <button onClick={() => { setVoiceEnabled(!voiceEnabled); if (isSpeaking) stopSpeaking(); }}
+                      className="p-2 rounded-lg border border-white/10 text-white/40 hover:text-white hover:border-white/20 transition-all duration-200">
+                      {voiceEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
+                    </button>
+                  </div>
+                </div>
+
+                {/* Quick prompts */}
+                <div className="p-4 border-b border-white/[0.06]">
+                  <p className="text-white/30 text-[10px] uppercase tracking-widest mb-2.5">Quick Questions</p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {QUICK_PROMPTS.map((q) => (
+                      <button key={q} onClick={() => sendChat(q)} disabled={isChatLoading}
+                        className="px-2.5 py-1 rounded-lg text-[10px] border border-white/10 text-white/50 hover:border-plasma-400/40 hover:text-plasma-400 hover:bg-plasma-400/5 transition-all duration-200 disabled:opacity-30">
+                        {q}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Chat messages */}
+                <div className="flex-1 overflow-y-auto p-4 space-y-4" style={{ minHeight: 280, maxHeight: 400 }}>
+                  {chatMessages.length === 0 && (
+                    <div className="text-center py-8">
+                      <Atom className="w-10 h-10 text-white/10 mx-auto mb-3" />
+                      <p className="text-white/30 text-xs">Run a simulation or ask a question to begin.</p>
+                    </div>
+                  )}
+                  {chatMessages.map((msg, i) => (
+                    <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
+                      <div className={`max-w-[85%] rounded-xl px-3.5 py-2.5 text-xs leading-relaxed ${
+                        msg.role === "user"
+                          ? "bg-plasma-400/15 border border-plasma-400/20 text-white/80"
+                          : "bg-white/[0.04] border border-white/[0.06] text-white/70"
+                      }`}>
+                        {msg.role === "assistant" && (
+                          <div className="text-plasma-400 font-semibold text-[10px] mb-1">LENR Guide</div>
+                        )}
+                        {msg.content.replace(/\[Current simulation:.*?\] /, "")}
+                      </div>
+                    </div>
+                  ))}
+                  {isChatLoading && (
+                    <div className="flex justify-start">
+                      <div className="bg-white/[0.04] border border-white/[0.06] rounded-xl px-3.5 py-2.5">
+                        <div className="flex gap-1 items-center">
+                          <div className="w-1.5 h-1.5 rounded-full bg-plasma-400 animate-bounce" style={{ animationDelay: "0ms" }} />
+                          <div className="w-1.5 h-1.5 rounded-full bg-plasma-400 animate-bounce" style={{ animationDelay: "150ms" }} />
+                          <div className="w-1.5 h-1.5 rounded-full bg-plasma-400 animate-bounce" style={{ animationDelay: "300ms" }} />
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  {isSpeaking && (
+                    <div className="flex justify-start">
+                      <div className="flex items-center gap-2 text-xs text-plasma-400/60">
+                        <Volume2 className="w-3 h-3 animate-pulse" />
+                        Speaking…
+                        <button onClick={stopSpeaking} className="text-white/30 hover:text-white/60 text-[10px] underline">stop</button>
+                      </div>
+                    </div>
+                  )}
+                  <div ref={chatBottomRef} />
+                </div>
+
+                {/* Chat input */}
+                <div className="p-4 border-t border-white/[0.06]">
+                  <div className="flex gap-2">
+                    <button onClick={toggleListening}
+                      className={`p-2.5 rounded-xl border transition-all duration-200 flex-shrink-0 ${isListening ? "border-red-400/60 bg-red-400/10 text-red-400 animate-pulse" : "border-white/10 text-white/40 hover:border-plasma-400/40 hover:text-plasma-400"}`}>
+                      {isListening ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
+                    </button>
+                    <input
+                      type="text"
+                      value={chatInput}
+                      onChange={(e) => setChatInput(e.target.value)}
+                      onKeyDown={(e) => e.key === "Enter" && sendChat(chatInput)}
+                      placeholder={isListening ? "Listening…" : "Ask about LENR, COP, materials…"}
+                      disabled={isChatLoading || isListening}
+                      className="flex-1 bg-white/[0.04] border border-white/[0.08] rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-white/25 outline-none focus:border-plasma-400/40 transition-all duration-200 disabled:opacity-50"
+                    />
+                    <button onClick={() => sendChat(chatInput)} disabled={!chatInput.trim() || isChatLoading}
+                      className="p-2.5 rounded-xl bg-plasma-400/20 border border-plasma-400/30 text-plasma-400 hover:bg-plasma-400/30 transition-all duration-200 disabled:opacity-30 flex-shrink-0">
+                      <Send className="w-4 h-4" />
+                    </button>
+                  </div>
+                  <p className="text-white/20 text-[10px] mt-2 text-center">
+                    🎤 Tap mic to speak · Enter to send · Responses read aloud
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── SECTION 5: CTA Bridge ────────────────────────────────────────── */}
+      <section className="py-24 border-t border-white/[0.05]">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="glass-card rounded-3xl p-12 border border-plasma-400/10 relative overflow-hidden">
+            <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(34,211,238,0.06) 0%, transparent 70%)" }} />
+            <div className="relative">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-fire-400/30 bg-fire-400/5 mb-6">
+                <span className="w-1.5 h-1.5 rounded-full bg-fire-400 animate-pulse" />
+                <span className="text-fire-400 text-xs font-medium tracking-widest uppercase">Investment Opportunity</span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+                You&apos;ve seen the physics.
+                <br />
+                <span className="gradient-text-fire">Now back the team building it.</span>
+              </h2>
+              <p className="text-white/50 mb-10 max-w-xl mx-auto leading-relaxed">
+                New Fire Energy is a regulated private equity fund investing in the companies advancing LENR from laboratory science to commercial energy systems.
+              </p>
+              <Link href="/investors"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-white transition-all duration-300 hover:scale-105"
+                style={{ background: "linear-gradient(135deg,#F97316,#EF4444)", boxShadow: "0 8px 32px rgba(249,115,22,0.3)" }}>
+                <Zap className="w-5 h-5 fill-white" />
+                Become an Investor
+                <ChevronRight className="w-4 h-4" />
+              </Link>
+              <p className="text-white/25 text-xs mt-5">Accredited investors only · Regulation D Rule 506(c) · Min. $20,000</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}
