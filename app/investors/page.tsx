@@ -140,7 +140,7 @@ export default function InvestorsPage() {
               </div>
             </div>
             <p style={{ color: "rgba(255,255,255,0.65)", lineHeight: 1.8, margin: 0, maxWidth: 760, fontSize: "1rem" }}>
-              Thank you for your interest in New Fire Energy (the "Offering"). This offering is only open to accredited investors. The SEC requires independent verification of accredited investor status. To make this as easy as possible, we have partnered with <strong style={{ color: "#22D3EE" }}>InvestReady, Inc.</strong>, an industry-leading third-party Accredited Investor Verification Service.
+              Thank you for your interest in New Fire Energy (the &ldquo;Offering&rdquo;). This offering is only open to accredited investors. The SEC requires independent verification of accredited investor status. To make this as easy as possible, we have partnered with <strong style={{ color: "#22D3EE" }}>InvestReady, Inc.</strong>, an industry-leading third-party Accredited Investor Verification Service.
             </p>
           </div>
 
@@ -149,7 +149,7 @@ export default function InvestorsPage() {
               <div style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 16, padding: 24 }}>
                 <div style={{ color: "#22D3EE", fontWeight: 700, marginBottom: 12, fontSize: "0.9rem" }}>Your Privacy is Protected</div>
                 <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.875rem", lineHeight: 1.75, margin: 0 }}>
-                  The detailed information you provide will NOT be accessible by anyone outside of InvestReady's U.S.-based analysts. New Fire Energy will not have access to your detailed information and will bear the cost of InvestReady's services.
+                  The detailed information you provide will NOT be accessible by anyone outside of InvestReady&rsquo;s U.S.-based analysts. New Fire Energy will not have access to your detailed information and will bear the cost of InvestReady&rsquo;s services.
                 </p>
               </div>
               <div style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 16, padding: 24 }}>
@@ -161,7 +161,7 @@ export default function InvestorsPage() {
               <div style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 16, padding: 24 }}>
                 <div style={{ color: "#F97316", fontWeight: 700, marginBottom: 12, fontSize: "0.9rem" }}>What to Expect</div>
                 <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.875rem", lineHeight: 1.75, margin: 0 }}>
-                  This process involves uploading one or more documents proving income ($200K+ individual or $300K+ joint) or net worth ($1M+ excluding primary residence). For full details on InvestReady's security,{" "}
+                  This process involves uploading one or more documents proving income ($200K+ individual or $300K+ joint) or net worth ($1M+ excluding primary residence). For full details on InvestReady&rsquo;s security,{" "}
                   <a href="https://newfireenergy.investready.com/" target="_blank" rel="noopener noreferrer" style={{ color: "#22D3EE", textDecoration: "underline" }}>click here</a>.
                 </p>
               </div>
@@ -236,7 +236,7 @@ export default function InvestorsPage() {
       <section style={{ padding: "0 24px 80px", maxWidth: 1100, margin: "0 auto" }}>
         <div style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 20, padding: "40px 32px" }}>
           <div style={{ textAlign: "center", marginBottom: 32 }}>
-            <h2 style={{ color: "#fff", fontSize: "1.5rem", fontWeight: 700, marginBottom: 8 }}>Validated by the World's Leading Institutions</h2>
+            <h2 style={{ color: "#fff", fontSize: "1.5rem", fontWeight: 700, marginBottom: 8 }}>Validated by the World&rsquo;s Leading Institutions</h2>
             <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.875rem", margin: 0 }}>LENR is confirmed science, not speculation</p>
           </div>
           <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 32 }}>

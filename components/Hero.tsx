@@ -71,7 +71,7 @@ export default function Hero() {
 
         {/* Subheadline */}
         <p className="text-white/65 text-xl sm:text-2xl max-w-3xl mx-auto leading-relaxed mb-4 text-balance">
-          The Number One Company for the World's{" "}
+          The Number One Company for the World&rsquo;s{" "}
           <span className="text-plasma-300 font-medium">New Energy Revolution!</span>
         </p>
         <p className="text-white/45 text-base sm:text-lg max-w-2xl mx-auto mb-10">

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Link from "next/link";
 import "./globals.css";
 import AIAssistant from "@/components/AIAssistant";
 import FireLogo from "@/components/FireLogo";
@@ -20,12 +21,14 @@ export const metadata: Metadata = {
 };
 
 const navLinks = [
-  { label: "Home",         href: "/" },
-  { label: "ZPE / LENR",  href: "/technology" },
-  { label: "LENR News",   href: "/news" },
-  { label: "White Papers", href: "/whitepaper" },
-  { label: "Board",        href: "/team" },
-  { label: "Contact Us",  href: "/contact" },
+  { label: "Home",           href: "/" },
+  { label: "ZPE / LENR",    href: "/technology" },
+  { label: "LENR News",     href: "/news" },
+  { label: "White Papers",  href: "/whitepaper" },
+  { label: "Board",          href: "/team" },
+  { label: "AI Simulation", href: "/simulation" },
+  { label: "Become an Investor", href: "/investors" },
+  { label: "Contact Us",    href: "/contact" },
 ];
 
 export default function RootLayout({
@@ -54,7 +57,7 @@ export default function RootLayout({
         }}>
 
           {/* Logo */}
-          <a href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: 10 }}>
+          <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: 10 }}>
             <FireLogo size={42} />
             <div>
               <div style={{ color: "#fff", fontWeight: 800, fontSize: "0.95rem", lineHeight: 1.1, letterSpacing: "-0.01em" }}>
@@ -64,7 +67,7 @@ export default function RootLayout({
                 Private Equity Fund
               </div>
             </div>
-          </a>
+          </Link>
 
           {/* Nav links — hidden on small screens via CSS */}
           <nav style={{ display: "flex", alignItems: "center", gap: 4 }}>
