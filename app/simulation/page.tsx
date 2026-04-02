@@ -70,19 +70,201 @@ function speakText(text: string, onEnd?: () => void) {
   if (typeof window === "undefined" || !window.speechSynthesis) return;
   window.speechSynthesis.cancel();
   const utt = new SpeechSynthesisUtterance(text);
-  const voices = window.speechSynthesis.getVoices();
-  const voice =
-    voices.find((v) => v.name.includes("Google UK English Female")) ||
-    voices.find((v) => v.name.includes("Microsoft Libby")) ||
-    voices.find((v) => v.name.includes("Microsoft Hazel")) ||
-    voices.find((v) => v.lang === "en-GB" && v.name.toLowerCase().includes("female")) ||
-    voices.find((v) => v.lang.startsWith("en"));
-  if (voice) utt.voice = voice;
-  utt.rate = 0.95;
-  utt.pitch = 1.05;
-  utt.volume = 1;
-  if (onEnd) utt.onend = onEnd;
-  window.speechSynthesis.speak(utt);
+  // Wait for voices to load (Chrome async)
+  const trySpeak = () => {
+    const voices = window.speechSynthesis.getVoices();
+    const voice =
+      voices.find((v) => v.name.includes("Google UK English Female")) ||
+      voices.find((v) => v.name.includes("Microsoft Libby")) ||
+      voices.find((v) => v.name.includes("Microsoft Hazel")) ||
+      voices.find((v) => v.lang === "en-GB" && v.name.toLowerCase().includes("female")) ||
+      voices.find((v) => v.lang.startsWith("en-GB")) ||
+      voices.find((v) => v.lang.startsWith("en"));
+    if (voice) utt.voice = voice;
+    utt.rate = 0.93;
+    utt.pitch = 1.05;
+    utt.volume = 1;
+    if (onEnd) utt.onend = onEnd;
+    window.speechSynthesis.speak(utt);
+  };
+  if (window.speechSynthesis.getVoices().length) {
+    trySpeak();
+  } else {
+    window.speechSynthesis.onvoiceschanged = trySpeak;
+  }
+}
+
+// ── Voice Waveform SVG ────────────────────────────────────────────────────
+function VoiceWaveform({ active, color = "#22D3EE" }: { active: boolean; color?: string }) {
+  const bars = [3, 6, 9, 7, 11, 8, 5, 10, 6, 4, 9, 7, 3, 8, 6];
+  return (
+    <svg width="60" height="20" viewBox="0 0 60 20" className={`transition-opacity duration-300 ${active ? "opacity-100" : "opacity-0"}`}>
+      {bars.map((h, i) => (
+        <rect
+          key={i}
+          x={i * 4 + 1}
+          y={(20 - h) / 2}
+          width={2}
+          height={h}
+          rx={1}
+          fill={color}
+          style={{
+            animation: active ? `waveBar 0.8s ease-in-out ${(i * 0.06).toFixed(2)}s infinite alternate` : "none",
+          }}
+        />
+      ))}
+      <style>{`@keyframes waveBar { from { transform: scaleY(0.4); } to { transform: scaleY(1); } }`}</style>
+    </svg>
+  );
+}
+
+// ── 3D Device Canvas ──────────────────────────────────────────────────────
+function drawDevice3D(canvas: HTMLCanvasElement, params: SimParams, results: SimResults, frame: number) {
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = "#060E1F";
+  ctx.fillRect(0, 0, W, H);
+
+  const cx = W * 0.42, cy = H * 0.52;
+  const sx = 1.8, sy = 0.85; // isometric scale
+  const depth = 0.5;
+  const matColor = params.material === "Pd" ? "#3B82F6" : params.material === "Ni" ? "#8B5CF6" : "#6B7280";
+  const glow = results.hasReaction ? Math.sin(frame * 0.08) * 0.15 + 0.85 : 0;
+
+  // Helper: isometric transform
+  const iso = (x: number, y: number, z: number): [number, number] => [
+    cx + (x - z) * sx * Math.cos(Math.PI / 6),
+    cy + (x + z) * sy * Math.sin(Math.PI / 6) - y * sy * 1.2,
+  ];
+
+  // Draw filled face helper
+  const face = (pts: [number, number, number][], fill: string, stroke = "rgba(255,255,255,0.1)") => {
+    ctx.beginPath();
+    const [fx, fy] = iso(...pts[0]);
+    ctx.moveTo(fx, fy);
+    for (let i = 1; i < pts.length; i++) {
+      const [px, py] = iso(...pts[i]);
+      ctx.lineTo(px, py);
+    }
+    ctx.closePath();
+    ctx.fillStyle = fill;
+    ctx.fill();
+    ctx.strokeStyle = stroke;
+    ctx.lineWidth = 0.8;
+    ctx.stroke();
+  };
+
+  // Housing box dims
+  const bw = 60, bh = 80, bd = 55;
+
+  // Housing — back face
+  face([[0,0,0],[bw,0,0],[bw,bh,0],[0,bh,0]], "rgba(30,40,60,0.9)");
+  // Housing — left face
+  face([[0,0,0],[0,0,bd],[0,bh,bd],[0,bh,0]], "rgba(20,30,50,0.9)");
+  // Housing — right face
+  face([[bw,0,0],[bw,0,bd],[bw,bh,bd],[bw,bh,0]], "rgba(25,35,55,0.9)");
+  // Housing — top face
+  face([[0,bh,0],[bw,bh,0],[bw,bh,bd],[0,bh,bd]], "rgba(35,50,70,0.95)");
+  // Housing — front face
+  face([[0,0,bd],[bw,0,bd],[bw,bh,bd],[0,bh,bd]], "rgba(15,25,45,0.7)");
+
+  // Housing outline
+  ctx.strokeStyle = `rgba(34,211,238,0.3)`;
+  ctx.lineWidth = 1;
+  const corners: [[number,number,number],[number,number,number]][] = [
+    [[0,0,0],[bw,0,0]],[[bw,0,0],[bw,bh,0]],[[bw,bh,0],[0,bh,0]],[[0,bh,0],[0,0,0]],
+    [[0,0,bd],[bw,0,bd]],[[bw,0,bd],[bw,bh,bd]],[[bw,bh,bd],[0,bh,bd]],[[0,bh,bd],[0,0,bd]],
+    [[0,0,0],[0,0,bd]],[[bw,0,0],[bw,0,bd]],[[bw,bh,0],[bw,bh,bd]],[[0,bh,0],[0,bh,bd]],
+  ];
+  corners.forEach(([a, b]) => {
+    ctx.beginPath();
+    const [ax, ay] = iso(...a); const [bx, by] = iso(...b);
+    ctx.moveTo(ax, ay); ctx.lineTo(bx, by);
+    ctx.stroke();
+  });
+
+  // Electrolyte cell inside
+  const ex = 12, ez = 10, ew = 22, eh = 55, ed = 35;
+  face([[ex,2,ez],[ex+ew,2,ez],[ex+ew,2+eh,ez],[ex,2+eh,ez]], `${matColor}30`);
+  face([[ex,2,ez],[ex,2,ez+ed],[ex,2+eh,ez+ed],[ex,2+eh,ez]], `${matColor}20`);
+  face([[ex,2+eh,ez],[ex+ew,2+eh,ez],[ex+ew,2+eh,ez+ed],[ex,2+eh,ez+ed]], `${matColor}40`);
+  face([[ex,2,ez+ed],[ex+ew,2,ez+ed],[ex+ew,2+eh,ez+ed],[ex,2+eh,ez+ed]], `${matColor}15`);
+
+  // Cathode rod (main material)
+  const cathodeGlow = results.hasReaction ? `rgba(251,146,60,${0.6 + glow * 0.4})` : matColor;
+  face([[ex+5,5,ez+8],[ex+8,5,ez+8],[ex+8,5+45,ez+8],[ex+5,5+45,ez+8]], cathodeGlow);
+  face([[ex+5,5,ez+8],[ex+5,5,ez+12],[ex+5,5+45,ez+12],[ex+5,5+45,ez+8]], `${matColor}60`);
+  face([[ex+5,5+45,ez+8],[ex+8,5+45,ez+8],[ex+8,5+45,ez+12],[ex+5,5+45,ez+12]], `${matColor}80`);
+
+  // Heat exchanger
+  face([[bw-28,5,ez],[bw-8,5,ez],[bw-8,5+50,ez],[bw-28,5+50,ez]], "rgba(251,146,60,0.15)");
+  face([[bw-28,5+50,ez],[bw-8,5+50,ez],[bw-8,5+50,ez+30],[bw-28,5+50,ez+30]], "rgba(251,146,60,0.2)");
+  for (let fi = 0; fi < 5; fi++) {
+    const fy2 = 10 + fi * 9;
+    face([[bw-27,fy2,ez+2],[bw-9,fy2,ez+2],[bw-9,fy2+2,ez+2],[bw-27,fy2+2,ez+2]], "rgba(251,146,60,0.35)");
+  }
+
+  // Reaction glow halo
+  if (results.hasReaction) {
+    ctx.save();
+    const [hx, hy] = iso(ex + 7, 28, ez + 10);
+    const grad = ctx.createRadialGradient(hx, hy, 0, hx, hy, 35 * glow);
+    grad.addColorStop(0, `rgba(251,146,60,${0.25 * glow})`);
+    grad.addColorStop(1, "transparent");
+    ctx.fillStyle = grad;
+    ctx.beginPath(); ctx.arc(hx, hy, 35 * glow, 0, Math.PI * 2); ctx.fill();
+    ctx.restore();
+  }
+
+  // Labels
+  ctx.font = "bold 9px system-ui";
+  ctx.fillStyle = "rgba(34,211,238,0.6)";
+  const [lx, ly] = iso(bw / 2, bh + 4, bd / 2);
+  ctx.textAlign = "center";
+  ctx.fillText(`${params.material} LENR Cell`, lx, ly + 8);
+  ctx.font = "8px system-ui";
+  ctx.fillStyle = "rgba(255,255,255,0.35)";
+  ctx.fillText(results.hasReaction ? `${results.excessHeat}W · COP ${results.cop}×` : "Below threshold", lx, ly + 18);
+
+  // D loading bubbles
+  if (params.loading > 0.4) {
+    for (let bi = 0; bi < Math.round(params.loading * 8); bi++) {
+      const bx2 = ex + 10 + (bi % 3) * 4;
+      const by2 = 10 + Math.floor(bi / 3) * 10 + Math.sin(frame * 0.05 + bi) * 2;
+      const bz = ez + 15 + (bi % 2) * 8;
+      const [px, py] = iso(bx2, by2, bz);
+      ctx.beginPath();
+      ctx.arc(px, py, 2.5, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(52,211,153,0.6)`;
+      ctx.fill();
+    }
+  }
+
+  // RF antenna if active
+  if (params.rfStimulus > 0) {
+    const [ax2, ay2] = iso(-8, bh * 0.7, bd * 0.3);
+    ctx.strokeStyle = "rgba(250,204,21,0.5)";
+    ctx.lineWidth = 1;
+    for (let ri = 0; ri < 3; ri++) {
+      ctx.beginPath();
+      ctx.arc(ax2, ay2, 6 + ri * 5, -Math.PI * 0.6, Math.PI * 0.6);
+      ctx.globalAlpha = 0.7 - ri * 0.2;
+      ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  // Pressure vessel cap if high pressure
+  if (params.pressure > 20) {
+    face([[0,bh,0],[bw,bh,0],[bw,bh+6,0],[0,bh+6,0]], "rgba(167,139,250,0.4)");
+    face([[0,bh+6,0],[bw,bh+6,0],[bw,bh+6,bd],[0,bh+6,bd]], "rgba(167,139,250,0.3)");
+  }
+
+  // Animated depth indicator
+  const depthIndicator = depth;
+  void depthIndicator;
 }
 
 // ── Canvas: Lattice ────────────────────────────────────────────────────────
@@ -341,8 +523,10 @@ export default function SimulationPage() {
   // Canvas refs
   const latticeRef = useRef<HTMLCanvasElement>(null);
   const chartRef = useRef<HTMLCanvasElement>(null);
+  const deviceCanvasRef = useRef<HTMLCanvasElement>(null);
   const frameRef = useRef(0);
   const animRef = useRef<number>(0);
+  const deviceAnimRef = useRef<number>(0);
   const chatBottomRef = useRef<HTMLDivElement>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const recogRef = useRef<any>(null);
@@ -366,6 +550,21 @@ export default function SimulationPage() {
     if (!canvas) return;
     drawHeatChart(canvas, results, params.runTime);
   }, [results, params.runTime]);
+
+  // ── 3D Device animation loop ─────────────────────────────────────────────
+  useEffect(() => {
+    if (!hasRun || !results.hasReaction) return;
+    const canvas = deviceCanvasRef.current;
+    if (!canvas) return;
+    let f = 0;
+    const loop = () => {
+      f++;
+      drawDevice3D(canvas, params, results, f);
+      deviceAnimRef.current = requestAnimationFrame(loop);
+    };
+    deviceAnimRef.current = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(deviceAnimRef.current);
+  }, [hasRun, results, params]);
 
   // ── Auto-scroll chat ────────────────────────────────────────────────────
   useEffect(() => {
@@ -763,9 +962,15 @@ export default function SimulationPage() {
                     </div>
                   </div>
 
-                  {/* SVG Device Schematic */}
-                  <div className="mb-5 bg-navy-900/80 rounded-xl p-4 border border-white/[0.06]">
-                    <svg viewBox="0 0 500 280" className="w-full" style={{ maxHeight: 220 }}>
+                  {/* 3D Animated Device + SVG Schematic */}
+                  <div className="mb-5 grid sm:grid-cols-2 gap-4">
+                    <div className="bg-navy-900/80 rounded-xl p-3 border border-plasma-400/15">
+                      <p className="text-plasma-400/60 text-[10px] uppercase tracking-widest mb-2">3D Device View — Animated</p>
+                      <canvas ref={deviceCanvasRef} width={320} height={200} className="w-full rounded-lg" />
+                    </div>
+                    <div className="bg-navy-900/80 rounded-xl p-3 border border-white/[0.06]">
+                      <p className="text-white/30 text-[10px] uppercase tracking-widest mb-2">Schematic Cross-Section</p>
+                      <svg viewBox="0 0 500 280" className="w-full" style={{ maxHeight: 200 }}>
                       {/* Outer housing */}
                       <rect x="60" y="40" width="380" height="200" rx="16" fill="none" stroke="#22D3EE" strokeWidth="1.5" strokeDasharray="6 3" opacity="0.4" />
                       <text x="250" y="28" textAnchor="middle" fill="rgba(34,211,238,0.5)" fontSize="9" fontFamily="system-ui">LENR Reactor Housing ({params.material === "Pd" ? "Palladium-D" : params.material === "Ni" ? "Nickel-H" : "Titanium-D"} System)</text>
@@ -835,6 +1040,7 @@ export default function SimulationPage() {
                         <ellipse cx="138" cy="144" rx="20" ry="30" fill="rgba(251,146,60,0.1)" />
                       )}
                     </svg>
+                    </div>
                   </div>
 
                   {/* AI device description */}
@@ -929,23 +1135,24 @@ export default function SimulationPage() {
                       </div>
                     </div>
                   )}
-                  {isSpeaking && (
-                    <div className="flex justify-start">
-                      <div className="flex items-center gap-2 text-xs text-plasma-400/60">
-                        <Volume2 className="w-3 h-3 animate-pulse" />
-                        Speaking…
-                        <button onClick={stopSpeaking} className="text-white/30 hover:text-white/60 text-[10px] underline">stop</button>
-                      </div>
-                    </div>
-                  )}
                   <div ref={chatBottomRef} />
                 </div>
 
                 {/* Chat input */}
                 <div className="p-4 border-t border-white/[0.06]">
+                  {/* Voice waveform indicator */}
+                  {(isListening || isSpeaking) && (
+                    <div className="flex items-center gap-2 mb-2 px-1">
+                      <VoiceWaveform active={isListening || isSpeaking} color={isListening ? "#F87171" : "#22D3EE"} />
+                      <span className="text-[10px] text-white/40">{isListening ? "Listening…" : "Speaking…"}</span>
+                      {isSpeaking && (
+                        <button onClick={stopSpeaking} className="text-[10px] text-white/30 hover:text-white/60 underline ml-auto">stop</button>
+                      )}
+                    </div>
+                  )}
                   <div className="flex gap-2">
                     <button onClick={toggleListening}
-                      className={`p-2.5 rounded-xl border transition-all duration-200 flex-shrink-0 ${isListening ? "border-red-400/60 bg-red-400/10 text-red-400 animate-pulse" : "border-white/10 text-white/40 hover:border-plasma-400/40 hover:text-plasma-400"}`}>
+                      className={`p-2.5 rounded-xl border transition-all duration-200 flex-shrink-0 ${isListening ? "border-red-400/60 bg-red-400/15 text-red-400" : "border-white/10 text-white/40 hover:border-plasma-400/40 hover:text-plasma-400"}`}>
                       {isListening ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
                     </button>
                     <input
