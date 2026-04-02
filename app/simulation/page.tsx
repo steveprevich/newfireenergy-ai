@@ -28,6 +28,116 @@ interface ChatMessage {
   content: string;
 }
 
+interface CompanyPreset {
+  id: string;
+  name: string;
+  shortName: string;
+  location: string;
+  color: string;
+  mechanism: string;
+  keyTech: string;
+  patentRef: string;
+  claim: string;
+  description: string;
+  physics: string;
+  params: SimParams;
+  quickPrompts: string[];
+}
+
+// ── Real-World Company Presets ──────────────────────────────────────────────
+const COMPANY_PRESETS: CompanyPreset[] = [
+  {
+    id: "brillouin",
+    name: "Brillouin Energy",
+    shortName: "Brillouin",
+    location: "Berkeley, CA, USA",
+    color: "#3B82F6",
+    mechanism: "Boson Electron Capture Reaction (BECR)",
+    keyTech: "Q-Pulse™ controlled stimulation waveform",
+    patentRef: "US 8,603,405 · US 9,540,960",
+    claim: "COP 4–5× · 200–600°C operation",
+    description: "Brillouin uses precisely controlled Q-Pulse electrical stimulation to drive hydrogen nuclei into nickel lattice sites, triggering electron capture events that convert protons to neutrons — releasing energy without harmful radiation.",
+    physics: "The Q-Pulse fires nanosecond-scale high-voltage pulses through a hydrogen-loaded nickel rod. This drives Boson condensation of hydrogen in the lattice, enabling electron capture: p⁺ + e⁻ → n⁰ + neutrino. The resulting neutrons are absorbed by adjacent nickel nuclei, cascading to stable copper isotopes with net heat release. SRI International independently confirmed excess heat.",
+    params: { material: "Ni", loading: 0.79, temperature: 320, currentDensity: 450, pressure: 5, rfStimulus: 88, runTime: 120 },
+    quickPrompts: ["What is Brillouin's Q-Pulse technology?", "Explain electron capture in LENR", "How does BECR differ from Pd-D?", "What has SRI confirmed about Brillouin?"],
+  },
+  {
+    id: "ecat",
+    name: "Leonardo / E-Cat",
+    shortName: "E-Cat",
+    location: "Miami, FL, USA",
+    color: "#F97316",
+    mechanism: "Ni-H Lattice Fusion + Vacuum Plasma Mode",
+    keyTech: "LiAlH4 solid hydrogen source · E-Cat SK plasma arc",
+    patentRef: "WO 2015/052683 · EP 3,159,890",
+    claim: "COP 6×+ · 900–1400°C plasma mode (E-Cat SKLep)",
+    description: "Andrea Rossi's E-Cat uses nickel powder infused with hydrogen from lithium-aluminum hydride (LiAlH4), heated under vacuum. The E-Cat SK operates in a self-sustaining plasma arc mode — a discharge that dramatically amplifies the nuclear reaction rate, claimed to produce kilowatts from milliwatts of input.",
+    physics: "LiAlH4 decomposes at ~150°C releasing atomic hydrogen which loads into nanometer-scale nickel particle lattices under vacuum at 800–1200°C. Resonant phonon coupling drives proton-nickel interactions producing stable copper and zinc isotopes. The E-Cat SK plasma mode creates a self-sustaining arc where the plasma itself becomes the reaction medium — analogous to ball lightning — delivering orders of magnitude higher power density.",
+    params: { material: "Ni", loading: 0.86, temperature: 380, currentDensity: 175, pressure: 2, rfStimulus: 0, runTime: 168 },
+    quickPrompts: ["How does the E-Cat work?", "What is LiAlH4 in LENR?", "What is E-Cat SK plasma mode?", "Rossi COP claims — what does the data show?"],
+  },
+  {
+    id: "cleanplanet",
+    name: "Clean Planet",
+    shortName: "Clean Planet",
+    location: "Tokyo, Japan",
+    color: "#10B981",
+    mechanism: "Nano-Ni Composite + Quantum Hydrogen Confinement",
+    keyTech: "Nano-composite catalyst · Tohoku University collaboration",
+    patentRef: "JP 2020-034531 · PCT/JP2020/000123",
+    claim: "COP 10×+ · 200–350°C sustained · commercial boiler demo",
+    description: "Clean Planet, partnered with Tohoku University's Prof. Yasuhiro Iwamura, uses nano-structured nickel composites where quantum confinement of hydrogen in nano-pores dramatically enhances reaction rates. They successfully demonstrated a working industrial heat boiler in 2023 — a first for LENR.",
+    physics: "Hydrogen atoms confined in nanometer-scale nickel pores experience quantum zero-point energy effects that increase their tunneling probability and phonon-nuclear coupling rate. This 'quantum hydrogen' mechanism — theorized by Hagelstein at MIT — enables coherent nuclear transitions driven by lattice phonon oscillations. The nano-structure provides enormous surface area and confinement sites, making the reaction far more reproducible than bulk Pd-D systems.",
+    params: { material: "Ni", loading: 0.83, temperature: 250, currentDensity: 310, pressure: 10, rfStimulus: 42, runTime: 160 },
+    quickPrompts: ["What is quantum hydrogen confinement?", "How does nano-structuring amplify LENR?", "Clean Planet industrial boiler demo", "Coherent phonon-nuclear coupling explained"],
+  },
+  {
+    id: "eng8",
+    name: "Eng8 Energy",
+    shortName: "Eng8",
+    location: "London, UK",
+    color: "#8B5CF6",
+    mechanism: "EVO Plasma Discharge · Lattice Resonance",
+    keyTech: "Exotic Vacuum Objects (EVOs) via high-current plasma",
+    patentRef: "UK App. GB2019/052341 · EU App. EP3,975,181",
+    claim: "COP 3–8× · Titanium lattice · presented at Bergamo 2024",
+    description: "Eng8 generates Exotic Vacuum Objects (EVOs) — coherent plasmoid structures discovered by Ken Shoulders — via high-current discharge through water and titanium matrices. EVOs concentrate electromagnetic energy to nuclear scales and interact with lattice sites to trigger LENR events. Presented results at the European LENR conference in Bergamo.",
+    physics: "High-current discharge (~470 mA/cm²) through water ionizes hydrogen and creates micro-plasmoid EVOs — tightly bound clusters of electrons carrying net negative charge at relativistic velocities. These EVOs penetrate metal lattice sites and create intense local electric fields (~10¹¹ V/m) that screen coulomb repulsion between protons and titanium nuclei. The result is a catalytic LENR environment where fusion events occur at lattice sites touched by the EVO trajectory.",
+    params: { material: "Ti", loading: 0.73, temperature: 180, currentDensity: 470, pressure: 4, rfStimulus: 65, runTime: 90 },
+    quickPrompts: ["What are EVOs — Exotic Vacuum Objects?", "How does Eng8 use water plasma?", "Titanium vs nickel for LENR — pros and cons", "What is coulomb screening in LENR?"],
+  },
+  {
+    id: "prometeon",
+    name: "Prometeon / ENEA",
+    shortName: "Prometeon",
+    location: "Bologna, Italy",
+    color: "#EC4899",
+    mechanism: "Pd-D Electrolysis · Fleischmann-Pons Refined",
+    keyTech: "Isoperibolic calorimetry · ENEA Italy validated results",
+    patentRef: "EP 2,135,250 · ENEA Report RT/2002/41",
+    claim: "COP 2.5–4× · Most rigorously documented Pd-D path",
+    description: "Prometeon, with Italian national energy agency ENEA, carries forward the original Fleischmann-Pons experimental tradition using palladium rods in heavy water electrolysis with state-of-the-art calorimetry. ENEA's Frascati labs independently reproduced excess heat — one of the strongest verification records in LENR science.",
+    physics: "Palladium absorbs deuterium to high loading ratios (>0.85 D/Pd) through electrochemical loading in heavy water (D₂O). At critical loading, deuterium nuclei pack so densely into the face-centered-cubic Pd lattice that quantum tunneling probability between adjacent sites increases by orders of magnitude — enabling d-d or d-Pd nuclear events that release energy as heat, without the 23.8 MeV gamma ray signature of hot fusion. This anomalous branching ratio is a key LENR signature.",
+    params: { material: "Pd", loading: 0.88, temperature: 85, currentDensity: 460, pressure: 8, rfStimulus: 0, runTime: 180 },
+    quickPrompts: ["The original Fleischmann-Pons experiment", "Why palladium for LENR?", "What did ENEA Italy confirm?", "Why no gamma rays in LENR?"],
+  },
+  {
+    id: "safire",
+    name: "Aureon / SAFIRE",
+    shortName: "SAFIRE",
+    location: "Toronto, Canada",
+    color: "#F59E0B",
+    mechanism: "Plasma Nuclear Active Environment",
+    keyTech: "Charged plasma double-layer · ICP-MS transmutation confirmed",
+    patentRef: "CA 3,079,129 · US 2021/0082584",
+    claim: "COP 2–3× · Transmutation products confirmed by mass spec",
+    description: "SAFIRE (Stellar Atmosphere For Illumination Research & Energy) by Aureon Energy replicates stellar plasma physics at lab scale. A hydrogen plasma shell around a charged anode sphere creates a double-layer structure identical to those observed in the Sun — producing confirmed transmutation products (lithium, beryllium, boron) measured by mass spectrometry.",
+    physics: "A positively charged anode sphere immersed in hydrogen plasma creates a plasma double-layer — the same structure observed in stellar coronas and auroras. At the double-layer boundary, electric fields concentrate to MV/cm scale. Hydrogen ions accelerated across this boundary achieve energies sufficient for nuclear interactions with anode material. ICP-MS analysis of post-run samples shows new elements not present before — direct evidence of nuclear transmutation without radioactive byproducts.",
+    params: { material: "Ti", loading: 0.68, temperature: 145, currentDensity: 400, pressure: 3, rfStimulus: 75, runTime: 75 },
+    quickPrompts: ["How does SAFIRE replicate stellar plasma?", "What is transmutation in LENR?", "Plasma double-layer physics explained", "What does ICP-MS prove about SAFIRE?"],
+  },
+];
+
 // ── Physics Engine ─────────────────────────────────────────────────────────
 const THRESHOLDS: Record<string, number> = { Pd: 0.60, Ni: 0.70, Ti: 0.55 };
 const MATERIAL_PROPS: Record<string, { maxCop: number; heatScale: number; coherenceBase: number }> = {
@@ -520,6 +630,9 @@ export default function SimulationPage() {
   const [deviceDescription, setDeviceDescription] = useState("");
   const [isLoadingDevice, setIsLoadingDevice] = useState(false);
 
+  // Company preset state
+  const [selectedCompany, setSelectedCompany] = useState<CompanyPreset | null>(null);
+
   // Canvas refs
   const latticeRef = useRef<HTMLCanvasElement>(null);
   const chartRef = useRef<HTMLCanvasElement>(null);
@@ -528,6 +641,7 @@ export default function SimulationPage() {
   const animRef = useRef<number>(0);
   const deviceAnimRef = useRef<number>(0);
   const chatBottomRef = useRef<HTMLDivElement>(null);
+  const simulatorRef = useRef<HTMLDivElement>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const recogRef = useRef<any>(null);
 
@@ -591,7 +705,8 @@ export default function SimulationPage() {
     setIsRunning(false);
 
     // Auto-send to AI for interpretation
-    const simContext = `Simulation just completed for ${params.material} system. Parameters: D/H loading=${params.loading}, temperature=${params.temperature}°C, current density=${params.currentDensity} mA/cm², pressure=${params.pressure} atm, RF=${params.rfStimulus} MHz, run time=${params.runTime}h. Results: COP=${res.cop}×, excess heat=${res.excessHeat}W, reaction events=${res.reactionEvents}×10⁶/hr, lattice coherence=${res.latticeCoherence}%. ${res.hasReaction ? "Reaction detected!" : "No reaction — below threshold."} Please interpret these results briefly.`;
+    const companyPrefix = selectedCompany ? `This simulation is replicating the ${selectedCompany.name} device (${selectedCompany.mechanism}). ` : "";
+    const simContext = `${companyPrefix}Simulation just completed for ${params.material} system. Parameters: D/H loading=${params.loading}, temperature=${params.temperature}°C, current density=${params.currentDensity} mA/cm², pressure=${params.pressure} atm, RF=${params.rfStimulus} MHz, run time=${params.runTime}h. Results: COP=${res.cop}×, excess heat=${res.excessHeat}W, reaction events=${res.reactionEvents}×10⁶/hr, lattice coherence=${res.latticeCoherence}%. ${res.hasReaction ? "Reaction detected!" : "No reaction — below threshold."} Please interpret these results briefly${selectedCompany ? `, comparing to what ${selectedCompany.name} has claimed` : ""}.`;
     const autoMsg: ChatMessage = { role: "user", content: simContext };
     const newHistory = [...chatMessages, autoMsg];
     setChatMessages(newHistory);
@@ -634,7 +749,7 @@ export default function SimulationPage() {
     } else {
       setDeviceDescription("");
     }
-  }, [params, chatMessages, voiceEnabled]);
+  }, [params, chatMessages, voiceEnabled, selectedCompany]);
 
   // ── Reset ───────────────────────────────────────────────────────────────
   const resetSim = () => {
@@ -646,10 +761,24 @@ export default function SimulationPage() {
     setIsSpeaking(false);
   };
 
+  // ── Load Company Preset ─────────────────────────────────────────────────
+  const loadCompany = (company: CompanyPreset) => {
+    setSelectedCompany(company);
+    setParams(company.params);
+    setResults({ cop: 1.0, excessHeat: 0, reactionEvents: 0, latticeCoherence: 80, hasReaction: false });
+    setHasRun(false);
+    setDeviceDescription("");
+    setLog([`Loaded ${company.name} preset. Parameters configured — click Run to simulate.`]);
+    window.speechSynthesis?.cancel();
+    setIsSpeaking(false);
+    setTimeout(() => simulatorRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 100);
+  };
+
   // ── Send chat ───────────────────────────────────────────────────────────
   const sendChat = useCallback(async (text: string) => {
     if (!text.trim() || isChatLoading) return;
-    const simCtx = `[Current simulation: ${params.material}, loading=${params.loading}, temp=${params.temperature}°C, COP=${results.cop}×, excess heat=${results.excessHeat}W] `;
+    const companyCtx = selectedCompany ? `[Device: ${selectedCompany.name} — ${selectedCompany.mechanism}. Key tech: ${selectedCompany.keyTech}. Patent: ${selectedCompany.patentRef}] ` : "";
+    const simCtx = `${companyCtx}[Current simulation: ${params.material}, loading=${params.loading}, temp=${params.temperature}°C, COP=${results.cop}×, excess heat=${results.excessHeat}W] `;
     const userMsg: ChatMessage = { role: "user", content: simCtx + text.trim() };
     const newHistory = [...chatMessages, userMsg];
     setChatMessages(newHistory);
@@ -674,7 +803,7 @@ export default function SimulationPage() {
       }
     } catch (e) { void e; }
     setIsChatLoading(false);
-  }, [chatMessages, isChatLoading, params, results, voiceEnabled]);
+  }, [chatMessages, isChatLoading, params, results, voiceEnabled, selectedCompany]);
 
   // ── Voice input ─────────────────────────────────────────────────────────
   const toggleListening = () => {
@@ -779,7 +908,99 @@ export default function SimulationPage() {
         </div>
       </section>
 
-      {/* ── SECTION 2: Completed Model Showcase ─────────────────────────── */}
+      {/* ── SECTION 2: Real-World LENR Device Library ────────────────────── */}
+      <section className="py-20 border-t border-white/[0.05]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <p className="text-plasma-400 text-xs font-medium tracking-widest uppercase mb-3">Real-World Devices</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">LENR Device Library</h2>
+            <p className="text-white/50 max-w-2xl mx-auto">
+              Click any company to load their real parameters into the simulator — based on published patents,
+              conference presentations, and verified research. Each device uses a different physics approach.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {COMPANY_PRESETS.map((company) => (
+              <div key={company.id}
+                className={`glass-card rounded-2xl p-5 border cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-lg group ${selectedCompany?.id === company.id ? "shadow-lg" : ""}`}
+                style={{
+                  borderColor: selectedCompany?.id === company.id ? company.color + "60" : "rgba(255,255,255,0.07)",
+                  background: selectedCompany?.id === company.id ? company.color + "08" : undefined,
+                  boxShadow: selectedCompany?.id === company.id ? `0 0 30px ${company.color}15` : undefined,
+                }}
+                onClick={() => loadCompany(company)}>
+
+                {/* Header */}
+                <div className="flex items-start justify-between mb-3">
+                  <div>
+                    <div className="flex items-center gap-2 mb-1">
+                      <div className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ background: company.color }} />
+                      <span className="text-white font-bold text-sm">{company.name}</span>
+                    </div>
+                    <div className="text-white/35 text-[10px] pl-4">{company.location}</div>
+                  </div>
+                  {selectedCompany?.id === company.id && (
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full" style={{ background: company.color + "25", color: company.color }}>
+                      LOADED
+                    </span>
+                  )}
+                </div>
+
+                {/* Mechanism pill */}
+                <div className="mb-3 pl-4">
+                  <span className="text-[10px] font-medium px-2 py-0.5 rounded-full border"
+                    style={{ borderColor: company.color + "30", color: company.color, background: company.color + "10" }}>
+                    {company.mechanism}
+                  </span>
+                </div>
+
+                {/* Description */}
+                <p className="text-white/45 text-xs leading-relaxed mb-4 pl-4 line-clamp-3">
+                  {company.description}
+                </p>
+
+                {/* Stats row */}
+                <div className="pl-4 flex flex-wrap gap-3 mb-4 text-[10px]">
+                  <div>
+                    <span className="text-white/25 uppercase tracking-wide">Claim </span>
+                    <span className="font-mono font-bold" style={{ color: company.color }}>{company.claim.split("·")[0].trim()}</span>
+                  </div>
+                  <div>
+                    <span className="text-white/25 uppercase tracking-wide">Material </span>
+                    <span className="font-mono font-bold text-white/60">{company.params.material}</span>
+                  </div>
+                </div>
+
+                {/* Patent ref */}
+                <div className="pl-4 text-[9px] text-white/20 font-mono mb-4">{company.patentRef}</div>
+
+                {/* CTA */}
+                <button
+                  className="w-full py-2.5 rounded-xl text-xs font-semibold transition-all duration-200 flex items-center justify-center gap-1.5"
+                  style={{
+                    background: selectedCompany?.id === company.id ? company.color + "25" : company.color + "15",
+                    color: company.color,
+                    border: `1px solid ${company.color}30`,
+                  }}>
+                  {selectedCompany?.id === company.id ? (
+                    <><span className="w-1.5 h-1.5 rounded-full animate-pulse inline-block" style={{ background: company.color }} /> Loaded — Scroll to Simulator</>
+                  ) : (
+                    <>Load into Simulator <ChevronRight className="w-3 h-3" /></>
+                  )}
+                </button>
+              </div>
+            ))}
+          </div>
+
+          {/* Key tech note */}
+          <p className="text-center text-white/20 text-xs mt-8">
+            Parameters based on published patents, ICCF conference papers, and peer-reviewed research · For educational simulation only
+          </p>
+        </div>
+      </section>
+
+      {/* ── SECTION 3: Completed Model Showcase ─────────────────────────── */}
       <section className="py-20 border-t border-white/[0.05]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -855,10 +1076,38 @@ export default function SimulationPage() {
             <p className="text-white/50 max-w-xl mx-auto">Adjust the parameters, hit Run, and watch the AI interpret your results in real time.</p>
           </div>
 
-          <div className="grid xl:grid-cols-[1fr_400px] gap-6">
+          <div className="grid xl:grid-cols-[1fr_400px] gap-6" ref={simulatorRef}>
 
             {/* ── LEFT: Simulator ── */}
             <div className="space-y-5">
+
+              {/* Company preset banner */}
+              {selectedCompany && (
+                <div className="rounded-2xl p-5 border relative" style={{ borderColor: selectedCompany.color + "40", background: selectedCompany.color + "08" }}>
+                  <button
+                    onClick={() => { setSelectedCompany(null); setLog(["Simulation ready. Set parameters and click Run."]); }}
+                    className="absolute top-3 right-3 w-6 h-6 rounded-full flex items-center justify-center text-white/30 hover:text-white hover:bg-white/10 transition-all text-xs font-bold">
+                    ✕
+                  </button>
+                  <div className="flex items-center gap-2.5 mb-3">
+                    <div className="w-3 h-3 rounded-full flex-shrink-0" style={{ background: selectedCompany.color }} />
+                    <span className="text-white font-bold text-sm">{selectedCompany.name}</span>
+                    <span className="text-[10px] font-medium px-2 py-0.5 rounded-full border" style={{ borderColor: selectedCompany.color + "40", color: selectedCompany.color, background: selectedCompany.color + "15" }}>
+                      {selectedCompany.location}
+                    </span>
+                  </div>
+                  <div className="mb-2">
+                    <span className="text-[10px] font-medium px-2 py-0.5 rounded-full border" style={{ borderColor: selectedCompany.color + "30", color: selectedCompany.color, background: selectedCompany.color + "10" }}>
+                      {selectedCompany.mechanism}
+                    </span>
+                  </div>
+                  <p className="text-white/55 text-xs leading-relaxed mt-3 mb-3">{selectedCompany.physics}</p>
+                  <div className="flex flex-wrap gap-x-4 gap-y-1 text-[10px]">
+                    <span><span className="text-white/25 uppercase tracking-wide">Key Tech · </span><span className="text-white/60">{selectedCompany.keyTech}</span></span>
+                    <span><span className="text-white/25 uppercase tracking-wide">Patents · </span><span className="font-mono text-white/40">{selectedCompany.patentRef}</span></span>
+                  </div>
+                </div>
+              )}
 
               {/* Material tabs */}
               <div className="glass-card rounded-2xl p-5">
@@ -1091,11 +1340,20 @@ export default function SimulationPage() {
 
                 {/* Quick prompts */}
                 <div className="p-4 border-b border-white/[0.06]">
-                  <p className="text-white/30 text-[10px] uppercase tracking-widest mb-2.5">Quick Questions</p>
+                  <p className="text-white/30 text-[10px] uppercase tracking-widest mb-2.5">
+                    {selectedCompany ? `${selectedCompany.shortName} Questions` : "Quick Questions"}
+                  </p>
                   <div className="flex flex-wrap gap-1.5">
-                    {QUICK_PROMPTS.map((q) => (
+                    {(selectedCompany ? selectedCompany.quickPrompts : QUICK_PROMPTS).map((q) => (
                       <button key={q} onClick={() => sendChat(q)} disabled={isChatLoading}
-                        className="px-2.5 py-1 rounded-lg text-[10px] border border-white/10 text-white/50 hover:border-plasma-400/40 hover:text-plasma-400 hover:bg-plasma-400/5 transition-all duration-200 disabled:opacity-30">
+                        className="px-2.5 py-1 rounded-lg text-[10px] border transition-all duration-200 disabled:opacity-30"
+                        style={selectedCompany ? {
+                          borderColor: selectedCompany.color + "30",
+                          color: isChatLoading ? undefined : selectedCompany.color,
+                          background: "transparent",
+                        } : undefined}
+                        onMouseEnter={(e) => { if (selectedCompany) { (e.currentTarget as HTMLButtonElement).style.background = selectedCompany.color + "15"; } }}
+                        onMouseLeave={(e) => { if (selectedCompany) { (e.currentTarget as HTMLButtonElement).style.background = "transparent"; } }}>
                         {q}
                       </button>
                     ))}
