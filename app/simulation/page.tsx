@@ -336,7 +336,7 @@ function drawDevice3D(canvas: HTMLCanvasElement, params: SimParams, results: Sim
   ctx.fillText(`${params.material} LENR Cell`, lx, ly + 8);
   ctx.font = "8px system-ui";
   ctx.fillStyle = "rgba(255,255,255,0.35)";
-  ctx.fillText(results.hasReaction ? `${results.excessHeat}W · COP ${results.cop}×` : "Below threshold", lx, ly + 18);
+  ctx.fillText(results.hasReaction ? `${results.excessHeat}W excess heat` : "Below threshold", lx, ly + 18);
 
   // D loading bubbles
   if (params.loading > 0.4) {
@@ -600,7 +600,7 @@ const QUICK_PROMPTS = [
   "Fleischmann-Pons explained",
   "Quantum tunneling & LENR",
   "Pd vs Ni vs Ti comparison",
-  "What COP is commercially viable?",
+  "What excess heat level is commercially viable?",
   "Why is LENR controversial?",
 ];
 
@@ -698,7 +698,7 @@ export default function SimulationPage() {
     setResults(res);
     setHasRun(true);
     if (res.hasReaction) {
-      setLog((l) => [...l, `⚡ Threshold crossed! COP ${res.cop}× detected.`, `Excess heat: ${res.excessHeat}W sustained.`, `Lattice coherence: ${res.latticeCoherence}%`, "Simulation complete."]);
+      setLog((l) => [...l, `⚡ Threshold crossed! Excess heat detected.`, `Excess heat: ${res.excessHeat}W sustained.`, `Lattice coherence: ${res.latticeCoherence}%`, "Simulation complete."]);
     } else {
       setLog((l) => [...l, `Loading below threshold (need ≥${THRESHOLDS[params.material]}).`, "No excess heat detected.", "Try increasing D/H loading or current density."]);
     }
@@ -1022,7 +1022,7 @@ export default function SimulationPage() {
                 { label: "Current Density", val: "480 mA/cm²", color: "#2DD4BF" },
                 { label: "Lattice Coherence", val: "94%", color: "#A78BFA" },
                 { label: "Excess Heat", val: "78W", color: "#FB923C" },
-                { label: "COP Output", val: "4.2×", color: "#34D399" },
+                { label: "Reaction Events", val: "4.8M/hr", color: "#34D399" },
               ].map((step, i) => (
                 <div key={step.label} className="flex items-center gap-2">
                   <div className="text-center">
@@ -1057,9 +1057,9 @@ export default function SimulationPage() {
           {/* Stat cards */}
           <div className="grid sm:grid-cols-3 gap-4">
             {[
-              { val: "78W", label: "Avg Excess Heat", desc: "Energy produced above what was put in — the signature of a working LENR reaction.", color: "#FB923C" },
-              { val: "4.2×", label: "COP Ratio", desc: "Coefficient of Performance: for every 1W input, the system outputs 4.2W. Above 1× means net energy gain.", color: "#22D3EE" },
-              { val: "0.93", label: "D/Pd Ratio", desc: "Deuterium atoms loaded per Palladium atom in the lattice. Above 0.85 is considered \"deep loading\" — the sweet spot for reactions.", color: "#34D399" },
+              { val: "78W", label: "Avg Excess Heat", desc: "Energy produced above what was put in, the signature of a working LENR reaction.", color: "#FB923C" },
+              { val: "4.8M/hr", label: "Reaction Events", desc: "Estimated nuclear reaction events per hour inside the lattice. Higher numbers indicate a more active and sustained reaction.", color: "#22D3EE" },
+              { val: "0.93", label: "D/Pd Ratio", desc: "Deuterium atoms loaded per Palladium atom in the lattice. Above 0.85 is considered deep loading, the sweet spot for reactions.", color: "#34D399" },
             ].map((s) => (
               <div key={s.label} className="glass-card rounded-2xl p-5 border" style={{ borderColor: s.color + "20" }}>
                 <div className="text-3xl font-bold mb-1" style={{ color: s.color }}>{s.val}</div>
@@ -1160,10 +1160,10 @@ export default function SimulationPage() {
               {/* Output metrics */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {[
-                  { label: "COP Ratio", val: results.cop + "×", active: results.cop > 1, color: "#22D3EE" },
                   { label: "Excess Heat", val: results.excessHeat + "W", active: results.excessHeat > 0, color: "#FB923C" },
                   { label: "Reactions", val: results.reactionEvents + "×10⁶/hr", active: results.reactionEvents > 0, color: "#A78BFA" },
                   { label: "Coherence", val: results.latticeCoherence + "%", active: true, color: "#34D399" },
+                  { label: "Status", val: results.hasReaction ? "Active" : "Below threshold", active: results.hasReaction, color: "#22D3EE" },
                 ].map((m) => (
                   <div key={m.label} className="glass-card rounded-xl p-3.5 text-center border transition-all duration-500"
                     style={{ borderColor: m.active ? m.color + "30" : "rgba(255,255,255,0.05)" }}>
@@ -1262,7 +1262,7 @@ export default function SimulationPage() {
                       <rect x="270" y="175" width="120" height="50" rx="6" fill="rgba(34,211,238,0.05)" stroke="rgba(34,211,238,0.4)" strokeWidth="1" />
                       <text x="330" y="196" textAnchor="middle" fill="rgba(34,211,238,0.6)" fontSize="8" fontFamily="system-ui">Power Supply</text>
                       <text x="330" y="208" textAnchor="middle" fill="rgba(34,211,238,0.4)" fontSize="7" fontFamily="system-ui">{params.currentDensity} mA/cm²</text>
-                      <text x="330" y="219" textAnchor="middle" fill="rgba(34,211,238,0.4)" fontSize="7" fontFamily="system-ui">COP {results.cop}×</text>
+                      <text x="330" y="219" textAnchor="middle" fill="rgba(34,211,238,0.4)" fontSize="7" fontFamily="system-ui">{results.hasReaction ? results.excessHeat + "W output" : "Standby"}</text>
 
                       {/* Connections */}
                       <line x1="240" y1="140" x2="270" y2="120" stroke="rgba(251,146,60,0.3)" strokeWidth="1" strokeDasharray="3 2" />
