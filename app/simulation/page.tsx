@@ -75,12 +75,11 @@ const COMPANY_PRESETS: CompanyPreset[] = [
     keyTech: "LiAlH4 solid hydrogen source · E-Cat SK plasma arc",
     patentRef: "WO 2015/052683 · EP 3,159,890",
     claim: "Ni-H · LiAlH4 hydrogen source · 900–1400°C plasma arc mode",
-    description: "Andrea Rossi's E-Cat uses nickel powder infused with hydrogen from lithium-aluminum hydride (LiAlH4), heated under vacuum. The E-Cat SK operates in a self-sustaining plasma arc mode, a discharge intended to dramatically amplify the nuclear reaction rate. Independent verification of output results is ongoing.",
-    physics: "LiAlH4 decomposes at ~150°C releasing atomic hydrogen which loads into nanometer-scale nickel particle lattices under vacuum at 800–1200°C. Resonant phonon coupling drives proton-nickel interactions producing stable copper and zinc isotopes. The E-Cat SK plasma mode creates a self-sustaining arc where the plasma itself becomes the reaction medium, analogous to ball lightning, delivering orders of magnitude higher power density.",
+    description: "Leonardo Corporation's E-Cat NGU (New Generation Unit) is claimed to operate in fully self-sustaining mode, requiring no external energy input after startup. The company states 100% of output energy comes from the nuclear reaction itself, with losses only from energy transition. Leonardo claims a guaranteed COP of 27:1, meaning 27 times more energy out than in. These are company claims and have not been independently peer-reviewed.",
+    physics: "LiAlH4 decomposes at ~150°C releasing atomic hydrogen which loads into nanometer-scale nickel particle lattices under vacuum at 800–1200°C. Resonant phonon coupling drives proton-nickel interactions producing stable copper and zinc isotopes. In self-sustaining mode, Leonardo claims the plasma arc reaction becomes self-reinforcing, requiring no ongoing electrical input. If the self-sustaining claim holds, conventional COP becomes difficult to define as the denominator approaches zero. The company quotes 27:1 as their guaranteed output ratio.",
     params: { material: "Ni", loading: 0.86, temperature: 380, currentDensity: 175, pressure: 2, rfStimulus: 0, runTime: 168 },
-    quickPrompts: ["How does the E-Cat work?", "What is LiAlH4 in LENR?", "What is E-Cat SK plasma mode?", "What has independent testing shown about the E-Cat?"],
+    quickPrompts: ["What is the E-Cat NGU self-sustaining mode?", "What is LiAlH4 in LENR?", "What does COP 27:1 mean for the E-Cat?", "Why has the E-Cat not been independently verified?"],
   },
-  // verifiedCop intentionally omitted — no credible peer-reviewed independent verification published
   {
     id: "cleanplanet",
     name: "Clean Planet",
