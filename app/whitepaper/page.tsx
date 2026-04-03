@@ -12,7 +12,7 @@ const whitepapers = [
   {
     title: "Zero Point Energy: The Science Behind the New Fire",
     description:
-      "A comprehensive overview of Zero Point Energy, a quantum vacuum phenomenon that New Fire Energy is harnessing for clean, limitless power. Includes theoretical foundations, experimental results, and commercialization pathway.",
+      "A comprehensive overview of Zero Point Energy, the quantum vacuum phenomenon at the frontier of clean energy science. New Fire Energy is a private equity fund that identifies, evaluates, and backs the select companies whose patents, research, and laboratory results place them at the leading edge of ZPE and LENR commercialization. This paper covers the theoretical foundations, the connection between ZPE and Low Energy Nuclear Reactions, verified experimental results, and the commercialization pathway New Fire Energy supports.",
     tags: ["ZPE", "Quantum Physics", "Energy"],
     icon: Atom,
     color: "plasma",
