@@ -925,7 +925,7 @@ export default function SimulationPage() {
             <p className="text-white/50 max-w-2xl mx-auto leading-relaxed">
               Select any of the few pioneering companies below to load estimated parameters into the simulator.
               These figures are informed by published patents and conference presentations, but they are{" "}
-              <span className="text-white/70 font-medium">not</span> the true formulas — and should not be treated as such.
+              <span className="text-white/70 font-medium">not</span> the true formulas, and should not be treated as such.
               Each of these companies has conducted thousands of experiments over years, or in some cases decades,
               to arrive at their actual operating conditions. What you see here is an interactive approximation,
               intended to illustrate the different physics approaches each device uses. It is for educational exploration only.
@@ -1013,7 +1013,7 @@ export default function SimulationPage() {
                     border: `1px solid ${company.color}30`,
                   }}>
                   {selectedCompany?.id === company.id ? (
-                    <><span className="w-1.5 h-1.5 rounded-full animate-pulse inline-block" style={{ background: company.color }} /> Loaded — Scroll to Simulator</>
+                    <><span className="w-1.5 h-1.5 rounded-full animate-pulse inline-block" style={{ background: company.color }} /> Loaded. Scroll to Simulator</>
                   ) : (
                     <>Load into Simulator <ChevronRight className="w-3 h-3" /></>
                   )}
@@ -1067,7 +1067,7 @@ export default function SimulationPage() {
           <div className="grid lg:grid-cols-2 gap-6 mb-8">
             <div className="glass-card rounded-2xl p-4">
               <p className="text-white/40 text-xs uppercase tracking-widest mb-3 flex items-center gap-2">
-                <Atom className="w-3.5 h-3.5 text-plasma-400" /> Pd Lattice — Peak D Loading (animated)
+                <Atom className="w-3.5 h-3.5 text-plasma-400" /> Pd Lattice, Peak D Loading (animated)
               </p>
               <ShowcaseLattice />
             </div>
@@ -1244,7 +1244,7 @@ export default function SimulationPage() {
                       <Zap className="w-4 h-4 text-plasma-400" />
                     </div>
                     <div>
-                      <p className="text-white font-semibold text-sm">Your LENR Device — What It Looks Like</p>
+                      <p className="text-white font-semibold text-sm">Your LENR Device: What It Looks Like</p>
                       <p className="text-white/40 text-xs">Based on your simulation parameters</p>
                     </div>
                   </div>
@@ -1252,7 +1252,7 @@ export default function SimulationPage() {
                   {/* 3D Animated Device + SVG Schematic */}
                   <div className="mb-5 grid sm:grid-cols-2 gap-4">
                     <div className="bg-navy-900/80 rounded-xl p-3 border border-plasma-400/15">
-                      <p className="text-plasma-400/60 text-[10px] uppercase tracking-widest mb-2">3D Device View — Animated</p>
+                      <p className="text-plasma-400/60 text-[10px] uppercase tracking-widest mb-2">3D Device View, Animated</p>
                       <canvas ref={deviceCanvasRef} width={320} height={200} className="w-full rounded-lg" />
                     </div>
                     <div className="bg-navy-900/80 rounded-xl p-3 border border-white/[0.06]">
