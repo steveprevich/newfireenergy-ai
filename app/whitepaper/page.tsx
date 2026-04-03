@@ -12,7 +12,7 @@ const whitepapers = [
   {
     title: "Zero Point Energy: The Science Behind the New Fire",
     description:
-      "A comprehensive overview of Zero Point Energy, the quantum vacuum phenomenon at the frontier of clean energy science. New Fire Energy is a private equity fund that identifies, evaluates, and backs the select companies whose patents, research, and laboratory results place them at the leading edge of ZPE and LENR commercialization. This paper covers the theoretical foundations, the connection between ZPE and Low Energy Nuclear Reactions, verified experimental results, and the commercialization pathway New Fire Energy supports.",
+      "Zero Point Energy is the lowest possible energy state of a quantum system, the irreducible energy that remains in a vacuum even at absolute zero temperature. Predicted by quantum mechanics and supported by measurable phenomena such as the Casimir effect, ZPE represents an enormous untapped reservoir embedded in the fabric of space itself. Its connection to Low Energy Nuclear Reactions lies in the lattice environment: when hydrogen isotopes are loaded into a metal lattice at high density, the quantum fluctuations and phonon interactions of the lattice are theorized to couple with nuclear-scale events, lowering the energy barrier for fusion. This is the scientific bridge between ZPE theory and the excess heat confirmed by NASA, the U.S. Navy, and MIT in LENR experiments.",
     tags: ["ZPE", "Quantum Physics", "Energy"],
     icon: Atom,
     color: "plasma",
