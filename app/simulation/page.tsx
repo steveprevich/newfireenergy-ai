@@ -42,6 +42,8 @@ interface CompanyPreset {
   physics: string;
   params: SimParams;
   quickPrompts: string[];
+  verifiedCop?: number;
+  copSource?: string;
 }
 
 // ── Real-World Company Presets ──────────────────────────────────────────────
@@ -57,9 +59,11 @@ const COMPANY_PRESETS: CompanyPreset[] = [
     patentRef: "US 8,603,405 · US 9,540,960",
     claim: "Ni-H · Q-Pulse stimulation · 200–600°C operating range",
     description: "Brillouin uses precisely controlled Q-Pulse electrical stimulation to drive hydrogen nuclei into nickel lattice sites, triggering electron capture events that convert protons to neutrons, releasing energy without harmful radiation.",
-    physics: "The Q-Pulse fires nanosecond-scale high-voltage pulses through a hydrogen-loaded nickel rod. This drives Boson condensation of hydrogen in the lattice, enabling electron capture: p⁺ + e⁻ → n⁰ + neutrino. The resulting neutrons are absorbed by adjacent nickel nuclei, cascading to stable copper isotopes with net heat release. SRI International independently confirmed excess heat.",
+    physics: "The Q-Pulse fires nanosecond-scale high-voltage pulses through a hydrogen-loaded nickel rod. This drives Boson condensation of hydrogen in the lattice, enabling electron capture: p⁺ + e⁻ → n⁰ + neutrino. The resulting neutrons are absorbed by adjacent nickel nuclei, cascading to stable copper isotopes and releasing heat. SRI International independently confirmed excess heat.",
     params: { material: "Ni", loading: 0.79, temperature: 320, currentDensity: 450, pressure: 5, rfStimulus: 88, runTime: 120 },
     quickPrompts: ["What is Brillouin's Q-Pulse technology?", "Explain electron capture in LENR", "How does BECR differ from Pd-D?", "What has SRI confirmed about Brillouin?"],
+    verifiedCop: 1.6,
+    copSource: "SRI International independent test, 2017",
   },
   {
     id: "ecat",
@@ -76,6 +80,7 @@ const COMPANY_PRESETS: CompanyPreset[] = [
     params: { material: "Ni", loading: 0.86, temperature: 380, currentDensity: 175, pressure: 2, rfStimulus: 0, runTime: 168 },
     quickPrompts: ["How does the E-Cat work?", "What is LiAlH4 in LENR?", "What is E-Cat SK plasma mode?", "What has independent testing shown about the E-Cat?"],
   },
+  // verifiedCop intentionally omitted — no credible peer-reviewed independent verification published
   {
     id: "cleanplanet",
     name: "Clean Planet",
@@ -105,6 +110,8 @@ const COMPANY_PRESETS: CompanyPreset[] = [
     physics: "Eng8's process uses a catalyst to modify the local electromagnetic environment around hydrogen nuclei in water, reducing the coulomb repulsion that normally prevents fusion at low temperatures. This places their work within the broader LENR field while using catalyst chemistry, rather than a metal lattice alone, as the enabling mechanism. The two descriptions are complementary: LENR describes the class of phenomenon, catalyzed fusion describes how Eng8 believes they achieve it. Independent verification of their results is ongoing.",
     params: { material: "Ti", loading: 0.73, temperature: 180, currentDensity: 470, pressure: 4, rfStimulus: 65, runTime: 90 },
     quickPrompts: ["What is catalyzed fusion?", "How does Eng8's approach fit within LENR?", "What role does the catalyst play in Eng8's process?", "What did Eng8 present at Bergamo?"],
+    verifiedCop: 1.8,
+    copSource: "Independent validation, UK 2024",
   },
   {
     id: "prometeon",
@@ -141,9 +148,9 @@ const COMPANY_PRESETS: CompanyPreset[] = [
 // ── Physics Engine ─────────────────────────────────────────────────────────
 const THRESHOLDS: Record<string, number> = { Pd: 0.60, Ni: 0.70, Ti: 0.55 };
 const MATERIAL_PROPS: Record<string, { maxCop: number; heatScale: number; coherenceBase: number }> = {
-  Pd: { maxCop: 6.0, heatScale: 120, coherenceBase: 88 },
-  Ni: { maxCop: 4.5, heatScale: 90, coherenceBase: 82 },
-  Ti: { maxCop: 3.8, heatScale: 75, coherenceBase: 78 },
+  Pd: { maxCop: 2.5, heatScale: 120, coherenceBase: 88 },
+  Ni: { maxCop: 2.0, heatScale: 90, coherenceBase: 82 },
+  Ti: { maxCop: 1.9, heatScale: 75, coherenceBase: 78 },
 };
 
 function computeSimulation(p: SimParams): SimResults {
@@ -572,7 +579,7 @@ function ShowcaseLattice() {
       drawLattice(
         canvas,
         { material: "Pd", loading: 0.93, temperature: 85, currentDensity: 480, pressure: 10, rfStimulus: 0, runTime: 200 },
-        { cop: 4.2, excessHeat: 78, reactionEvents: 4.8, latticeCoherence: 94, hasReaction: true },
+        { cop: 1.8, excessHeat: 78, reactionEvents: 4.8, latticeCoherence: 94, hasReaction: true },
         true,
         frameRef.current
       );
@@ -589,7 +596,7 @@ function ShowcaseChart() {
   useEffect(() => {
     const canvas = ref.current;
     if (!canvas) return;
-    drawHeatChart(canvas, { cop: 4.2, excessHeat: 78, reactionEvents: 4.8, latticeCoherence: 94, hasReaction: true }, 200);
+    drawHeatChart(canvas, { cop: 1.8, excessHeat: 78, reactionEvents: 4.8, latticeCoherence: 94, hasReaction: true }, 200);
   }, []);
   return <canvas ref={ref} width={460} height={160} className="w-full rounded-xl" />;
 }
@@ -698,7 +705,7 @@ export default function SimulationPage() {
     setResults(res);
     setHasRun(true);
     if (res.hasReaction) {
-      setLog((l) => [...l, `⚡ Threshold crossed! Excess heat detected.`, `Excess heat: ${res.excessHeat}W sustained.`, `Lattice coherence: ${res.latticeCoherence}%`, "Simulation complete."]);
+      setLog((l) => [...l, `⚡ Threshold crossed! Excess heat detected.`, `Excess heat: ${res.excessHeat}W · COP ${res.cop.toFixed(1)} (${Math.round((res.cop - 1) * 100)}% more energy out than in)`, `Lattice coherence: ${res.latticeCoherence}%`, "Simulation complete."]);
     } else {
       setLog((l) => [...l, `Loading below threshold (need ≥${THRESHOLDS[params.material]}).`, "No excess heat detected.", "Try increasing D/H loading or current density."]);
     }
@@ -965,7 +972,7 @@ export default function SimulationPage() {
                 </p>
 
                 {/* Stats row */}
-                <div className="pl-4 flex flex-wrap gap-3 mb-4 text-[10px]">
+                <div className="pl-4 flex flex-wrap gap-3 mb-3 text-[10px]">
                   <div>
                     <span className="text-white/25 uppercase tracking-wide">Approach </span>
                     <span className="font-mono font-bold" style={{ color: company.color }}>{company.claim.split("·")[0].trim()}</span>
@@ -974,6 +981,23 @@ export default function SimulationPage() {
                     <span className="text-white/25 uppercase tracking-wide">Material </span>
                     <span className="font-mono font-bold text-white/60">{company.params.material}</span>
                   </div>
+                </div>
+
+                {/* Verified COP — decimal format with plain-English % */}
+                <div className="pl-4 mb-4">
+                  {company.verifiedCop ? (
+                    <div>
+                      <span className="text-white/25 text-[10px] uppercase tracking-wide">Verified COP </span>
+                      <span className="font-mono font-bold text-[11px]" style={{ color: company.color }}>{company.verifiedCop.toFixed(1)}</span>
+                      <span className="text-white/40 text-[10px]"> = {Math.round((company.verifiedCop - 1) * 100)}% more energy out than in</span>
+                      <div className="text-white/20 text-[9px] mt-0.5 italic">{company.copSource}</div>
+                    </div>
+                  ) : (
+                    <div>
+                      <span className="text-white/25 text-[10px] uppercase tracking-wide">Verified COP </span>
+                      <span className="text-white/30 text-[10px] italic">Independent verification not yet published</span>
+                    </div>
+                  )}
                 </div>
 
                 {/* Patent ref */}
@@ -1160,15 +1184,24 @@ export default function SimulationPage() {
               {/* Output metrics */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {[
-                  { label: "Excess Heat", val: results.excessHeat + "W", active: results.excessHeat > 0, color: "#FB923C" },
-                  { label: "Reactions", val: results.reactionEvents + "×10⁶/hr", active: results.reactionEvents > 0, color: "#A78BFA" },
-                  { label: "Coherence", val: results.latticeCoherence + "%", active: true, color: "#34D399" },
-                  { label: "Status", val: results.hasReaction ? "Active" : "Below threshold", active: results.hasReaction, color: "#22D3EE" },
+                  { label: "Excess Heat", val: results.excessHeat + "W", active: results.excessHeat > 0, color: "#FB923C", sub: null },
+                  { label: "Reactions", val: results.reactionEvents + "×10⁶/hr", active: results.reactionEvents > 0, color: "#A78BFA", sub: null },
+                  { label: "Coherence", val: results.latticeCoherence + "%", active: true, color: "#34D399", sub: null },
+                  {
+                    label: "COP",
+                    val: results.cop.toFixed(1),
+                    active: results.cop > 1,
+                    color: "#22D3EE",
+                    sub: results.cop > 1
+                      ? `${Math.round((results.cop - 1) * 100)}% more energy out than in`
+                      : "No gain above input",
+                  },
                 ].map((m) => (
                   <div key={m.label} className="glass-card rounded-xl p-3.5 text-center border transition-all duration-500"
                     style={{ borderColor: m.active ? m.color + "30" : "rgba(255,255,255,0.05)" }}>
                     <div className="text-lg font-bold font-mono" style={{ color: m.active ? m.color : "rgba(255,255,255,0.3)" }}>{m.val}</div>
                     <div className="text-white/40 text-[10px] mt-1">{m.label}</div>
+                    {m.sub && <div className="text-white/25 text-[9px] mt-1 leading-tight">{m.sub}</div>}
                   </div>
                 ))}
               </div>
