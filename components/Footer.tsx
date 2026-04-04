@@ -78,7 +78,7 @@ export default function Footer() {
               </a>
               <div className="flex items-start gap-2 text-white/30 text-xs">
                 <MapPin className="w-3.5 h-3.5 shrink-0 mt-0.5" />
-                <span>30 N. Gould St. Suite R<br />Casper, Wyoming 82609</span>
+                <span>30 N. Gould St. Suite R<br />Sheridan, Wyoming 82801</span>
               </div>
             </div>
 

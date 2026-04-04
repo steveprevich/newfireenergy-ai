@@ -267,7 +267,7 @@ export default function InvestorsPage() {
         </h2>
         <div style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 20, padding: "28px 32px" }}>
           <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.875rem", marginBottom: 16 }}>
-            Investing in early-stage companies involves significant risk. This is not a securities offering. Please consider the following:
+            Investing in early-stage companies involves significant risk. A formal securities offering under SEC Regulation D Rule 506(c) is in preparation. Investment inquiries are currently accepted from accredited investors only. Please consider the following:
           </p>
           <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 10 }}>
             {[
@@ -284,7 +284,7 @@ export default function InvestorsPage() {
             ))}
           </ul>
           <p style={{ color: "rgba(255,255,255,0.25)", fontSize: "0.72rem", marginTop: 20, paddingTop: 16, borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-            This page does not constitute a securities offering or solicitation. Investment opportunities are available only to accredited investors as defined by SEC Regulation D Rule 501.
+            A formal securities offering under SEC Regulation D Rule 506(c) is currently being prepared. This page does not constitute a completed securities offering or solicitation. Investment opportunities are available only to accredited investors as defined by SEC Regulation D Rule 501.
           </p>
         </div>
       </section>

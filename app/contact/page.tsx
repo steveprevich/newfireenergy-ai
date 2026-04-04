@@ -73,7 +73,7 @@ export default function ContactPage() {
                   icon: Building,
                   title: "Office",
                   detail: "30 N. Gould St. Suite R",
-                  sub: "Casper, Wyoming 82609",
+                  sub: "Sheridan, Wyoming 82801",
                 },
                 {
                   icon: User,
@@ -230,7 +230,7 @@ export default function ContactPage() {
                   >
                     Privacy Policy
                   </a>
-                  . This does not constitute a securities offering.
+                  . A formal securities offering under SEC Regulation D Rule 506(c) is in preparation. This form does not constitute a completed securities offering.
                 </p>
 
                 <button
