@@ -236,16 +236,16 @@ export default function InvestorsPage() {
       <section style={{ padding: "0 24px 80px", maxWidth: 1100, margin: "0 auto" }}>
         <div style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 20, padding: "40px 32px" }}>
           <div style={{ textAlign: "center", marginBottom: 32 }}>
-            <h2 style={{ color: "#fff", fontSize: "1.5rem", fontWeight: 700, marginBottom: 8 }}>Validated by the World&rsquo;s Leading Institutions</h2>
-            <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.875rem", margin: 0 }}>LENR is confirmed science, not speculation</p>
+            <h2 style={{ color: "#fff", fontSize: "1.5rem", fontWeight: 700, marginBottom: 8 }}>Published by the World&rsquo;s Leading Research Institutions</h2>
+            <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.875rem", margin: 0 }}>Studied and published by the world&rsquo;s leading research institutions</p>
           </div>
           <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 32 }}>
             {[
               { org: "NASA", detail: "Lattice Confinement Fusion research" },
               { org: "U.S. Dept. of Energy", detail: "LENR program review and funding" },
-              { org: "MIT", detail: "Cold fusion experiments confirmed" },
-              { org: "Google", detail: "$10M+ LENR research program" },
-              { org: "U.S. Navy", detail: "SPAWAR LENR research" },
+              { org: "MIT", detail: "Solid-state fusion mechanisms published (2024)" },
+              { org: "ENEA Italy", detail: "Excess heat and helium-4 findings" },
+              { org: "U.S. Navy", detail: "SPAWAR LENR nuclear signatures published" },
               { org: "Physical Review C", detail: "Independent scientific publications" },
             ].map((item) => (
               <div key={item.org} style={{ textAlign: "center" }}>
