@@ -109,8 +109,8 @@ const COMPANY_PRESETS: CompanyPreset[] = [
     physics: "Eng8's process uses a catalyst to modify the local electromagnetic environment around hydrogen nuclei in water, reducing the coulomb repulsion that normally prevents fusion at low temperatures. This places their work within the broader LENR field while using catalyst chemistry, rather than a metal lattice alone, as the enabling mechanism. The two descriptions are complementary: LENR describes the class of phenomenon, catalyzed fusion describes how Eng8 believes they achieve it. Independent verification of their results is ongoing.",
     params: { material: "Ti", loading: 0.73, temperature: 180, currentDensity: 470, pressure: 4, rfStimulus: 65, runTime: 90 },
     quickPrompts: ["What is catalyzed fusion?", "How does Eng8's approach fit within LENR?", "What role does the catalyst play in Eng8's process?", "What did Eng8 present at Bergamo?"],
-    verifiedCop: 3.0,
-    copSource: "Dr. Jean-Paul Biberian, independent validation, October 2024",
+    verifiedCop: 1.8,
+    copSource: "Dr. Robert Morgan, independent UK validation, 2020",
   },
   {
     id: "prometheus",
