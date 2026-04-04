@@ -12,7 +12,7 @@ const milestones = [
 ];
 
 const faqs = [
-  { q: "Is LENR independently validated?", a: "Yes. Excess heat and nuclear signatures in LENR experiments have been independently observed and published by research teams at the U.S. Navy SPAWAR, NASA Glenn Research Center, the U.S. Department of Energy, and MIT. While mainstream scientific consensus has not yet fully formed, the body of peer-reviewed evidence continues to grow and institutional interest has increased significantly since 2020." },
+  { q: "Is LENR independently validated?", a: "Yes. Excess heat and nuclear signatures in LENR experiments have been independently observed and published by research teams at the U.S. Navy SPAWAR, NASA Glenn Research Center, the U.S. Department of Energy, and MIT. While mainstream scientific consensus has not yet fully formed, the body of independent third-party physicist reviews continues to grow and institutional interest has increased significantly since 2020." },
   { q: "What is Zero Point Energy (ZPE)?", a: "ZPE is referenced by portfolio companies within the LENR umbrella such as ENG8 International. It describes energy derived from the quantum vacuum field. It is a theoretical framework explored by certain LENR portfolio companies such as ENG8 International, operating within the broader LENR investment umbrella." },
   { q: "How is LENR different from conventional nuclear fission?", a: "Fission splits heavy atoms (uranium, plutonium) producing radioactive waste and gamma radiation. LENR involves light hydrogen isotopes reacting in a metal lattice, producing primarily heat and helium-4 no harmful radiation, no long-lived waste." },
   { q: "What does COP mean?", a: "COP (Coefficient of Performance) is the ratio of energy out to energy in. A COP of 1.0 is break-even. A COP of 1.8 means 80% more energy out than in. ENG8 International recorded a COP of 1.8 in independent UK laboratory testing by Dr. Robert Morgan in 2020, with subsequent tests showing continued improvement and a commercial target of COP 5 or higher. These figures are company-reported and ongoing independent verification continues." },
@@ -82,7 +82,7 @@ export default function TechnologyPage() {
 
           <p style={{ fontSize: "clamp(1rem, 2.2vw, 1.25rem)", color: "rgba(255,255,255,0.65)",
             maxWidth: 620, margin: "0 auto 12px", lineHeight: 1.75, fontWeight: 300 }}>
-            Low Energy Nuclear Reactions, a field of nuclear science with a growing body of peer-reviewed evidence. Studied and published by NASA, the U.S. Navy, and the Department of Energy.
+            Low Energy Nuclear Reactions, a field of nuclear science with a growing body of independent third-party physicist reviews. Studied and published by NASA, the U.S. Navy, DOE, and MIT.
           </p>
           <p style={{ fontSize: "0.85rem", color: "rgba(0,184,230,0.55)", letterSpacing: "0.08em", fontWeight: 600 }}>
             Zero Carbon · Low Radiation Profile · Designed to Scale

@@ -112,7 +112,7 @@ export default function WhitepaperPage() {
           <p className="text-white/50 text-lg leading-relaxed">
             Low Energy Nuclear Reactions have been independently studied and published
             by NASA, the U.S. Navy, the Department of Energy, and MIT. While mainstream scientific
-            consensus is still forming, the peer-reviewed evidence base is growing. Zero Point Energy
+            consensus is still forming, and the body of independent third-party physicist reviews is growing. Zero Point Energy
             remains an active area of theoretical research. Explore our white papers and the global body
             of published work behind these technologies.
           </p>
