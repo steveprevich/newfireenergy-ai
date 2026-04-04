@@ -23,7 +23,7 @@ const boardMembers = [
     title: "Board Member, Technology & AI",
     photo: "https://newfireenergy.us/wp-content/uploads/2025/02/Sam-M.png",
     gradient: "from-teal-500 to-plasma-500",
-    bio: "Mr. Sam Massaquoi holds a Master of Science degree in Computer Science & Software Engineering from Pace University (NY) and is an inductee of the National Who's Who Registry and Biltmore's Who's Who Business Executives in America. He served as Vice President and Technical Lead at JP Morgan, the largest investment bank in the United States, where he was one of the lead architects for CoIN (Contract Intelligence), the firm's first-ever AI & Machine Learning software, garnering rave reviews from Bloomberg, Harvard Business Review, and the Wall Street Journal. He has also facilitated successful launches for American Express, JetBlue, ADP, Getty Images, Citi Private Bank, Google Zagat, and A&E Television Network.",
+    bio: "Mr. Sam Massaquoi holds a Master of Science degree in Computer Science & Software Engineering from Pace University (NY) and is an inductee of the National Who's Who Registry and Biltmore's Who's Who Business Executives in America. He served as Vice President and Technical Lead at JP Morgan, the largest investment bank in the United States, where he was one of the lead architects for CoIN (Contract Intelligence), the firm's first-ever AI & Machine Learning software, covered by Bloomberg, Harvard Business Review, and the Wall Street Journal. He has also facilitated successful launches for American Express, JetBlue, ADP, Getty Images, Citi Private Bank, Google Zagat, and A&E Television Network.",
     credentials: ["MS Computer Science, Pace University", "VP Technical Lead, JP Morgan", "CoIN AI Architect", "National Who's Who Registry"],
   },
   {
@@ -66,7 +66,7 @@ const advisors = [
     title: "Scientific Advisor, Physics",
     photo: "https://newfireenergy.us/wp-content/uploads/2021/09/PeterF.webp",
     gradient: "from-plasma-500 to-teal-400",
-    bio: "Mr. Peter Fiekowsky is an MIT-educated physicist with 27 patents, a serial entrepreneur, activist, and social innovator. He founded Silicon Valley software company Automated Visual Inspection in 1984, and later the Foundation for Climate Restoration (F4CR), the Methane Action Group, and the Methane Oxidation Corporation. He wrote the F4CR climate restoration and Healthy Sustainable Population white papers, the blueprint for keeping our planet hospitable for humanity. Over the last 8 years, Peter has worked closely with entrepreneurial and academic leaders to bring viable, scalable, and permanent climate solutions into operation.",
+    bio: "Mr. Peter Fiekowsky is an MIT-educated physicist with 27 patents, a serial entrepreneur, and clean energy advocate. He founded Silicon Valley software company Automated Visual Inspection in 1984, and later the Foundation for Climate Restoration (F4CR), the Methane Action Group, and the Methane Oxidation Corporation. His work focuses on scalable, science-backed solutions to global energy and climate challenges. Peter brings rigorous scientific thinking and a deep understanding of clean energy technology evaluation to New Fire Energy's advisory board.",
     credentials: ["MIT Physics", "27 Patents", "Founder, Foundation for Climate Restoration", "Silicon Valley Serial Entrepreneur"],
   },
 ];

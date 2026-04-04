@@ -21,7 +21,7 @@ const whitepapers = [
   {
     title: "LENR / Cold Fusion: 30 Years of Validation",
     description:
-      "Low Energy Nuclear Reactions, also known as Cold Fusion or Lattice Confinement Fusion, have been confirmed by decades of independent third-party research. This paper reviews the scientific validation from NASA, DOE, MIT, Google, and the U.S. Navy.",
+      "Low Energy Nuclear Reactions, also known as Cold Fusion or Lattice Confinement Fusion, have been studied by independent research teams for over 30 years. This paper reviews the published findings from NASA, the DOE, MIT, and the U.S. Navy, and the growing body of peer-reviewed evidence supporting the field.",
     tags: ["LENR", "Cold Fusion", "Third-Party Reviewed"],
     icon: Zap,
     color: "teal",
@@ -51,8 +51,8 @@ const externalResources = [
   {
     org: "NASA Glenn Research Center",
     title: "Lattice Confinement Fusion",
-    year: "2019",
-    description: "NASA researchers confirm nuclear fusion reactions in metal lattices at ambient temperatures.",
+    year: "2020",
+    description: "NASA Glenn Research Center publishes peer-reviewed findings in Physical Review C confirming nuclear fusion reactions in metal lattices at ambient temperatures via Lattice Confinement Fusion.",
     href: "https://www.nasa.gov/directorates/spacetech/strg/2020/lattice-confinement-fusion/",
   },
   {

@@ -7,7 +7,7 @@ export default function Home() {
     { value: "$100T", label: "Market Horizon", sub: "ZPE addresses the entire global energy market", accent: "#00B8E6" },
     { value: "100%", label: "Zero CO₂ Emissions", sub: "No carbon. No hazardous waste. Ever.", accent: "#2DD4BF" },
     { value: "24/7", label: "Continuous Output", sub: "Always-on, no grid or weather dependency", accent: "#00B8E6" },
-    { value: "0", label: "Harmful Radiation", sub: "Completely safe for life and environment", accent: "#2DD4BF" },
+    { value: "Low", label: "Radiation Profile", sub: "Helium-4 primary byproduct, not gamma rays or radioactive waste", accent: "#2DD4BF" },
     { value: "KW→MW", label: "Fully Scalable", sub: "Modular design, grid, off-grid, and mobile", accent: "#F97316" },
     { value: "30 Yrs", label: "In Development", sub: "Studied by NASA, DOE, MIT & U.S. Navy", accent: "#00B8E6" },
   ];

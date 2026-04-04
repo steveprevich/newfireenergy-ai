@@ -14,7 +14,7 @@ const highlights = [
     description:
       "When you account for all global energy infrastructure replacement, AI data center power demand, government subsidies, grid maintenance, fossil fuel debt, and the full cost of energy across retail, industrial, and municipal use worldwide, the total addressable disruption exceeds $100 trillion.",
     stat: "$100T",
-    statLabel: "Projected market shift",
+    statLabel: "Total energy ecosystem disruption",
   },
   {
     icon: TrendingUp,

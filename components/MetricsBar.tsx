@@ -37,7 +37,7 @@ const stats = [
   {
     value: "0",
     label: "Harmful Radiation",
-    sublabel: "Completely safe for life and the environment",
+    sublabel: "LENR experiments produce helium-4, not gamma rays or radioactive waste",
     icon: Zap,
     color: "from-teal-400 to-fire-400",
     iconColor: "text-teal-400",
