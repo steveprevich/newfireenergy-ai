@@ -56,11 +56,11 @@ const externalResources = [
     href: "https://www.nasa.gov/directorates/spacetech/strg/2020/lattice-confinement-fusion/",
   },
   {
-    org: "U.S. Department of Energy",
-    title: "DOE LENR Program Review",
+    org: "U.S. Dept. of Energy / ARPA-E",
+    title: "$10M in LENR Research Grants to Eight Institutions",
     year: "2023",
-    description: "The U.S. Department of Energy renewed scientific review of LENR research programs.",
-    href: "https://science.osti.gov/",
+    description: "On February 17, 2023, ARPA-E announced $10 million in federal funding across eight research institutions, including MIT, Stanford, Texas Tech, and the University of Michigan, to determine whether LENR could be the basis for a transformative carbon-free energy source.",
+    href: "https://arpa-e.energy.gov/news-and-events/news-and-insights/us-department-energy-announces-10-million-funding-projects-studying-low-energy-nuclear-reactions",
   },
   {
     org: "Google Research",
