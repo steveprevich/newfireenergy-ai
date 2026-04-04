@@ -87,7 +87,7 @@ export default function InvestorsPage() {
         <div style={{ background: "rgba(249,115,22,0.05)", border: "1px solid rgba(249,115,22,0.2)", borderRadius: 20, padding: "40px 48px", textAlign: "center" }}>
           <h2 style={{ color: "#fff", fontSize: "1.6rem", fontWeight: 700, marginBottom: 16 }}>Why Now?</h2>
           <p style={{ color: "rgba(255,255,255,0.6)", maxWidth: 700, margin: "0 auto", lineHeight: 1.8, fontSize: "1rem" }}>
-            A breakthrough 30 years in development is now at the commercialization inflection point. NASA, the U.S. Department of Energy, MIT, and Google have all confirmed the science. New Fire Energy is positioned to provide capital and strategic support to LENR companies advancing from laboratory discovery to commercial deployment through the LENR-backed token (NFE).
+            A breakthrough 30 years in development is now at the commercialization inflection point. NASA, the U.S. Department of Energy, MIT, and the U.S. Navy have all independently studied and published on the science. New Fire Energy is positioned to provide capital and strategic support to LENR companies advancing from laboratory discovery to commercial deployment through the LENR-backed token (NFE).
           </p>
         </div>
       </section>
@@ -100,21 +100,21 @@ export default function InvestorsPage() {
               icon: "🌍",
               color: "#22D3EE",
               title: "$100 Trillion Market Horizon",
-              body: "As LENR technologies transform traditional energy markets, analysts project a valuation surge creating entirely new industries, redefining energy and global trade. This is not incremental improvement; it is a complete paradigm shift.",
+              body: "When you account for all global energy infrastructure replacement, AI data center power demand, government subsidies, grid maintenance, and the full cost of energy across retail, industrial, and municipal use worldwide, the total addressable disruption exceeds $100 trillion. This is not incremental improvement; it is a complete paradigm shift.",
               stat: "$100T",
             },
             {
               icon: "🔬",
               color: "#2DD4BF",
               title: "30 Years of Independently Validated Science",
-              body: "LENR, also known as Cold Fusion or Lattice Confinement Fusion, has been independently validated by NASA, the U.S. Navy, DOE, MIT, Google, and Physical Review C. The science is established. We are now at the commercialization inflection point. Early investors will own a piece of history.",
+              body: "LENR, also known as Cold Fusion or Lattice Confinement Fusion, has been independently studied and published by NASA, the U.S. Navy, DOE, and MIT. The evidence base is growing and institutional funding has accelerated significantly since 2020. We are now at the commercialization inflection point.",
               stat: "Proven",
             },
             {
               icon: "⚡",
               color: "#F97316",
               title: "Decentralized Clean Energy",
-              body: "Energy that is abundant, nontoxic, and nearly free, available 24/7, disconnected from traditional power grids. LENR modules can run continuously, exporting kW to MW of clean power. Not just a vision; an impending reality.",
+              body: "Energy that is abundant, nontoxic, and nearly free, available 24/7, disconnected from traditional power grids. LENR modules are designed to run continuously. As the technology scales from current lab demonstrators toward commercial deployment, output targets range from kilowatts to megawatts.",
               stat: "24/7",
             },
           ].map((card) => (

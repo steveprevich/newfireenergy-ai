@@ -20,7 +20,7 @@ const features = [
     icon: Globe,
     title: "Decentralized Global Energy",
     description:
-      "Imagine energy that is abundant, nontoxic, and nearly free, available 24/7 and disconnected from traditional power grids. ZPE modules can run continuously, exporting kW to MW of clean DC power.",
+      "Imagine energy that is abundant, nontoxic, and nearly free, available 24/7 and disconnected from traditional power grids. LENR modules are designed to run continuously, exporting kW to MW of clean DC power.",
     color: "fire",
   },
   {

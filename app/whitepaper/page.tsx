@@ -197,12 +197,12 @@ export default function WhitepaperPage() {
           <div className="flex items-center gap-3 mb-8">
             <ExternalLink className="w-5 h-5 text-plasma-400" />
             <h2 className="font-display text-xl font-bold text-white">
-              Global Scientific Validation
+              Published Research &amp; Studies
             </h2>
           </div>
           <p className="text-white/45 text-sm mb-8 max-w-2xl">
             LENR and related technologies are not fringe science. The following independently reviewed
-            publications and institutional research confirm the phenomenon:
+            publications and institutional research support the field:
           </p>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">

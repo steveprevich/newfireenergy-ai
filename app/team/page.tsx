@@ -6,7 +6,7 @@ import { Mail } from "lucide-react";
 export const metadata: Metadata = {
   title: "Board of Directors",
   description:
-    "Meet the New Fire Energy board of directors: Wall Street veterans, Silicon Valley engineers, and global innovators united by one mission: to bring clean, limitless energy to the world.",
+    "Meet the New Fire Energy board of directors: Wall Street veterans, Silicon Valley engineers, and global innovators united by one mission: to bring clean, abundant energy to the world.",
 };
 
 const boardMembers = [

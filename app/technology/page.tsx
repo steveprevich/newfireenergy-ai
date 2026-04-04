@@ -85,7 +85,7 @@ export default function TechnologyPage() {
             Low Energy Nuclear Reactions, a field of nuclear science with a growing body of peer-reviewed evidence. Studied and published by NASA, the U.S. Navy, and the Department of Energy.
           </p>
           <p style={{ fontSize: "0.85rem", color: "rgba(0,184,230,0.55)", letterSpacing: "0.08em", fontWeight: 600 }}>
-            Zero Carbon · No Harmful Radiation · Scalable to MW
+            Zero Carbon · Low Radiation Profile · Designed to Scale
           </p>
         </div>
 
