@@ -61,7 +61,7 @@ export default function TechnologySection() {
         <div className="max-w-3xl mb-16">
           <div className="section-subtitle mb-4">The Science</div>
           <h2 className="section-title mb-6">
-            Why ZPE / LENR is the{" "}
+            Why LENR / ZPE is the{" "}
             <span className="gradient-text">Energy Breakthrough</span> the
             World Has Been Waiting For
           </h2>
@@ -117,7 +117,7 @@ export default function TechnologySection() {
             href="/technology"
             className="btn-secondary inline-flex group"
           >
-            Explore ZPE / LENR Science
+            Explore LENR / ZPE Science
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
           </Link>
         </div>

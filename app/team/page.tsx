@@ -47,7 +47,7 @@ const boardMembers = [
     title: "Board Member, Global Partnerships",
     photo: "https://newfireenergy.us/wp-content/uploads/2021/09/GeorgeM.webp",
     gradient: "from-teal-400 to-fire-400",
-    bio: "Mr. George Miller began his career in real estate in 1995 and quickly became an international public speaker, creator of \"Wealth Masters Live\" entrepreneur training courses. He has built thousands of relationships with family offices, prime ministers, financial leaders, UN delegates, and high-net-worth families globally. George has found his calling in creating an investment bank utilizing blockchain technologies, leveraging his vast global network to help accelerate the ZPE/LENR energy revolution.",
+    bio: "Mr. George Miller began his career in real estate in 1995 and quickly became an international public speaker, creator of \"Wealth Masters Live\" entrepreneur training courses. He has built thousands of relationships with family offices, prime ministers, financial leaders, UN delegates, and high-net-worth families globally. George has found his calling in creating an investment bank utilizing blockchain technologies, leveraging his vast global network to help accelerate the LENR/ZPE energy revolution.",
     credentials: ["Real Estate (1995–present)", "International Public Speaker", "Global Family Office Network", "Blockchain Investment Banking"],
   },
   {

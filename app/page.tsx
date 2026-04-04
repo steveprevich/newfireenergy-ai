@@ -186,7 +186,7 @@ export default function Home() {
             <a href="/technology" style={{ padding: "14px 32px", borderRadius: 10,
               background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.15)",
               color: "#fff", fontWeight: 600, fontSize: "1rem", textDecoration: "none" }}>
-              Discover ZPE / LENR
+              Discover LENR / ZPE
             </a>
           </div>
 

@@ -28,7 +28,7 @@ const whitepapers = [
     featured: true,
   },
   {
-    title: "Decentralized Energy: The ZPE/LENR Opportunity",
+    title: "Decentralized Energy: The LENR/ZPE Opportunity",
     description:
       "How LENR modules can run continuously, exporting kW to MW of clean DC power, disconnected from traditional power grids. This paper covers the technical specifications, scalability, and global deployment model.",
     tags: ["Decentralized", "Grid", "Scale"],
@@ -265,7 +265,7 @@ export default function WhitepaperPage() {
             </h2>
             <p className="text-white/50 mb-8 max-w-xl mx-auto">
               Request our full white paper library, or schedule a technical
-              briefing with our CEO Steve Previch to discuss the ZPE/LENR
+              briefing with our CEO Steve Previch to discuss the LENR/ZPE
               science and investment opportunity in detail.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">

@@ -113,7 +113,7 @@ export default function InvestorHighlights() {
             </h3>
             <p className="text-white/50 max-w-xl mx-auto text-sm mb-6">
               As companies gear up for commercialization, the chance to invest in this
-              groundbreaking ZPE/LENR technology is now. This is a limited-time window of opportunity.
+              groundbreaking LENR/ZPE technology is now. This is a limited-time window of opportunity.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link href="/investors" className="btn-fire">

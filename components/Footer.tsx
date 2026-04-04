@@ -5,7 +5,7 @@ import { Zap, Mail, Linkedin, Twitter, ArrowUpRight, MapPin, Phone } from "lucid
 const footerLinks = {
   Company: [
     { label: "Home", href: "/" },
-    { label: "ZPE / LENR", href: "/technology" },
+    { label: "LENR / ZPE", href: "/technology" },
     { label: "Board", href: "/team" },
     { label: "White Papers", href: "/whitepaper" },
     { label: "Contact Us", href: "/contact" },

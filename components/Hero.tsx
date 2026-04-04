@@ -108,7 +108,7 @@ export default function Hero() {
             href="/technology"
             className="btn-secondary text-base px-8 py-4 group"
           >
-            Discover ZPE / LENR
+            Discover LENR / ZPE
           </Link>
         </div>
 

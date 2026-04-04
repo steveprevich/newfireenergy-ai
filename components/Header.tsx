@@ -7,7 +7,7 @@ import { Menu, X, Zap } from "lucide-react";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/technology", label: "ZPE / LENR" },
+  { href: "/technology", label: "LENR / ZPE" },
   { href: "/whitepaper", label: "White Papers" },
   { href: "/team", label: "Board" },
   { href: "/simulation", label: "AI Simulation" },
