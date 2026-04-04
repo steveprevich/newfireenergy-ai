@@ -9,7 +9,7 @@ export default function Home() {
     { value: "24/7", label: "Continuous Output", sub: "Always-on, no grid or weather dependency", accent: "#00B8E6" },
     { value: "0", label: "Harmful Radiation", sub: "Completely safe for life and environment", accent: "#2DD4BF" },
     { value: "KW→MW", label: "Fully Scalable", sub: "Modular design, grid, off-grid, and mobile", accent: "#F97316" },
-    { value: "30 Yrs", label: "In Development", sub: "Confirmed by NASA, DOE, MIT & Google", accent: "#00B8E6" },
+    { value: "30 Yrs", label: "In Development", sub: "Studied by NASA, DOE, MIT & U.S. Navy", accent: "#00B8E6" },
   ];
 
   return (
@@ -281,10 +281,10 @@ export default function Home() {
           {/* Institutions */}
           <div style={{ marginTop: 48, textAlign: "center" }}>
             <p style={{ color: "rgba(255,255,255,0.2)", fontSize: "0.7rem", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 20 }}>
-              Confirmed by the world&apos;s leading institutions
+              Studied and published by the world&apos;s leading institutions
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "20px 40px" }}>
-              {["NASA", "U.S. Dept. of Energy", "MIT", "Google", "U.S. Navy", "Physical Review C"].map((org) => (
+              {["NASA", "U.S. Dept. of Energy", "MIT", "U.S. Navy", "ENEA Italy"].map((org) => (
                 <span key={org} style={{ color: "rgba(255,255,255,0.25)", fontWeight: 700, fontSize: "0.85rem", letterSpacing: "0.04em" }}>
                   {org}
                 </span>

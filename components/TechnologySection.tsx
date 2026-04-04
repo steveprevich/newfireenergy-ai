@@ -13,7 +13,7 @@ const features = [
     icon: Zap,
     title: "Low Energy Nuclear Reactions",
     description:
-      "LENR, also known as Cold Fusion or Lattice Confinement Fusion, releases virtually limitless energy on-demand using simple, inexpensive elements like Nickel. Confirmed by NASA, DOE, and MIT research.",
+      "LENR, also known as Cold Fusion or Lattice Confinement Fusion, produces excess heat from simple, inexpensive elements like Nickel. Because modules can be stacked and scaled, output can grow from watts to virtually any level needed. Studied and published by NASA, the U.S. Navy, DOE, and MIT.",
     color: "teal",
   },
   {
@@ -66,8 +66,8 @@ export default function TechnologySection() {
             World Has Been Waiting For
           </h2>
           <p className="text-white/50 text-lg leading-relaxed">
-            Low Energy Nuclear Reactions, confirmed by NASA, the U.S. Department of Energy,
-            MIT, and Google, represent a paradigm shift in energy production.
+            Low Energy Nuclear Reactions, studied and published by NASA, the U.S. Department of Energy,
+            MIT, and the U.S. Navy, represent a growing body of evidence for a paradigm shift in energy production.
             A technology 30 years in development is now ready for the world to have.
           </p>
         </div>
@@ -100,9 +100,9 @@ export default function TechnologySection() {
 
         {/* ZPE endorsement badges */}
         <div className="glass-card p-6 mb-10">
-          <p className="text-white/40 text-xs uppercase tracking-widest text-center mb-4">Validated & Endorsed By</p>
+          <p className="text-white/40 text-xs uppercase tracking-widest text-center mb-4">Research Published By</p>
           <div className="flex flex-wrap justify-center gap-6 text-white/60 text-sm font-medium">
-            {["NASA", "U.S. Dept. of Energy", "MIT", "Google", "U.S. Navy", "Physical Review C"].map((org) => (
+            {["NASA", "U.S. Dept. of Energy", "MIT", "U.S. Navy", "ENEA Italy"].map((org) => (
               <span key={org} className="flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-plasma-400/60" />
                 {org}

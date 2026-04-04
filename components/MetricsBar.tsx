@@ -57,7 +57,7 @@ const stats = [
   {
     value: "30 Yrs",
     label: "In Development",
-    sublabel: "Confirmed by NASA, DOE, MIT & Google",
+    sublabel: "Studied by NASA, DOE, MIT & U.S. Navy",
     icon: Atom,
     color: "from-plasma-400 to-teal-400",
     iconColor: "text-plasma-400",
@@ -129,7 +129,7 @@ export default function MetricsBar() {
               Ready for the New Energy Revolution?
             </p>
             <p className="text-white/45 text-sm">
-              Companies holding ZPE patents are pioneers and gatekeepers of a $100 trillion market.
+            When you account for all global energy infrastructure, AI data center power demand, government subsidies, grid maintenance, fossil fuel debt, and the full cost of energy across retail, industrial, and municipal use worldwide, the total addressable disruption exceeds $100 trillion.
             </p>
           </div>
           <div className="relative z-10 flex flex-col sm:flex-row gap-3 shrink-0">

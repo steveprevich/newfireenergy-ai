@@ -1,21 +1,21 @@
 "use client";
 
 const milestones = [
-  { year: "1909", title: "Excess Heat Discovered", desc: "Chemist Irving Langmuir discovers excess heat phenomena the earliest roots of LENR science." },
+  { year: "1926", title: "First Cold Fusion Claim", desc: "German chemists Friedrich Paneth and Kurt Peters publish the earliest documented scientific attempt at room-temperature hydrogen fusion using palladium, marking the beginning of the research lineage that would become LENR." },
   { year: "1989", title: "Cold Fusion Announced", desc: "Pons & Fleischmann announce cold fusion at University of Utah, igniting decades of global research." },
   { year: "2009", title: "U.S. Navy Confirms", desc: "U.S. Navy researchers publish independent confirmation of LENR excess heat and nuclear signatures." },
-  { year: "2015", title: "Google Research", desc: "Google launches major LENR research program collaborating with leading universities worldwide." },
+  { year: "2015", title: "Google Research Program", desc: "Google funds a multi-year, $10M+ LENR research program with leading universities. Results published in Nature in 2019 identified new experimental protocols and improved measurement methodology for future research." },
   { year: "2020", title: "NASA Lattice Confinement", desc: "NASA Glenn Research Center publishes Lattice Confinement Fusion results confirming the reaction mechanism." },
-  { year: "2023", title: "DOE ARPA-E Funding", desc: "U.S. Dept. of Energy awards $10M to LENR research projects mainstream recognition arrives." },
-  { year: "2024", title: "Andrea Rossi Demo", desc: "Leonardo Corp demonstrates the QLED Self-Sustaining Module live 24/7 on YouTube commercialization begins." },
+  { year: "2023", title: "DOE ARPA-E Funding", desc: "U.S. Dept. of Energy awards $10M across eight institutions including MIT, Stanford, and the University of Michigan to study whether LENR could be the basis for a transformative carbon-free energy source." },
+  { year: "2024", title: "Leonardo Corp Milestone", desc: "Andrea Rossi's Leonardo Corp reports continued development of the E-Cat NGU self-sustaining module, a significant company milestone in a 30-year research journey." },
   { year: "2025+", title: "Commercial Phase", desc: "E-Cat NGU and ENG8 EnergiCell preparing for distribution. New Fire Energy investing now." },
 ];
 
 const faqs = [
-  { q: "Is LENR independently validated?", a: "Yes. LENR has been confirmed by multiple independent research teams including the U.S. Navy, NASA, DOE, MIT, Google, and Physical Review C. Decades of independent third-party reviews confirm LENR excess heat production. The science is well-established." },
+  { q: "Is LENR independently validated?", a: "Yes. Excess heat and nuclear signatures in LENR experiments have been independently observed and published by research teams at the U.S. Navy SPAWAR, NASA Glenn Research Center, the U.S. Department of Energy, and MIT. While mainstream scientific consensus has not yet fully formed, the body of peer-reviewed evidence continues to grow and institutional interest has increased significantly since 2020." },
   { q: "What is Zero Point Energy (ZPE)?", a: "ZPE is referenced by portfolio companies within the LENR umbrella such as ENG8 International. It describes energy derived from the quantum vacuum field. It is a theoretical framework explored by certain LENR portfolio companies such as ENG8 International, operating within the broader LENR investment umbrella." },
   { q: "How is LENR different from conventional nuclear fission?", a: "Fission splits heavy atoms (uranium, plutonium) producing radioactive waste and gamma radiation. LENR involves light hydrogen isotopes reacting in a metal lattice, producing primarily heat and helium-4 no harmful radiation, no long-lived waste." },
-  { q: "What does COP mean?", a: "COP (Coefficient of Performance) is the ratio of energy out to energy in. ENG8's EnergiCell has demonstrated a CoP of up to 30 in laboratory conditions, targeting CoP 5–10 for the minimum viable product." },
+  { q: "What does COP mean?", a: "COP (Coefficient of Performance) is the ratio of energy out to energy in. A COP of 1.0 is break-even. A COP of 1.8 means 80% more energy out than in. ENG8 International has reported a COP of 1.8 in validated UK laboratory testing in 2024, with a commercial target of COP 5 or higher. These figures are company-reported and ongoing independent verification continues." },
   { q: "Why hasn't LENR been commercialized before?", a: "The primary challenge has been reproducibility. Early experiments were variable. Multiple companies (Andrea Rossi/Leonardo Corp, ENG8 International) have now achieved consistent, repeatable results and are entering the commercialization phase." },
 ];
 
@@ -65,7 +65,7 @@ export default function TechnologyPage() {
             fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase",
             color: "rgba(0,184,230,0.7)" }}>
             <span style={{ display: "inline-block", width: 32, height: 1, background: "rgba(0,184,230,0.4)" }} />
-            Independently Validated · 100+ Years in Development
+            Peer-Reviewed Research · 30+ Years of Development
             <span style={{ display: "inline-block", width: 32, height: 1, background: "rgba(0,184,230,0.4)" }} />
           </div>
 
@@ -82,7 +82,7 @@ export default function TechnologyPage() {
 
           <p style={{ fontSize: "clamp(1rem, 2.2vw, 1.25rem)", color: "rgba(255,255,255,0.65)",
             maxWidth: 620, margin: "0 auto 12px", lineHeight: 1.75, fontWeight: 300 }}>
-            Low Energy Nuclear Reactions, the independently validated science driving the next energy revolution. Confirmed by NASA, the U.S. Navy, DOE, and published in Physical Review C.
+            Low Energy Nuclear Reactions, a field of nuclear science with a growing body of peer-reviewed evidence. Studied and published by NASA, the U.S. Navy, and the Department of Energy.
           </p>
           <p style={{ fontSize: "0.85rem", color: "rgba(0,184,230,0.55)", letterSpacing: "0.08em", fontWeight: 600 }}>
             Zero Carbon · No Harmful Radiation · Scalable to MW
@@ -116,7 +116,7 @@ export default function TechnologyPage() {
               </span>
             </h2>
             <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "1.05rem", maxWidth: 720, margin: "0 auto", lineHeight: 1.8 }}>
-              Low Energy Nuclear Reactions (LENR) is a <strong style={{ color: "rgba(255,255,255,0.75)" }}>independently validated field of nuclear science</strong> in which nuclear-scale reactions occur at low input energies within a metal lattice producing abundant heat with negligible radiation and zero carbon emissions.
+              Low Energy Nuclear Reactions (LENR) is a <strong style={{ color: "rgba(255,255,255,0.75)" }}>peer-reviewed field of nuclear science</strong> in which nuclear-scale reactions are observed at low input energies within a metal lattice, producing heat with negligible radiation and zero carbon emissions. The evidence base is growing and institutional research funding has accelerated since 2020.
             </p>
           </div>
 
@@ -126,7 +126,7 @@ export default function TechnologyPage() {
               { icon: "⚛️", title: "Hydrogen Loading", desc: "Hydrogen isotopes are loaded into a specially prepared nickel or palladium metal lattice at elevated pressure and temperature." },
               { icon: "🔬", title: "Lattice Confinement", desc: "The crystal lattice confines hydrogen nuclei below the Bohr radius dramatically increasing quantum tunneling probability." },
               { icon: "⚡", title: "Nuclear Reaction", desc: "Hydrogen nuclei fuse with metal nuclei, releasing energy as phonons (heat) rather than dangerous gamma radiation." },
-              { icon: "📈", title: "Excess Heat Output", desc: "The system outputs significantly more thermal energy than the electrical input ENG8 demonstrated CoP up to 30." },
+              { icon: "📈", title: "Excess Heat Output", desc: "The system outputs more thermal energy than the electrical input. COP values of 1.5 to 1.8 have been reported in recent validated laboratory tests, with commercial targets of COP 5 and above." },
             ].map((c) => (
               <div key={c.title} style={{ background: "rgba(0,184,230,0.04)", border: "1px solid rgba(0,184,230,0.14)",
                 borderRadius: 16, padding: "28px 24px" }}>

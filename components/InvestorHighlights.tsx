@@ -12,7 +12,7 @@ const highlights = [
     icon: Globe,
     title: "$100 Trillion Market Horizon",
     description:
-      "As ZPE and LENR technologies disrupt traditional energy markets, analysts project a valuation surge creating entirely new industries, redefining energy and money in global trade.",
+      "When you account for all global energy infrastructure replacement, AI data center power demand, government subsidies, grid maintenance, fossil fuel debt, and the full cost of energy across retail, industrial, and municipal use worldwide, the total addressable disruption exceeds $100 trillion.",
     stat: "$100T",
     statLabel: "Projected market shift",
   },

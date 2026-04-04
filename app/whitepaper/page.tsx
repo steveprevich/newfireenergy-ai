@@ -63,11 +63,11 @@ const externalResources = [
     href: "https://arpa-e.energy.gov/news-and-events/news-and-insights/us-department-energy-announces-10-million-funding-projects-studying-low-energy-nuclear-reactions",
   },
   {
-    org: "Google Research",
-    title: "Revisiting the Cold Fusion Effect",
-    year: "2019",
-    description: "Google's $10M+ multi-year LENR research program results published in Nature.",
-    href: "https://www.nature.com/articles/s41586-019-1256-6",
+    org: "ICCF-24 Conference",
+    title: "International Conference on Condensed Matter Nuclear Science",
+    year: "2022",
+    description: "The 24th international LENR conference brought together researchers from NASA, MIT, leading universities, and independent labs to present the latest experimental results, reproducibility advances, and commercialization progress in LENR science.",
+    href: "https://iccf24.com",
   },
   {
     org: "Physical Review C",
@@ -110,10 +110,11 @@ export default function WhitepaperPage() {
             <span className="gradient-text">Scientific Research</span>
           </h1>
           <p className="text-white/50 text-lg leading-relaxed">
-            Low Energy Nuclear Reactions are well-established and independently validated
-            by NASA, the U.S. Navy, the Department of Energy, MIT, and Google. Zero Point Energy
-            remains an active area of theoretical and experimental research. Explore our white papers
-            and the global body of peer-reviewed work behind these technologies.
+            Low Energy Nuclear Reactions have been independently studied and published
+            by NASA, the U.S. Navy, the Department of Energy, and MIT. While mainstream scientific
+            consensus is still forming, the peer-reviewed evidence base is growing. Zero Point Energy
+            remains an active area of theoretical research. Explore our white papers and the global body
+            of published work behind these technologies.
           </p>
         </div>
 
@@ -237,13 +238,13 @@ export default function WhitepaperPage() {
         {/* Stats bar */}
         <div className="glass-card p-6 mb-20">
           <p className="text-white/40 text-xs uppercase tracking-widest text-center mb-6">
-            The Science is Settled
+            The Evidence is Growing
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
             {[
-              { value: "100+", label: "Years of Research", sub: "Independently Validated" },
-              { value: "30+", label: "Years of Research", sub: "Since Pons & Fleischmann" },
-              { value: "6", label: "Major Institutions", sub: "NASA, DOE, MIT, Google..." },
+              { value: "1989", label: "Year LENR Began", sub: "Pons & Fleischmann, University of Utah" },
+              { value: "30+", label: "Years of Research", sub: "Peer-reviewed studies worldwide" },
+              { value: "5+", label: "Major Institutions", sub: "NASA, DOE, MIT, U.S. Navy, ENEA" },
               { value: "100%", label: "Zero Emissions", sub: "No CO₂, no radiation" },
             ].map((stat) => (
               <div key={stat.label} className="text-center">
