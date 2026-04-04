@@ -84,11 +84,11 @@ const externalResources = [
     href: "https://spectrum.ieee.org/cold-fusion-or-low-energy-nuclear-reactions-us-navy-researchers-reopen-case",
   },
   {
-    org: "MIT Energy Initiative",
-    title: "Cold Fusion at MIT",
-    year: "2014",
-    description: "MIT researchers document reproducible LENR results and call for renewed scientific investigation.",
-    href: "https://energy.mit.edu/",
+    org: "MIT / New Journal of Physics",
+    title: "Known Mechanisms That Increase Nuclear Fusion Rates in the Solid State",
+    year: "2024",
+    description: "MIT physicist Peter Hagelstein and colleagues published a peer-reviewed study in New Journal of Physics identifying the specific physical mechanisms that enhance nuclear fusion rates inside metal lattices, directly supporting the theoretical foundation of LENR.",
+    href: "https://www.lenr-forum.com/forum/thread/7220-florian-metzler-camden-hunt-peter-l-hagelstein-and-nicola-galvanetto-known-mecha/",
   },
 ];
 
