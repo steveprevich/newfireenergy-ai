@@ -110,9 +110,10 @@ export default function WhitepaperPage() {
             <span className="gradient-text">Scientific Research</span>
           </h1>
           <p className="text-white/50 text-lg leading-relaxed">
-            The science behind Zero Point Energy and Low Energy Nuclear Reactions
-            is well-established and independently validated. Explore our white papers and
-            the global body of research confirming this breakthrough technology.
+            Low Energy Nuclear Reactions are well-established and independently validated
+            by NASA, the U.S. Navy, the Department of Energy, MIT, and Google. Zero Point Energy
+            remains an active area of theoretical and experimental research. Explore our white papers
+            and the global body of peer-reviewed work behind these technologies.
           </p>
         </div>
 
