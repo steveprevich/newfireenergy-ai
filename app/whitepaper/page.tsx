@@ -21,7 +21,7 @@ const whitepapers = [
   {
     title: "LENR / Cold Fusion: 30 Years of Validation",
     description:
-      "Low Energy Nuclear Reactions, also known as Cold Fusion or Lattice Confinement Fusion, have been studied by independent research teams for over 30 years. This paper reviews the published findings from NASA, the DOE, MIT, and the U.S. Navy, and the growing body of peer-reviewed evidence supporting the field.",
+      "Low Energy Nuclear Reactions, also known as Cold Fusion or Lattice Confinement Fusion, have been studied by independent research teams for over 30 years. This paper reviews the published findings from NASA, the DOE, MIT, and the U.S. Navy, and the growing body of independent third-party physicist reviews supporting the field.",
     tags: ["LENR", "Cold Fusion", "Third-Party Reviewed"],
     icon: Zap,
     color: "teal",
