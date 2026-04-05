@@ -3,7 +3,9 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const RECIPIENT = "steve@newfireenergy.com";
+// Using account email while newfireenergy.com domain verification completes
+// Switch back to "steve@newfireenergy.com" once Resend domain is verified
+const RECIPIENT = "steve@newfirecoin.com";
 
 const typeLabels: Record<string, string> = {
   investor:    "Investor Inquiry",
