@@ -118,7 +118,7 @@ export default function TechnologyPage() {
               </span>
             </h2>
             <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "1.05rem", maxWidth: 720, margin: "0 auto", lineHeight: 1.8 }}>
-              Low Energy Nuclear Reactions (LENR) is a <strong style={{ color: "rgba(255,255,255,0.75)" }}>peer-reviewed field of nuclear science</strong> in which nuclear-scale reactions are observed at low input energies within a metal lattice, producing heat with negligible radiation and zero carbon emissions. The evidence base is growing and institutional research funding has accelerated since 2020.
+              Low Energy Nuclear Reactions (LENR) is an <strong style={{ color: "rgba(255,255,255,0.75)" }}>independently reviewed field of nuclear science</strong> in which nuclear-scale reactions are observed at low input energies within a metal lattice, producing heat with negligible radiation and zero carbon emissions. The evidence base is growing and institutional research funding has accelerated since 2020.
             </p>
           </div>
 
