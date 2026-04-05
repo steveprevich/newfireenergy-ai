@@ -20,7 +20,7 @@ const contactTypes = [
 ];
 
 export default function ContactPage() {
-  const [status, setStatus] = useState<"idle" | "loading" | "success">("idle");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -40,8 +40,17 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("loading");
-    await new Promise((r) => setTimeout(r, 1000));
-    setStatus("success");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) throw new Error("Failed");
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    }
   };
 
   return (
@@ -131,6 +140,11 @@ export default function ContactPage() {
                   Thank you for reaching out. A member of our team will be in
                   touch within 24 hours.
                 </p>
+              </div>
+            ) : status === "error" ? (
+              <div className="text-center py-12">
+                <p className="text-red-400 mb-4">Something went wrong. Please email us directly at <a href="mailto:contact@newfireenergy.com" className="underline">contact@newfireenergy.com</a></p>
+                <button onClick={() => setStatus("idle")} className="text-white/50 text-sm underline">Try again</button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-5">
