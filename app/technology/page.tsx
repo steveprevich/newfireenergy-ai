@@ -146,7 +146,7 @@ export default function TechnologyPage() {
               ⚛️ A Note on Zero Point Energy (ZPE) and LENR
             </div>
             <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.9rem", lineHeight: 1.75, margin: 0 }}>
-              Zero Point Energy (ZPE) is a theoretical physics concept describing energy derived from the quantum vacuum field. It is distinct from LENR, which is the core science behind our portfolio companies. LENR portfolio companies such as ENG8 International operate under catalyzed fusion mechanisms, Brillouin Energy under controlled electron capture, and Clean Planet under condensed cluster nuclear reactions. ZPE remains an active area of theoretical research and is explored as the energy behind the LENR framework, separate from the independently reviewed LENR science that drives our investment thesis.
+              Zero Point Energy is the term used to describe the minimum residual energy present even in the vacuum state of space. Far from being a featureless void, the quantum vacuum is understood in modern physics as an active field environment, with fluctuations that give rise to observable effects such as the Casimir force. While the direct extraction of usable energy from the vacuum remains unproven, the scientific significance of zero point energy lies in what it reveals about the deeper structure of reality: that space itself is not inert, but alive with underlying activity. At New Fire Energy, we view this frontier with both scientific respect and long-term curiosity as part of the broader search for transformative energy breakthroughs.
             </p>
           </div>
         </div>
