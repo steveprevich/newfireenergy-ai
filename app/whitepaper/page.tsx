@@ -179,16 +179,16 @@ export default function WhitepaperPage() {
           </div>
         </div>
 
-        {/* ZPE Quote */}
+        {/* LENR Quote */}
         <div className="glass-card p-8 mb-20 border-plasma-400/20 bg-plasma-500/5 text-center">
           <p className="text-white/60 text-lg leading-relaxed italic max-w-3xl mx-auto">
-            &ldquo;In the quiet between atoms lives the oldest power in creation.
-            It needs no fuel. It casts no shadow.
-            It has filled the cosmos since before the first star was born.
-            Zero Point Energy is not new. We are.&rdquo;
+            &ldquo;The energy is in the lattice. It has always been there.
+            Three decades of independent research by NASA, the U.S. Navy, DOE, and MIT
+            point to the same conclusion: Low Energy Nuclear Reactions are real,
+            reproducible, and the most promising clean energy frontier of our time.&rdquo;
           </p>
           <p className="text-plasma-400/70 text-sm mt-4">
-            New Fire Energy ZPE White Paper
+            New Fire Energy — LENR Research Overview
           </p>
         </div>
 
