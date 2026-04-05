@@ -3,7 +3,7 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const RECIPIENT = "contact@newfireenergy.com";
+const RECIPIENT = "steve@newfirecoin.com";
 
 const typeLabels: Record<string, string> = {
   investor:    "Investor Inquiry",
