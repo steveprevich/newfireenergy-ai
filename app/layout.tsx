@@ -23,6 +23,7 @@ export const metadata: Metadata = {
 const navLinks = [
   { label: "Home",           href: "/" },
   { label: "LENR / ZPE",    href: "/technology" },
+  { label: "Portfolio",      href: "/portfolio" },
   { label: "LENR News",     href: "/news" },
   { label: "White Papers",  href: "/whitepaper" },
   { label: "Board",          href: "/team" },

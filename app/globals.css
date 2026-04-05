@@ -217,3 +217,26 @@ body {
   header nav { display: none !important; }
   header { padding: 0 16px !important; }
 }
+
+/* Scroll reveal */
+.sr-item {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease-out, transform 0.65s ease-out;
+}
+.sr-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.sr-left {
+  opacity: 0;
+  transform: translateX(-28px);
+  transition: opacity 0.65s ease-out, transform 0.65s ease-out;
+}
+.sr-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .sr-item, .sr-left { opacity: 1; transform: none; transition: none; }
+}

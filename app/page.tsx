@@ -2,6 +2,9 @@
 
 "use client";
 
+import QuantumFieldCanvas from "@/components/QuantumFieldCanvas";
+import OfferingProgressBar from "@/components/OfferingProgressBar";
+
 export default function Home() {
   const stats = [
     { value: "$100T", label: "Market Horizon", sub: "ZPE addresses the entire global energy market", accent: "#00B8E6" },
@@ -68,8 +71,11 @@ export default function Home() {
           background: "radial-gradient(circle, rgba(0,184,230,0.08) 0%, transparent 70%)",
           pointerEvents: "none" }} />
 
+        {/* Quantum particle field */}
+        <QuantumFieldCanvas />
+
         {/* Content — premium minimal */}
-        <div style={{ position: "relative", zIndex: 2, textAlign: "center", padding: "24px", maxWidth: "860px" }}>
+        <div style={{ position: "relative", zIndex: 3, textAlign: "center", padding: "24px", maxWidth: "860px" }}>
 
           {/* Small pre-title label */}
           <div style={{ display: "inline-flex", alignItems: "center", gap: 10, marginBottom: 28,
@@ -277,6 +283,9 @@ export default function Home() {
               </a>
             </div>
           </div>
+
+          {/* Offering Progress */}
+          <OfferingProgressBar raised={2400000} target={40400000} />
 
           {/* Institutions */}
           <div style={{ marginTop: 48, textAlign: "center" }}>

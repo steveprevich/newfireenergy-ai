@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import OfferingProgressBar from "@/components/OfferingProgressBar";
 
 export default function InvestorsPage() {
   return (
@@ -80,6 +81,11 @@ export default function InvestorsPage() {
           <div style={{ color: "rgba(255,255,255,0.35)", fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 8 }}>SCROLL</div>
           <div style={{ color: "rgba(255,255,255,0.3)", fontSize: "1.2rem" }}>↓</div>
         </div>
+      </section>
+
+      {/* Offering Progress */}
+      <section style={{ padding: "60px 24px 0", maxWidth: 1100, margin: "0 auto" }}>
+        <OfferingProgressBar raised={2400000} target={40400000} />
       </section>
 
       {/* WHY NOW */}
