@@ -143,10 +143,10 @@ export default function TechnologyPage() {
           <div style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(0,184,230,0.12)",
             borderRadius: 16, padding: "28px 32px", maxWidth: 800, margin: "0 auto" }}>
             <div style={{ color: "#7FD8F0", fontWeight: 700, fontSize: "0.9rem", marginBottom: 10 }}>
-              ⚛️ A Note on Zero Point Energy (ZPE)
+              ⚛️ A Note on Zero Point Energy (ZPE) and LENR
             </div>
             <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.9rem", lineHeight: 1.75, margin: 0 }}>
-              Zero Point Energy is referenced by certain portfolio companies within the LENR umbrella such as ENG8 International as a theoretical framework for energy derived from the quantum vacuum field. ZPE falls under the broader LENR investment thesis. New Fire Energy invests across the LENR ecosystem, which includes companies exploring ZPE, lattice confinement fusion, and catalyzed nuclear processes.
+              Zero Point Energy (ZPE) is a theoretical physics concept describing energy derived from the quantum vacuum field. It is distinct from LENR, which is the core science behind our portfolio companies. LENR portfolio companies such as ENG8 International operate under catalyzed fusion mechanisms, Brillouin Energy under controlled electron capture, and Clean Planet under condensed cluster nuclear reactions. ZPE remains an active area of theoretical research and is explored as a potential longer-term energy framework, separate from the independently reviewed LENR science that drives our investment thesis.
             </p>
           </div>
         </div>
