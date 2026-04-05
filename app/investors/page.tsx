@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import OfferingProgressBar from "@/components/OfferingProgressBar";
+
 
 export default function InvestorsPage() {
   return (
@@ -83,10 +83,6 @@ export default function InvestorsPage() {
         </div>
       </section>
 
-      {/* Offering Progress */}
-      <section style={{ padding: "60px 24px 0", maxWidth: 1100, margin: "0 auto" }}>
-        <OfferingProgressBar raised={2400000} target={40400000} />
-      </section>
 
       {/* WHY NOW */}
       <section style={{ padding: "80px 24px", maxWidth: 1100, margin: "0 auto" }}>

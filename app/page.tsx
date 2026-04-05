@@ -3,7 +3,7 @@
 "use client";
 
 import QuantumFieldCanvas from "@/components/QuantumFieldCanvas";
-import OfferingProgressBar from "@/components/OfferingProgressBar";
+
 
 export default function Home() {
   const stats = [
@@ -284,8 +284,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Offering Progress */}
-          <OfferingProgressBar raised={2400000} target={40400000} />
+
 
           {/* Institutions */}
           <div style={{ marginTop: 48, textAlign: "center" }}>
