@@ -82,7 +82,7 @@ export default function MetricsBar() {
             LENR · By the Numbers
           </div>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
-            Zero Point Energy:{" "}
+            LENR:{" "}
             <span className="gradient-text">Why It Changes Everything</span>
           </h2>
           <p className="text-white/45 text-lg max-w-2xl mx-auto">

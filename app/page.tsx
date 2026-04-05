@@ -225,7 +225,7 @@ export default function Home() {
               LENR · By the Numbers
             </div>
             <h2 style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)", fontWeight: 800, color: "#fff", margin: "0 0 16px", lineHeight: 1.2 }}>
-              Zero Point Energy:{" "}
+              LENR:{" "}
               <span style={{ background: "linear-gradient(90deg,#00B8E6,#2DD4BF)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
                 Why It Changes Everything
               </span>
