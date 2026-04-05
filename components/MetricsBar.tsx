@@ -79,7 +79,7 @@ export default function MetricsBar() {
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-plasma-500/10 border border-plasma-400/20 text-plasma-300 text-xs font-semibold tracking-widest uppercase mb-5">
             <span className="w-1.5 h-1.5 rounded-full bg-plasma-400 animate-pulse" />
-            The New Fire by the Numbers
+            LENR · By the Numbers
           </div>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
             Zero Point Energy:{" "}

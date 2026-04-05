@@ -58,7 +58,7 @@ export default function Hero() {
         {/* Badge */}
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-plasma-500/10 border border-plasma-400/20 text-plasma-300 text-sm font-medium mb-8">
           <span className="w-2 h-2 rounded-full bg-plasma-400 animate-pulse" />
-          Zero Point Energy · Zero Carbon Emissions
+          LENR · Decentralized · Zero Carbon · No Harmful Radiation
         </div>
 
         {/* Main headline */}

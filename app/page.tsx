@@ -144,7 +144,7 @@ export default function Home() {
             borderRadius: 999, border: "1px solid rgba(0,184,230,0.25)", background: "rgba(0,184,230,0.08)",
             color: "#7FD8F0", fontSize: "0.8rem", fontWeight: 600, letterSpacing: "0.05em", marginBottom: 28 }}>
             <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#00B8E6", display: "inline-block", animation: "pulse 2s infinite" }} />
-            Zero Point Energy · Zero Carbon Emissions
+            LENR · Decentralized · Zero Carbon · No Harmful Radiation
           </div>
 
           {/* Headlines */}
@@ -222,7 +222,7 @@ export default function Home() {
               color: "#7FD8F0", fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.1em",
               textTransform: "uppercase", marginBottom: 20 }}>
               <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#00B8E6", display: "inline-block" }} />
-              The New Fire by the Numbers
+              LENR · By the Numbers
             </div>
             <h2 style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)", fontWeight: 800, color: "#fff", margin: "0 0 16px", lineHeight: 1.2 }}>
               Zero Point Energy:{" "}
