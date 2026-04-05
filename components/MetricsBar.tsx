@@ -7,7 +7,7 @@ const stats = [
   {
     value: "$100T",
     label: "Market Horizon",
-    sublabel: "ZPE disrupts the entire global energy market",
+    sublabel: "LENR technology disrupts the entire global energy market",
     icon: Globe,
     color: "from-plasma-400 to-teal-400",
     iconColor: "text-plasma-400",

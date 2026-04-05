@@ -37,7 +37,7 @@ const highlights = [
     title: "Capital Efficient via Blockchain",
     description:
       "New Fire Energy uses smart contracts and blockchain technology to bridge lab demonstrators to commercialization, funding the companies poised to change the world.",
-    stat: "ZPE",
+    stat: "NFE",
     statLabel: "Token-backed funding",
   },
 ];

@@ -18,7 +18,7 @@ const footerLinks = {
     { label: "Schedule a Call", href: "/contact?type=investor" },
   ],
   Technology: [
-    { label: "ZPE Overview", href: "/technology" },
+    { label: "LENR Overview", href: "/technology" },
     { label: "LENR Science", href: "/technology#lenr" },
     { label: "White Papers", href: "/whitepaper" },
     { label: "Tech FAQ", href: "/technology#faq" },
@@ -57,7 +57,7 @@ export default function Footer() {
 
             <p className="text-white/50 text-sm leading-relaxed mb-5 max-w-xs">
               The Number One Company for the World&apos;s New Energy Revolution.
-              ZPE and LENR technology, clean, safe, and virtually limitless.
+              LENR technology, clean, safe, and zero carbon.
             </p>
 
             {/* Contact info */}

@@ -84,7 +84,7 @@ export default function TeamPage() {
           </h1>
           <p className="text-white/55 text-lg leading-relaxed">
             Wall Street veterans, Silicon Valley engineers, and global innovators
-            united by one mission: to bring Zero Point Energy to the world.
+            united by one mission: to bring clean, abundant LENR energy to the world.
           </p>
         </div>
 

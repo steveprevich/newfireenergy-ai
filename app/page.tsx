@@ -7,7 +7,7 @@ import QuantumFieldCanvas from "@/components/QuantumFieldCanvas";
 
 export default function Home() {
   const stats = [
-    { value: "$100T", label: "Market Horizon", sub: "ZPE addresses the entire global energy market", accent: "#00B8E6" },
+    { value: "$100T", label: "Market Horizon", sub: "LENR targets the entire global energy market", accent: "#00B8E6" },
     { value: "100%", label: "Zero CO₂ Emissions", sub: "No carbon. No hazardous waste. Ever.", accent: "#2DD4BF" },
     { value: "24/7", label: "Continuous Output", sub: "Always-on, no grid or weather dependency", accent: "#00B8E6" },
     { value: "Low", label: "Radiation Profile", sub: "Helium-4 primary byproduct, not gamma rays or radioactive waste", accent: "#2DD4BF" },
@@ -82,7 +82,7 @@ export default function Home() {
             fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase",
             color: "rgba(0,184,230,0.7)" }}>
             <span style={{ display: "inline-block", width: 32, height: 1, background: "rgba(0,184,230,0.4)" }} />
-            Zero Point Energy Technology
+            LENR Technology
             <span style={{ display: "inline-block", width: 32, height: 1, background: "rgba(0,184,230,0.4)" }} />
           </div>
 
@@ -267,7 +267,7 @@ export default function Home() {
                 Advancing the Future of Clean Energy
               </p>
               <p style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.9rem", margin: 0 }}>
-                Companies holding ZPE patents are pioneers of a $100 trillion market.
+                LENR companies are pioneers of a $100 trillion clean energy market.
               </p>
             </div>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
