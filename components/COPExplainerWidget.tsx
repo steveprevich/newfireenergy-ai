@@ -3,16 +3,26 @@ import { useState } from "react";
 
 const REFERENCES = [
   { cop: 1.0, label: "Break-even", note: "Energy in = Energy out", color: "rgba(255,255,255,0.3)" },
+  { cop: 1.05, label: "Minimum meaningful", note: "Threshold above calorimetry noise floor", color: "#FBBF24" },
   { cop: 1.6, label: "Brillouin Energy", note: "SRI International test, 2017", color: "#2DD4BF" },
-  { cop: 1.8, label: "ENG8 EnergiCell", note: "Dr. Robert Morgan, UK, 2020", color: "#00B8E6" },
+  { cop: 1.8, label: "ENG8 EnergiCell", note: "Dr. Robert Morgan, UK, 2020 (highest validated)", color: "#00B8E6" },
   { cop: 3.0, label: "Commercial target", note: "Industry benchmark for viability", color: "#60A5FA" },
 ];
+
+function getCopStatus(cop: number): { label: string; color: string; desc: string } {
+  if (cop < 1.05) return { label: "Below threshold", color: "#F97316", desc: "Within calorimetry noise — not considered meaningful" };
+  if (cop < 1.3)  return { label: "Marginal", color: "#FBBF24", desc: "Above noise floor — early-stage validation range" };
+  if (cop < 1.6)  return { label: "Promising", color: "#2DD4BF", desc: "Statistically significant excess heat production" };
+  if (cop <= 1.8) return { label: "Strong — Validated", color: "#00B8E6", desc: `ENG8 EnergiCell reached COP 1.8 — highest independently validated result` };
+  return { label: "Commercial range", color: "#60A5FA", desc: "Commercial viability threshold — target for next-generation devices" };
+}
 
 export default function COPExplainerWidget() {
   const [cop, setCop] = useState(1.8);
   const energyIn = 100;
   const energyOut = Math.round(cop * 100);
   const gain = Math.round((cop - 1) * 100);
+  const status = getCopStatus(cop);
   const outBarHeight = Math.min((cop / 4) * 100, 100);
   const inBarHeight = Math.min((1 / 4) * 100, 100);
 
@@ -30,10 +40,17 @@ export default function COPExplainerWidget() {
           Interactive · Coefficient of Performance
         </div>
         <div style={{ fontFamily: "var(--font-display, serif)", fontSize: "clamp(1.6rem, 4vw, 2.4rem)", color: "#fff", fontWeight: 700 }}>
-          COP = <span style={{ color: "#00B8E6" }}>{cop.toFixed(1)}</span>
+          COP = <span style={{ color: status.color }}>{cop.toFixed(1)}</span>
           <span style={{ fontSize: "1rem", color: "rgba(255,255,255,0.35)", marginLeft: 12, fontFamily: "sans-serif", fontWeight: 400 }}>
             {gain > 0 ? `+${gain}% more energy out than in` : "break-even"}
           </span>
+        </div>
+        <div style={{ display: "inline-flex", alignItems: "center", gap: 8, marginTop: 12,
+          padding: "6px 16px", borderRadius: 999,
+          background: `${status.color}18`, border: `1px solid ${status.color}44` }}>
+          <span style={{ width: 8, height: 8, borderRadius: "50%", background: status.color, display: "inline-block" }} />
+          <span style={{ color: status.color, fontWeight: 700, fontSize: "0.78rem", letterSpacing: "0.05em" }}>{status.label}</span>
+          <span style={{ color: "rgba(255,255,255,0.35)", fontSize: "0.75rem" }}>— {status.desc}</span>
         </div>
       </div>
 
@@ -79,6 +96,8 @@ export default function COPExplainerWidget() {
         />
         <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.7rem", color: "rgba(255,255,255,0.25)", marginTop: 4 }}>
           <span>COP 1.0 (break-even)</span>
+          <span style={{ color: "#FBBF24" }}>1.05 = min. meaningful</span>
+          <span style={{ color: "#00B8E6" }}>1.8 = ENG8 validated max</span>
           <span>COP 4.0</span>
         </div>
       </div>
