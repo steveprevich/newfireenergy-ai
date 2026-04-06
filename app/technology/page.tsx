@@ -1,6 +1,5 @@
 "use client";
 
-import COPExplainerWidget from "@/components/COPExplainerWidget";
 
 const milestones = [
   { year: "1926", title: "First Cold Fusion Claim", desc: "German chemists Friedrich Paneth and Kurt Peters publish the earliest documented scientific attempt at room-temperature hydrogen fusion using palladium, marking the beginning of the research lineage that would become LENR." },
@@ -190,30 +189,6 @@ export default function TechnologyPage() {
         </div>
       </section>
 
-      {/* ── COP EXPLAINER ── */}
-      <section style={{ padding: "80px 24px", background: "#060E1F", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
-        <div style={{ maxWidth: 900, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 40 }}>
-            <div style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "5px 16px",
-              borderRadius: 999, border: "1px solid rgba(0,184,230,0.2)", background: "rgba(0,184,230,0.07)",
-              color: "#7FD8F0", fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.1em",
-              textTransform: "uppercase", marginBottom: 20 }}>
-              <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#00B8E6", display: "inline-block" }} />
-              Interactive Tool
-            </div>
-            <h2 style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.6rem)", fontWeight: 800, color: "#fff", margin: "0 0 12px" }}>
-              What Does{" "}
-              <span style={{ background: "linear-gradient(90deg,#00B8E6,#2DD4BF)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
-                COP Mean?
-              </span>
-            </h2>
-            <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.95rem", maxWidth: 560, margin: "0 auto" }}>
-              Drag the slider to explore the Coefficient of Performance at different values verified by independent physicists.
-            </p>
-          </div>
-          <COPExplainerWidget />
-        </div>
-      </section>
 
       {/* ── FAQs ── */}
       <section style={{ padding: "80px 24px", background: "linear-gradient(180deg,#060E1F,#0A1628)", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
