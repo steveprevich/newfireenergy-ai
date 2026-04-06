@@ -87,8 +87,8 @@ export default function Home() {
           </div>
 
           {/* Main title — gradient + glow */}
-          <h1 style={{ fontSize: "clamp(3.2rem, 10vw, 7.5rem)", fontWeight: 900, margin: "0 0 6px",
-            lineHeight: 1.0, letterSpacing: "-0.03em",
+          <h1 style={{ fontSize: "clamp(3rem, 9vw, 6.5rem)", fontWeight: 900, margin: "0 0 6px",
+            lineHeight: 1.1, letterSpacing: "-0.03em",
             background: "linear-gradient(135deg, #ffffff 30%, #7FD8F0 70%, #00B8E6 100%)",
             WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
             textShadow: "none",
