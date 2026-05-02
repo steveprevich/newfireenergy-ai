@@ -75,7 +75,7 @@ const COMPANY_PRESETS: CompanyPreset[] = [
     keyTech: "LiAlH4 solid hydrogen source · E-Cat SK plasma arc",
     patentRef: "WO 2015/052683 · EP 3,159,890",
     claim: "Ni-H · LiAlH4 hydrogen source · 900–1400°C plasma arc mode",
-    description: "Leonardo Corporation's E-Cat NGU (New Generation Unit) is described by the company as operating in fully self-sustaining mode, requiring no external energy input after startup. Leonardo has publicly stated that the E-Cat NGU is in a commercialization phase, with reports of industrial partner testing and stated intent to begin commercial unit deliveries. These statements reflect the company's public position and have not been independently verified or peer-reviewed. The company quotes a stated COP of 27:1; this and other performance figures remain subject to independent confirmation. Forward-looking commercialization timelines are uncertain and subject to risk.",
+    description: "Leonardo Corporation's E-Cat NGU (New Generation Unit) is described by the company as operating in fully self-sustaining mode, requiring no external energy input after startup. The company quotes a stated COP of 27:1; this and other performance figures remain subject to independent confirmation. Leonardo has publicly reported that E-Cat NGU commercial deliveries began in January 2026, focused on megawatt-scale industrial installations, with pre-orders for 1 MW units reportedly active. These statements reflect Leonardo Corporation's public position and have not been independently verified or peer-reviewed. Forward-looking commercialization timelines, performance, and contractual details are uncertain and subject to risk.",
     physics: "LiAlH4 decomposes at ~150°C releasing atomic hydrogen which loads into nanometer-scale nickel particle lattices under vacuum at 800–1200°C. Resonant phonon coupling drives proton-nickel interactions producing stable copper and zinc isotopes. In self-sustaining mode, Leonardo claims the plasma arc reaction becomes self-reinforcing, requiring no ongoing electrical input. If the self-sustaining claim holds, conventional COP becomes difficult to define as the denominator approaches zero. The company quotes 27:1 as their guaranteed output ratio.",
     params: { material: "Ni", loading: 0.86, temperature: 380, currentDensity: 175, pressure: 2, rfStimulus: 0, runTime: 168 },
     quickPrompts: ["What is the E-Cat NGU self-sustaining mode?", "What is LiAlH4 in LENR?", "What does COP 27:1 mean for the E-Cat?", "Why has the E-Cat not been independently verified?"],
@@ -90,7 +90,7 @@ const COMPANY_PRESETS: CompanyPreset[] = [
     keyTech: "Nano-composite catalyst · Tohoku University collaboration",
     patentRef: "JP 2020-034531 · PCT/JP2020/000123",
     claim: "Nano-Ni · quantum hydrogen confinement · 200–350°C · industrial boiler demonstrated",
-    description: "Clean Planet, partnered with Tohoku University's Prof. Yasuhiro Iwamura, uses nano-structured nickel composites where quantum confinement of hydrogen in nano-pores is reported to enhance reaction rates. The company has publicly stated that it is in a commercialization phase, advancing from its reported 2023 industrial-heat demonstration toward commercial industrial-heat products. These statements reflect the company's public position and have not been independently audited. Forward-looking commercialization timelines are uncertain and subject to risk.",
+    description: "Clean Planet, partnered with Tohoku University's Prof. Yasuhiro Iwamura, uses nano-structured nickel composites where quantum confinement of hydrogen in nano-pores is reported to enhance reaction rates. In April 2025, Clean Planet was publicly awarded a ¥1 billion grant under the Tokyo Metropolitan Government's Zero Emission Tokyo program. In January 2026, Clean Planet publicly stated that it secured approximately ¥500 million in strategic equity investment, characterizing the milestone as a transition from R&D to full-scale commercialization. The company has also disclosed a pilot industrial-boiler partnership with Miura Co., Ltd. (Japan's largest industrial-heater manufacturer). These statements reflect the company's public position and have not been independently audited. Forward-looking commercialization timelines are uncertain and subject to risk.",
     physics: "Hydrogen atoms confined in nanometer-scale nickel pores experience quantum zero-point energy effects that increase their tunneling probability and phonon-nuclear coupling rate. This quantum hydrogen mechanism, theorized by Hagelstein at MIT, enables coherent nuclear transitions driven by lattice phonon oscillations. The nano-structure provides enormous surface area and confinement sites, making the reaction far more reproducible than bulk Pd-D systems.",
     params: { material: "Ni", loading: 0.83, temperature: 250, currentDensity: 310, pressure: 10, rfStimulus: 42, runTime: 160 },
     quickPrompts: ["What is quantum hydrogen confinement?", "How does nano-structuring amplify LENR?", "Clean Planet industrial boiler demo", "Coherent phonon-nuclear coupling explained"],
@@ -105,7 +105,7 @@ const COMPANY_PRESETS: CompanyPreset[] = [
     keyTech: "Proprietary catalyst lowers fusion energy barrier in water-based system",
     patentRef: "UK App. GB2019/052341 · EU App. EP3,975,181",
     claim: "LENR via catalyzed fusion · water-based · presented at Bergamo 2024",
-    description: "Eng8 Energy operates in the LENR field and describes their specific approach as catalyzed fusion. Using a proprietary catalyst in a water-based system, they aim to lower the energy barrier required for hydrogen fusion to occur at low temperatures, without the extreme conditions of conventional hot fusion. Eng8 has publicly stated that it is in a commercialization phase, with industrial trials underway and stated progression toward commercial deployment of their EnergiCell platform. They presented results at the European LENR conference in Bergamo. These statements reflect the company's public position and independent verification of their results is ongoing. Forward-looking commercialization timelines are uncertain and subject to risk.",
+    description: "Eng8 Energy operates in the LENR field and describes their specific approach as catalyzed fusion. Using a proprietary catalyst in a water-based system, they aim to lower the energy barrier required for hydrogen fusion to occur at low temperatures, without the extreme conditions of conventional hot fusion. They presented results at the European LENR conference in Bergamo. In a March 2026 press release, Eng8 publicly stated it is advancing its EnergiCell platform from laboratory validation (TRL 4) to industrial prototyping (TRL 7), with first commercial thermal energy deliveries targeted for 2026. These statements reflect the company's public position and independent verification of their results is ongoing. Forward-looking commercialization timelines are uncertain and subject to risk.",
     physics: "Eng8's process uses a catalyst to modify the local electromagnetic environment around hydrogen nuclei in water, reducing the coulomb repulsion that normally prevents fusion at low temperatures. This places their work within the broader LENR field while using catalyst chemistry, rather than a metal lattice alone, as the enabling mechanism. The two descriptions are complementary: LENR describes the class of phenomenon, catalyzed fusion describes how Eng8 believes they achieve it. Independent verification of their results is ongoing.",
     params: { material: "Ti", loading: 0.73, temperature: 180, currentDensity: 470, pressure: 4, rfStimulus: 65, runTime: 90 },
     quickPrompts: ["What is catalyzed fusion?", "How does Eng8's approach fit within LENR?", "What role does the catalyst play in Eng8's process?", "What did Eng8 present at Bergamo?"],
@@ -1007,6 +1007,36 @@ export default function SimulationPage() {
               to arrive at their actual operating conditions. What you see here is an interactive approximation,
               intended to illustrate the different physics approaches each device uses. It is for educational exploration only.
             </p>
+          </div>
+
+          {/* 2026 Commercialization Announcement Banner */}
+          <div className="max-w-4xl mx-auto mb-10 rounded-2xl border border-plasma-400/20 bg-plasma-500/[0.04] p-6">
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-plasma-400/10 border border-plasma-400/30 flex items-center justify-center">
+                <span className="text-plasma-400 text-sm font-bold">2026</span>
+              </div>
+              <div className="flex-1">
+                <p className="text-plasma-400 text-[10px] font-semibold tracking-widest uppercase mb-2">Public Commercialization Announcements</p>
+                <h3 className="text-white text-lg font-semibold mb-2">Three Featured Companies Have Publicly Stated They Are Entering or Executing a Commercialization Phase</h3>
+                <p className="text-white/55 text-sm leading-relaxed mb-3">
+                  Per their own public statements, <span className="text-white/80 font-medium">Leonardo Corporation (E-Cat NGU)</span>,{" "}
+                  <span className="text-white/80 font-medium">Clean Planet</span>, and{" "}
+                  <span className="text-white/80 font-medium">Eng8 Energy</span> have each disclosed
+                  commercialization-phase milestones in 2025–2026, including reported industrial deliveries, strategic
+                  investment milestones, and TRL advancement to industrial prototyping. Specific details for each company
+                  are described in the cards below.
+                </p>
+                <p className="text-white/35 text-xs leading-relaxed italic">
+                  These are statements made publicly by each company. New Fire Energy has not independently verified
+                  the technical performance, deployment status, or contractual details associated with any of these
+                  announcements. Forward-looking commercialization claims involve material risks and uncertainties;
+                  actual outcomes may differ. Nothing on this page constitutes investment advice or a solicitation to
+                  buy any security. New Fire Energy securities are offered only to verified accredited investors
+                  pursuant to Rule 506(c) under the Securities Act of 1933 and only via the company&rsquo;s
+                  confidential offering documents.
+                </p>
+              </div>
+            </div>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
