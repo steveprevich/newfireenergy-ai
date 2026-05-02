@@ -184,13 +184,23 @@ function computeSimulation(p: SimParams): SimResults {
 }
 
 // ── Voice helpers ──────────────────────────────────────────────────────────
+// Robust against:
+//  (1) Chrome cancel()-then-speak() race condition that silently drops utterances
+//  (2) Chrome ~15s speechSynthesis freeze on long utterances (keep-alive pause/resume)
+//  (3) Voices not yet loaded on first call (async voiceschanged event)
+//  (4) Stuck UI state when speak fails or errors (onerror also fires onEnd)
 function speakText(text: string, onEnd?: () => void) {
   if (typeof window === "undefined" || !window.speechSynthesis) return;
-  window.speechSynthesis.cancel();
-  const utt = new SpeechSynthesisUtterance(text);
-  // Wait for voices to load (Chrome async)
-  const trySpeak = () => {
-    const voices = window.speechSynthesis.getVoices();
+  if (!text || !text.trim()) { onEnd?.(); return; }
+
+  const synth = window.speechSynthesis;
+
+  // Cancel any in-progress speech first.
+  synth.cancel();
+
+  const doSpeak = () => {
+    const utt = new SpeechSynthesisUtterance(text);
+    const voices = synth.getVoices();
     const voice =
       voices.find((v) => v.name.includes("Google UK English Female")) ||
       voices.find((v) => v.name.includes("Microsoft Libby")) ||
@@ -202,14 +212,43 @@ function speakText(text: string, onEnd?: () => void) {
     utt.rate = 0.93;
     utt.pitch = 1.05;
     utt.volume = 1;
-    if (onEnd) utt.onend = onEnd;
-    window.speechSynthesis.speak(utt);
+
+    // Chrome bug workaround: speechSynthesis freezes mid-utterance after ~15s.
+    // A periodic pause/resume keeps the synthesis engine alive.
+    const keepAlive = window.setInterval(() => {
+      if (!synth.speaking && !synth.pending) {
+        window.clearInterval(keepAlive);
+        return;
+      }
+      synth.pause();
+      synth.resume();
+    }, 14000);
+
+    const cleanup = () => {
+      window.clearInterval(keepAlive);
+      onEnd?.();
+    };
+    utt.onend = cleanup;
+    utt.onerror = cleanup;
+
+    // If the synth was previously paused (Chrome quirk), resume it before queuing.
+    if (synth.paused) synth.resume();
+
+    synth.speak(utt);
   };
-  if (window.speechSynthesis.getVoices().length) {
-    trySpeak();
-  } else {
-    window.speechSynthesis.onvoiceschanged = trySpeak;
-  }
+
+  const whenVoicesReady = (cb: () => void) => {
+    if (synth.getVoices().length > 0) { cb(); return; }
+    const handler = () => {
+      synth.removeEventListener("voiceschanged", handler);
+      cb();
+    };
+    synth.addEventListener("voiceschanged", handler);
+  };
+
+  // Small delay after cancel() lets the synth queue clear before a new speak()
+  // — this is the fix for the "speak silently dropped" Chrome bug.
+  whenVoicesReady(() => window.setTimeout(doSpeak, 80));
 }
 
 // ── Voice Waveform SVG ────────────────────────────────────────────────────
@@ -726,15 +765,34 @@ export default function SimulationPage() {
         body: JSON.stringify({ messages: newHistory }),
       });
       const data = await resp.json();
-      if (data.text) {
+      if (!resp.ok || data.error) {
+        const errMsg: ChatMessage = {
+          role: "assistant",
+          content: `⚠️ Chat unavailable. ${data.error || `HTTP ${resp.status}`}. Please verify the ANTHROPIC_API_KEY environment variable is set in AWS Amplify and the deployment has been rebuilt.`,
+        };
+        setChatMessages((m) => [...m, errMsg]);
+      } else if (data.text) {
         const aiMsg: ChatMessage = { role: "assistant", content: data.text };
         setChatMessages((m) => [...m, aiMsg]);
         if (voiceEnabled) {
           setIsSpeaking(true);
           speakText(data.text, () => setIsSpeaking(false));
         }
+      } else {
+        const errMsg: ChatMessage = {
+          role: "assistant",
+          content: "⚠️ Empty response from chat service. Please try again.",
+        };
+        setChatMessages((m) => [...m, errMsg]);
       }
-    } catch (e) { void e; }
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : String(e);
+      const errMsg: ChatMessage = {
+        role: "assistant",
+        content: `⚠️ Network error reaching chat service: ${msg}`,
+      };
+      setChatMessages((m) => [...m, errMsg]);
+    }
     setIsChatLoading(false);
 
     // Generate device description
@@ -801,15 +859,34 @@ export default function SimulationPage() {
         body: JSON.stringify({ messages: newHistory }),
       });
       const data = await resp.json();
-      if (data.text) {
+      if (!resp.ok || data.error) {
+        const errMsg: ChatMessage = {
+          role: "assistant",
+          content: `⚠️ Chat unavailable. ${data.error || `HTTP ${resp.status}`}. Please verify the ANTHROPIC_API_KEY environment variable is set in AWS Amplify and the deployment has been rebuilt.`,
+        };
+        setChatMessages((m) => [...m, errMsg]);
+      } else if (data.text) {
         const aiMsg: ChatMessage = { role: "assistant", content: data.text };
         setChatMessages((m) => [...m, aiMsg]);
         if (voiceEnabled) {
           setIsSpeaking(true);
           speakText(data.text, () => setIsSpeaking(false));
         }
+      } else {
+        const errMsg: ChatMessage = {
+          role: "assistant",
+          content: "⚠️ Empty response from chat service. Please try again.",
+        };
+        setChatMessages((m) => [...m, errMsg]);
       }
-    } catch (e) { void e; }
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : String(e);
+      const errMsg: ChatMessage = {
+        role: "assistant",
+        content: `⚠️ Network error reaching chat service: ${msg}`,
+      };
+      setChatMessages((m) => [...m, errMsg]);
+    }
     setIsChatLoading(false);
   }, [chatMessages, isChatLoading, params, results, voiceEnabled, selectedCompany]);
 
