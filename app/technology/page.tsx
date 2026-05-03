@@ -5,11 +5,11 @@ const milestones = [
   { year: "1926", title: "First Cold Fusion Claim", desc: "German chemists Friedrich Paneth and Kurt Peters publish the earliest documented scientific attempt at room-temperature hydrogen fusion using palladium, marking the beginning of the research lineage that would become LENR." },
   { year: "1989", title: "Cold Fusion Announced", desc: "Pons & Fleischmann announce cold fusion at University of Utah, igniting decades of global research." },
   { year: "2009", title: "U.S. Navy Confirms", desc: "U.S. Navy researchers publish independent confirmation of LENR excess heat and nuclear signatures." },
-  { year: "2015", title: "Google Research Program", desc: "Google funds a multi-year, $10M+ LENR research program with leading universities. Results published in Nature in 2019 identified new experimental protocols and improved measurement methodology for future research." },
+  { year: "2019", title: "Google Research Program", desc: "Google's multi-year, $10M+ LENR research program concludes with peer-reviewed findings published in Nature. The study identified new experimental protocols and improved measurement methodology, formally reintroducing LENR to mainstream scientific discourse." },
   { year: "2020", title: "NASA Lattice Confinement", desc: "NASA Glenn Research Center publishes Lattice Confinement Fusion results confirming the reaction mechanism." },
   { year: "2023", title: "DOE ARPA-E Funding", desc: "U.S. Dept. of Energy awards $10M across eight institutions including MIT, Stanford, and the University of Michigan to study whether LENR could be the basis for a transformative carbon-free energy source." },
-  { year: "2024", title: "Leonardo Corp Milestone", desc: "Andrea Rossi's Leonardo Corp reports continued development of the E-Cat NGU self-sustaining module, a significant company milestone in a 30-year research journey." },
-  { year: "2025+", title: "Commercial Phase", desc: "E-Cat NGU and ENG8 EnergiCell preparing for distribution. New Fire Energy investing now." },
+  { year: "2025", title: "Nature Journal Validates Lattice Fusion", desc: "University of British Columbia and Lawrence Berkeley National Lab publish peer-reviewed lattice-assisted fusion results in Nature, marking one of the most credible mainstream-science validations of electrochemical LENR enhancement to date." },
+  { year: "2025+", title: "Pilot & Scale Phase", desc: "ENG8 EnergiCell advancing through pilot validation. Multiple ARPA-E-funded university programs publishing results. New Fire Energy investing at the commercialization inflection point." },
 ];
 
 const faqs = [

@@ -40,10 +40,10 @@ export default function NewsPage() {
     },
     {
       category: "Science · Conference",
-      date: "Sep 2022",
-      title: "ICCF-24 Held in Mountain View, California — Growing International Participation",
-      body: "The 24th International Conference on Condensed Matter Nuclear Science was held in Mountain View, California, drawing researchers from the U.S., Japan, Italy, and Russia. Presentations covered excess heat reproducibility, helium-4 production correlations, and theoretical models for lattice-assisted nuclear reactions. The conference series, running since 1990, represents the primary peer forum for independent LENR researchers worldwide.",
-      source: "ICCF-24 Conference Proceedings, Mountain View, CA, September 2022",
+      date: "May 2025",
+      title: "ICCF-26 Convenes in Morioka, Japan — Record International Participation",
+      body: "The 26th International Conference on Condensed Matter Nuclear Science (ICCF-26) was held in Morioka, Japan in May 2025, drawing researchers from across the U.S., Japan, Europe, and beyond. Presentations covered excess heat generation in deuterated metals, transmutation analysis, electrochemical and plasma investigations, and advances in theoretical modeling. ENG8 International presented progress on the EnergiCell at the conference. The ICCF series, running continuously since 1990, is the primary global peer forum for independent LENR researchers.",
+      source: "ICCF-26 Conference, Morioka, Japan, May 26–30, 2025 — iccf26.org",
       tag: "Independently Reviewed",
       color: "#2DD4BF",
     },
@@ -66,11 +66,11 @@ export default function NewsPage() {
       color: "#22D3EE",
     },
     {
-      category: "Science · Italy",
-      date: "2011–present",
-      title: "ENEA Italy Publishes Repeated Excess Heat and Helium-4 Findings",
-      body: "Italy's National Agency for New Technologies, Energy and Sustainable Economic Development (ENEA) has published multiple independent studies documenting excess heat and helium-4 production in LENR electrolytic systems. Researcher Francesco Celani and colleagues have produced some of the most reproducible excess heat data in the field, with ENEA representing one of Europe's most consistent institutional contributors to LENR research.",
-      source: "ENEA — Agenzia nazionale per le nuove tecnologie, l'energia e lo sviluppo economico sostenibile, Italy",
+      category: "Science · Nature Journal",
+      date: "Aug 2025",
+      title: "University of British Columbia Publishes LENR Electrochemical Fusion Result in Nature",
+      body: "Researchers at the University of British Columbia, in collaboration with Lawrence Berkeley National Laboratory, published peer-reviewed findings in Nature — the world's most cited scientific journal — documenting the first successful electrochemical enhancement of deuterium-deuterium fusion reactions within a palladium metal lattice. The paper represents one of the most credible mainstream-science validations of lattice-assisted fusion to date, confirming measurable nuclear reaction enhancement at ambient energies. The work was led by Professor Curtis Berlinguette's group across a team of 15 researchers.",
+      source: "Nature, Vol. 644, Issue 8077, p. 640 — University of British Columbia / Lawrence Berkeley National Laboratory, August 2025",
       tag: "Independently Reviewed",
       color: "#2DD4BF",
     },
@@ -211,7 +211,7 @@ export default function NewsPage() {
         <div style={{ marginTop: 60, textAlign: "center", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(34,211,238,0.14)", borderRadius: 20, padding: "48px 32px" }}>
           <h2 style={{ color: "#fff", fontSize: "1.55rem", fontWeight: 700, marginBottom: 12 }}>Have Questions About the Science?</h2>
           <p style={{ color: "rgba(255,255,255,0.48)", marginBottom: 28, maxWidth: 500, margin: "0 auto 28px", lineHeight: 1.75, fontSize: "0.92rem" }}>
-            Ask NOVA, our AI assistant, any question about LENR technology, the research, or our investment opportunity. Available 24/7 in the bottom-right corner of every page.
+            Ask ARIA, our AI assistant, any question about LENR technology, the research, or our investment opportunity. Available 24/7 in the bottom-right corner of every page.
           </p>
           <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
             <a href="/technology" style={{ padding: "12px 26px", borderRadius: 11, background: "linear-gradient(135deg,#22D3EE,#2DD4BF)", color: "#060E1F", fontWeight: 700, fontSize: "0.9rem", textDecoration: "none" }}>

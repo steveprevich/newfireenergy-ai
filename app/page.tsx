@@ -198,7 +198,7 @@ export default function Home() {
 
           {/* Trust signals */}
           <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "20px 32px", fontSize: "0.72rem", color: "rgba(255,255,255,0.28)" }}>
-            {["NASA & DOE confirmed research", "Globally protected patents", "No hazardous radiation", "Accredited investors only"].map((t) => (
+            {["NASA & DOE confirmed research", "Peer-reviewed in Nature (2025)", "No hazardous radiation", "Accredited investors only"].map((t) => (
               <span key={t} style={{ display: "flex", alignItems: "center", gap: 6 }}>
                 <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#2DD4BF", display: "inline-block" }} />
                 {t}
@@ -292,7 +292,7 @@ export default function Home() {
               Studied and published by the world&apos;s leading institutions
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "20px 40px" }}>
-              {["NASA", "U.S. Dept. of Energy", "MIT", "U.S. Navy", "ENEA Italy"].map((org) => (
+              {["NASA", "U.S. Dept. of Energy", "MIT", "U.S. Navy", "Nature Journal (2025)"].map((org) => (
                 <span key={org} style={{ color: "rgba(255,255,255,0.25)", fontWeight: 700, fontSize: "0.85rem", letterSpacing: "0.04em" }}>
                   {org}
                 </span>
