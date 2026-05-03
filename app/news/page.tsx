@@ -101,15 +101,6 @@ export default function NewsPage() {
       tag: "Milestone",
       color: "#F97316",
     },
-    {
-      category: "Portfolio",
-      date: "2025",
-      title: "New Fire Energy Investing at the LENR Commercialization Inflection Point",
-      body: "New Fire Energy's portfolio spans catalyzed fusion, controlled electron capture, and lattice confinement technologies, each advancing from lab-scale demonstrations toward commercial prototypes. The field has been studied and published by NASA, the U.S. Navy, the DOE, and MIT. The fund is investing now, as the science matures and the first commercial units move toward pilot deployment.",
-      source: "New Fire Energy Inc.",
-      tag: "Portfolio",
-      color: "#F97316",
-    },
   ];
 
   const tagColor: Record<string, { bg: string; border: string }> = {
@@ -118,7 +109,6 @@ export default function NewsPage() {
     "Funding":       { bg: "rgba(45,212,191,0.1)",  border: "rgba(45,212,191,0.3)" },
     "Policy":        { bg: "rgba(34,211,238,0.1)",  border: "rgba(34,211,238,0.3)" },
     "Validation":    { bg: "rgba(45,212,191,0.1)",  border: "rgba(45,212,191,0.3)" },
-    "Portfolio":     { bg: "rgba(249,115,22,0.12)", border: "rgba(249,115,22,0.3)" },
     "Government":    { bg: "rgba(34,211,238,0.1)",  border: "rgba(34,211,238,0.3)" },
     "Market":        { bg: "rgba(249,115,22,0.12)", border: "rgba(249,115,22,0.3)" },
     "Milestone":     { bg: "rgba(249,115,22,0.12)", border: "rgba(249,115,22,0.3)" },
