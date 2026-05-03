@@ -13,11 +13,11 @@ const milestones = [
 ];
 
 const faqs = [
-  { q: "Is LENR independently validated?", a: "Yes. Excess heat and nuclear signatures in LENR experiments have been independently observed and published by research teams at the U.S. Navy SPAWAR, NASA Glenn Research Center, the U.S. Department of Energy, and MIT. While mainstream scientific consensus has not yet fully formed, the body of independent third-party physicist reviews continues to grow and institutional interest has increased significantly since 2020." },
-  { q: "Why is Zero Point Energy (ZPE) related to LENR?", a: "ZPE is referenced by companies within the LENR umbrella such as Leonardo E-Cat NGU. It describes energy derived from the quantum vacuum field. It is a theoretical framework explored by certain LENR companies. ENG8 International is not a ZPE company." },
-  { q: "How is LENR different from conventional nuclear fission?", a: "Fission splits heavy atoms (uranium, plutonium) producing radioactive waste and gamma radiation. LENR involves light hydrogen isotopes reacting in a metal lattice, producing primarily heat and helium-4 no harmful radiation, no long-lived waste." },
-  { q: "What does COP mean?", a: "COP (Coefficient of Performance) is the ratio of energy out to energy in. A COP of 1.0 is break-even. A COP of 1.8 means 80% more energy out than in. ENG8 International recorded a COP of 1.8 in independent UK laboratory testing by Dr. Robert Morgan in 2020, with subsequent tests showing continued improvement and a commercial target of COP 5 or higher. These figures are company-reported and ongoing independent verification continues." },
-  { q: "Why hasn't LENR been commercialized before?", a: "The primary challenge has been reproducibility. Early experiments were variable. Multiple companies (Andrea Rossi/Leonardo Corp, ENG8 International) have now achieved consistent, repeatable results and are entering the commercialization phase." },
+  { q: "Is LENR independently validated?", a: "Yes. Excess heat and nuclear signatures have been independently observed and published by the U.S. Navy SPAWAR, NASA Glenn Research Center, the U.S. Department of Energy, and MIT. In August 2025, a peer-reviewed paper in Nature confirmed electrochemical enhancement of fusion reactions in a metal lattice. Scientific consensus has not fully formed, but institutional interest and funding have grown steadily since 2020." },
+  { q: "Why is Zero Point Energy (ZPE) related to LENR?", a: "ZPE describes energy derived from the quantum vacuum field and is referenced by some companies within the broader advanced energy space. ENG8 International is not a ZPE company. New Fire Energy tracks ZPE as a frontier concept separate from LENR." },
+  { q: "How is LENR different from conventional nuclear fission?", a: "Fission splits heavy atoms like uranium and produces radioactive waste and gamma radiation. LENR involves light hydrogen isotopes reacting in a metal lattice, producing heat and helium-4 with no harmful radiation and no long-lived waste." },
+  { q: "What does COP mean?", a: "COP (Coefficient of Performance) is the ratio of energy out to energy in. A COP of 1.0 is break-even. A COP of 1.8 means 80% more energy out than in. ENG8 recorded a COP of 1.8 in independent UK testing by Dr. Robert Morgan in 2020. An October 2024 validation by Dr. Jean-Paul Biberian reported COP metrics of 3x to 10x on industrial units. The full Biberian report is not publicly available and the device remains in the research phase." },
+  { q: "Why hasn't LENR been commercialized before?", a: "The main challenge has been reproducibility. Early experiments varied widely. Results have become more consistent over the past decade as materials preparation and measurement improved. ENG8 International is currently in the pilot validation phase." },
 ];
 
 export default function TechnologyPage() {
@@ -124,10 +124,10 @@ export default function TechnologyPage() {
           {/* 4 mechanism cards */}
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 20, marginBottom: 64 }}>
             {[
-              { icon: "⚛️", title: "Hydrogen Loading", desc: "Hydrogen isotopes are loaded into a specially prepared nickel or palladium metal lattice at elevated pressure and temperature." },
-              { icon: "🔬", title: "Lattice Confinement", desc: "The crystal lattice confines hydrogen nuclei below the Bohr radius dramatically increasing quantum tunneling probability." },
-              { icon: "⚡", title: "Nuclear Reaction", desc: "Hydrogen nuclei fuse with metal nuclei, releasing energy as phonons (heat) rather than dangerous gamma radiation." },
-              { icon: "📈", title: "Excess Heat Output", desc: "The system outputs more thermal energy than the electrical input. COP values of 1.5 to 1.8 have been reported in recent validated laboratory tests, with commercial targets of COP 5 and above." },
+              { icon: "⚛️", title: "Hydrogen Loading", desc: "Hydrogen isotopes are loaded into a nickel or palladium metal lattice at controlled pressure and temperature." },
+              { icon: "🔬", title: "Lattice Confinement", desc: "The crystal lattice confines hydrogen nuclei below the Bohr radius, increasing quantum tunneling probability." },
+              { icon: "⚡", title: "Nuclear Reaction", desc: "Hydrogen nuclei react within the metal lattice, releasing energy as heat rather than gamma radiation." },
+              { icon: "📈", title: "Excess Heat Output", desc: "The system outputs more thermal energy than electrical input. Independent tests have recorded COP values from 1.6 to 1.8, with higher figures reported in more recent company-commissioned validations." },
             ].map((c) => (
               <div key={c.title} style={{ background: "rgba(0,184,230,0.04)", border: "1px solid rgba(0,184,230,0.14)",
                 borderRadius: 16, padding: "28px 24px" }}>
