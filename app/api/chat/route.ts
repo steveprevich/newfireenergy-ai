@@ -55,7 +55,6 @@ Zero Point Energy (ZPE) refers to energy from the quantum vacuum field — disti
 - Steven Previch — CEO, Chairman & Director: 20+ years in securities operations and enterprise leadership
 - Michael Alvarez — Vice President & Director: Project finance, startup syndication, blockchain finance
 - Sam Massaquoi — Director, Technology & Digital Strategy: MS Computer Science, Pace; VP Technical Lead, J.P. Morgan (CoIN AI)
-- George Miller — Director, Capital Partnerships: Global family office network, private banking, blockchain capital
 - Gaj Subudhi — Director, Solutions Architecture: 20+ years enterprise design; clients include Google, Boeing, Apple
 - Maria Lozovaia — Director, Operations & International Affairs: 15 years operations; multilingual
 - Dr. Ira Fine — Director, Medical & Regulatory: Board-certified internist, M.D. University of North Paris; clinical advisor
