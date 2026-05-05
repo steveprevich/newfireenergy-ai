@@ -115,7 +115,7 @@ export default function Home() {
           </p>
           <p style={{ fontSize: "clamp(0.8rem, 1.5vw, 0.95rem)", color: "rgba(0,184,230,0.55)",
             letterSpacing: "0.08em", fontWeight: 600, margin: 0 }}>
-            Zero Point · Zero Carbon · Abundant Energy
+            Next-Generation Energy Technologies
           </p>
         </div>
 
